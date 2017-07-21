@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            opacity: 0.1;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/utils.js"></script>
+<script src="js/event.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    $event.on(oDiv,'click',move)
+    function move(){
+        animate(oDiv,{
+            height:500,
+            opacity:1
+        })
+    }
+    //提前给运动结束moveEnd这个自定义行为绑定一系列方法；
+    $event.on(oDiv,'myMoveEnd',fn1);
+    //$event.on(oDiv,'myMoveEnd',fn2);
+    $event.on(oDiv,'myMoveEnd',fn3);
+    function fn1(){
+        console.log('1111111')
+    }
+    function fn2(){
+        console.log('2222')
+    }
+    function fn3(){
+        console.log('33333')
+    }
+    function fn4(){
+        console.log('4444')
+    }
+</script>
+</body>
+</html>

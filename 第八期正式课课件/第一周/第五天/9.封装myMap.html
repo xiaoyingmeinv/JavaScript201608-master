@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //思路：
+    /*map有两个参数：1.回调函数 2.用来改变this指向；map有返回值，返回值是个数组；
+     * 1.回调函数被调用的次数-就是数组的长度
+     * 2.回调函数有3个参数：1.数组的内容 2.索引 3.原数组
+     * 3.回调函数中的this-window；call改变this指向
+     * 4.回调函数的返回值，会被数组保存
+     * 回调函数被调用多少次，数组中的长度就是多少个；
+     * */
+    var obj={};
+    var ary=[23,21,6,98];
+    Array.prototype.myMap=function(callback,context){
+        context=context||window;
+        //先处理浏览器兼容问题
+        if('map' in Array.prototype){
+            return this.map(callback,context);//直接把 map的返回值返回出去即可；
+            //1.返回值 2.阻断程序执行；
+        }
+        var ary=[];//建立一个数组保存每个回调函数的返回值；
+        for(var i=0; i<this.length; i++){
+            var val=callback.call(context,this[i],i,this);
+            ary.push(val);
+        }
+        return ary;//因为map有返回值，所以，最后我们返回一个数组；
+    };
+    /*
+    * 1.验证参数能否取到值
+    * 2.验证this指向
+    * 3.myMap的返回值
+    * */
+    var res=ary.myMap(function(item,index,input){
+       // console.log(this===window)
+        return item*100;
+    },obj);
+    console.log(res)
+</script>
+</body>
+</html>

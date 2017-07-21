@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+    function fn1(n,m){
+        alert(this+(n+m));
+    }
+    //fn1.call(obj,2,3) //call后面传参的时候，从第二个参数开始，一个个的输入；
+    //但是，它对call点前面的函数进行传参的时候，相当于给fn1的参数从左往右一个个的传参；
+    fn1.apply(obj,[2,3])
+    /*
+    * apply总共有两个参数：1.用来改变this指向  2.把所有的实参放在一个数组中；
+    *但是，它对apply点前面的函数进行传参的时候，相当于给fn1的参数哦从左往右一个个的传参；
+    *
+    * */
+</script>
+</body>
+</html>

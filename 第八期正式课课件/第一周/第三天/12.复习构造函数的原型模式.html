@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数，类
+
+    }
+    //1.每个函数数据类型上，都天生自带一个属性，叫prototype，它是对象数据类型
+    //2.prototype这个对象上天生自带一个属性，叫constructor，指向当前这个类；
+    //3.每个对象数据类型上，都自带一个属性，叫__proto__,它指向当前实例所属类的原型；
+    /*
+    * 构造函数上放的都是私有的属性和方法
+    * prototype上，放的都是公有的属性和方法
+    * __proto__原型链：查找元素的属性和方法
+    * */
+    //注意：prototype如果指向系统为其分配的内存空间，他会自带一个属性叫constructor:指向离他最近类；如果prototype指向我们为其创建的对象；他的constructor就指向Object.prototype.constructor;所以，我们我们改变prototype的系统指针，一定要手动为其添加constructor，让其指向最近的类；
+
+    Fn.prototype.showX=function(){}
+    console.log(Fn.prototype.constructor)
+    var f=new Fn;
+    console.log(f.__proto__.showX=Fn.prototype.showX);
+</script>
+</body>
+</html>

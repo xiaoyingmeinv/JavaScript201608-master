@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:200px;
+            top:30px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    animate(oDiv,{left:800,top:400},700,function(){
+        this.style.background='green';
+    })
+    /*//1.写公式
+    function Linear(t,b,c,d){
+        return t*c/d+b;
+    }
+    //2.为公式每个参数做准备
+    var beginL=utils.css(oDiv,'left'),beginT=utils.css(oDiv,'top');
+    var targetL=800,targetT=400; // {left:1000,top:400}
+    var changeL=targetL-beginL,changeT=targetT-beginT;
+    var duration=1000;
+    var time=0;
+    //3.开启一个定时器，让时间不断的累加；
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,{left:targetL,top:targetT});
+            clearInterval(timer);
+            return;
+        }
+        var curL=Linear(time,beginL,changeL,duration);
+        var curT=Linear(time,beginT,changeT,duration);
+        utils.css(oDiv,{left:curL,top:curT});
+    },10)*/
+</script>
+</body>
+</html>

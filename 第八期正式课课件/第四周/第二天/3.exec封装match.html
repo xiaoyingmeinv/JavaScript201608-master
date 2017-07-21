@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='zhufeng123peixun344';
+    var reg=/\d+/g;
+    String.prototype.myMatch=function(reg){
+        //this -实例str;
+        var res=reg.exec(this);
+        var ary=[];
+        while(res){
+            ary.push(res[0]);
+            res=reg.exec(this);
+        }
+        return ary;
+    };
+    var aa=str.myMatch(reg); //[123,344]
+    console.log(aa)
+
+</script>
+</body>
+</html>

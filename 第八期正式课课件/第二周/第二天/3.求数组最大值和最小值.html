@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[21,34,9,1];
+    //1：sort()
+    /*ary.sort(function(a,b){return a-b});//从小到大的排序；
+    var max=ary.pop();
+    var min=ary.shift();
+    alert(min)*/
+    //2.eval配合Math.max的字符串拼接；
+    /*var str=ary.toString();
+    alert(eval('Math.max('+str+')'));
+    alert(eval('Math.min('+str+')'));*/
+    //3.Math.max配合apply
+    /*var max=Math.max.apply(null,ary);
+    var min=Math.min.apply(null,ary);*/
+    //4.假设法:先假设一个最大值和最小值，然后拿数组中的每一项跟他比较，如果比他大，数组中改项就是最大值；同理，最小值也是这样；
+    var max=ary[0];
+    var min=ary[0];
+    for(var i=0; i<ary.length; i++){
+        if(ary[i]>max){
+            max=ary[i];
+        }
+        if(ary[i]<min){
+            min=ary[i];
+        }
+    }
+    alert(max)
+    alert(min)
+</script>
+</body>
+</html>

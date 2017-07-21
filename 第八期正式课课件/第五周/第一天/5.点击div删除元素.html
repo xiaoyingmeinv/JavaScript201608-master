@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            margin:5px;
+            background: red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<script>
+    //需求：
+    // 1.给页面上创建20个div，每个div中都有一个a链接
+    // 2.点击每个a链接的时候，会删除他对应的div元素；
+    var frg=document.createDocumentFragment();
+    for(var i=0; i<40; i++){
+        var oDiv=document.createElement('div');
+        oDiv.className='box';
+        oDiv.innerHTML+='<a href="javascript:;">点击删除吧</a>';
+        oDiv.innerHTML+=i;
+        frg.appendChild(oDiv);
+    }
+    document.body.appendChild(frg)
+    //当点击的事件源是a标签的时候，删除a标签的父级；（删除他对应的div元素；）
+    document.body.onclick=function(e){
+        e=e||window.event;
+        e.target= e.target|| e.srcElement;
+        if(e.target.tagName.toLowerCase()==='a'){
+            this.removeChild(e.target.parentNode)
+        }
+    };
+</script>
+</body>
+</html>

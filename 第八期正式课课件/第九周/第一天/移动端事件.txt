@@ -1,0 +1,30 @@
+1、click
+  在PC中我们基本上不使用双击操作(也没有兼容所有浏览器的双击事件,双击都是自己模拟的),PC的浏览器识别click基本上就是点击，快速点击两次不会按照双击处理而是触发两次click
+
+  在移动端，我们经常会根据手指的操作频率等实现不同的交互效果，例如：单击、双击、长按...,所以在移动端click只是单击
+
+  在移动端使用click,浏览器在用户第一次操作的时候开始计时，然后在300ms后通过判断是否触发第二次操作来决定给是click还是双击，如果触发了第二次操作属于双击，不会在触发click事件了  ==>所以在移动端使用click都会存在300ms的延迟
+
+  解决的原理：不使用click而是使用touchstart、touchend...来处理即可，有一个插件：fastclick.min.js是专门解决click的300ms延迟的
+
+
+2、touch移动端手指操作事件模型(单手指操作)
+   touchstart
+   touchmove
+   touchend
+   touchcancle:意外取消
+
+3、gesture(多手指操作)
+   gesturestart
+   gesturechange
+   gestureend
+
+4、手机重力感应模型
+
+移动端所有的常规操作基本上都是由以上的事件模型模拟出来的
+
+模拟：
+  单击 PK 双击  300ms
+  点击 PK 长按  750ms
+  点击 PK 滑动  手指偏移的距离是否超过30px/10px
+  滑动的方向

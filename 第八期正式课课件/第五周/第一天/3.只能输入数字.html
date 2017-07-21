@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="txt"/>
+<script>
+    var oT=document.getElementById('txt');
+    //只能输入数字；
+    //思路：如果不是数字也不是backspace，就阻止系统让你输入的默认事件；
+    oT.onkeydown=function(e){
+        //数字从48-57  backspace:8;
+        e=e||window.event;
+        if((e.keyCode<48|| e.keyCode>57) && e.keyCode!=8){
+            e.preventDefault? e.preventDefault(): e.returnValue=false;
+        }
+    }
+</script>
+</body>
+</html>

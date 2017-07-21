@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+input {
+    outline: none;
+}
+
+html, body {
+    width: 100%;
+    color: #000;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+}
+
+.box {
+    margin: 10px auto;
+    padding: 10px;
+    width: 800px;
+    border: 2px solid green;
+}
+
+.header {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #FFF;
+    font-size: 18px;
+    background: green;
+}
+
+.header span, .content li span {
+    float: left;
+    width: 200px;
+}
+
+.content {
+    height: 300px;
+}
+
+.content li {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.content li:nth-child(even) {
+    background: #EEE;
+}
+
+.content li:hover {
+    background: lightblue;
+}
+
+.footer {
+    margin-top: 10px;
+    height: 22px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.footer span, .footer ul, .footer ul li, .footer input {
+    display: inline-block;
+}
+
+.footer span, .footer ul li, .footer input {
+    margin: 0 3px;
+    width: 45px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid green;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.footer ul li {
+    width: 20px;
+}
+
+.footer ul li.bg {
+    color: #FFF;
+    background: green;
+}

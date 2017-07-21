@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=false&word=%E5%88%98%E8%AF%97%E8%AF%97&step_word=&hs=0&pn=43&spn=0&di=66113840430&pi=0&rn=1&tn=baiduimagedetail&is=&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=2557276175%2C507170769&os=4271150470%2C3725947494&simid=0%2C0&adpicid=0&ln=1000&fr=&fmq=1470554541235_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=star&bdtype=0&oriquery=&objurl=http%3A%2F%2Ff.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F96dda144ad3459823f3c31370cf431adcaef84e5.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fzit1w5_z%26e3Bkwt17_z%26e3Bv54AzdH3Fq7jfpt5gAzdH3F9dnldl0l8_z%26e3Bip4s&gsm=0&rpstart=0&rpnum=0';//{key:value};
+    String.prototype.myQueryUrlPar=function(){
+        //this 实例 str；
+        var reg=/([^?=&]+)=([^?=&]+)/g;
+        var obj={};
+        this.replace(reg,function($0,$1,$2){
+            obj[$1]=$2;
+        });
+        return obj;
+    };
+
+   console.log(str.myQueryUrlPar());
+</script>
+</body>
+</html>

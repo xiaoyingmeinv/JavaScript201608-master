@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //确实有一定难度；
+    function Foo(){
+        getName=function(){alert(1)};
+        return this;
+    }
+    Foo.getName=function (){alert(2)};
+    Foo.prototype.getName=function(){alert(3)};
+    var getName=function(){alert(4)};
+    function getName(){alert(5)}
+    Foo.getName();//把函数作为对象来使用； 2
+    getName();//4
+    Foo().getName();//1
+    getName();//1
+    new Foo.getName();//Foo.getName作为一个类； 2
+    new Foo().getName();//3
+</script>
+</body>
+</html>

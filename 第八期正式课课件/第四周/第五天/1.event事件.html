@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    //说明在标准浏览器下用形参e来接受event事件对象；
+    //在IE浏览器下用window.event;
+    oDiv.onclick=function(e){
+        e=e||window.event;//事件对象，可以帮我们拿到鼠标的落脚点
+    }
+</script>
+</body>
+</html>

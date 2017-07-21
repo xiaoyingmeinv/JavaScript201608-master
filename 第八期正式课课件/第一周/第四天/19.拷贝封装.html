@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj1={name:'zhufeng',age:8};
+    var obj2={};
+    //obj2拷贝obj1;
+    function extend(obj2,obj1){
+        for(var attr in obj1){
+            obj2[attr]=obj1[attr];
+        }
+        return obj2;
+    }
+    console.log(extend(obj2,obj1))
+</script>
+</body>
+</html>

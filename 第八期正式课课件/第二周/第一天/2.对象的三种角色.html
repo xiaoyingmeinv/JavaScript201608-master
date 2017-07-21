@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        alert(a);
+        var a='我是作为普通函数的变量';
+        alert(a);
+    }
+    Fn.prototype.showX=function(){
+        alert('我是实例的公有方法')
+    };
+    Fn.aa='我是对象的属性';
+    //Fn();//普通函数
+    //alert(Fn.aa) //作为对象
+    var f=new Fn();//构造函数：构造函数在创建实例的时候，其实也作为普通函数被调用了；
+    f.showX();
+//函数的三种角色，同时，函数的三种角色之间不会相互冲突；
+</script>
+</body>
+</html>

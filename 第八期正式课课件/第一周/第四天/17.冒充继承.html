@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //冒充继承 核心：把父类私有的+公有的属性和方法，都给了子类私有的；
+    function F(){//父类私有的
+        this.x=100;
+    }
+    F.prototype.showX=function(){};
+    F.prototype.showY=function(){};
+    var f=new F;
+    function S(){
+        //this-S的实例；
+        var f=new F;
+        for(var attr in f){
+            this[attr]=f[attr];
+        }
+        this.aa=123;
+    }
+    var s=new S;
+    console.dir(s);
+</script>
+</body>
+</html>

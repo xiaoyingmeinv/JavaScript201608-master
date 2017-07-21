@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/zhufeng.js"></script>
+<script type="text/javascript">
+    //->多类库并存的时候,可能每一个类库都是使用$做为自己的代言人,那么最后引入的类库会把$的使用权争抢过来
+    $();//->zQuery();
+
+    //->noConflict:转让$的使用权,转让后以后的$就不在代表jQuery了,并且给jQuery请了另外一个代言人j;最后一个参数传递TRUE,jQuery把自己的品牌jQuery的名字也转让了;
+    var j = jQuery.noConflict(true);
+    console.dir(j);
+    console.log(jQuery);//->undefined
+</script>
+</body>
+</html>

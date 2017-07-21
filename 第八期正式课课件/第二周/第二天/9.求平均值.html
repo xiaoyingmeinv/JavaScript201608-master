@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //去掉一个最大值，去掉一个最小值，其他求和/剩余数组的长度；
+    /*
+    *1.类数组专数组
+    *2.sort()方法进行排序
+    *3.掐头去尾
+    *4.return 求和/长度  （求出来的是平均值）
+    * */
+    // var ary=[9.7,8.7,0.7,9.3,2.7,3.7];
+    function average(){//arguments;
+        //1.类数组专数组
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary[ary.length]=arguments[i];
+        }*/
+        var ary=Array.prototype.slice.call(arguments);
+        //2.sort()方法进行排序
+        /*ary.sort(function(a,b){return a-b});
+        //3.掐头去尾
+        ary.pop();
+        ary.shift();
+        return (eval(ary.join('+'))/ary.length).toFixed(2);*/
+    }
+    alert(average(9.7,8.7,0.7,9.7,2.7,3.7))
+</script>
+</body>
+</html>

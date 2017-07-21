@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"  id="html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #box1{
+            width: 600px;
+            height: 600px;
+            border: 20px solid #000;
+            background: lightgreen;
+            position: relative;
+            margin:50px auto;
+        }
+       #box2{
+           width: 400px;
+           height: 400px;
+           border: 20px solid #000;
+           background: lightblue;
+           margin:100px;
+       }
+        #box3{
+            width: 200px;
+            height: 200px;
+            border: 20px solid #000;
+            background: lightcyan;
+            margin:100px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body id="body">
+<div id="box1">
+    <div id="box2">
+        <div id="box3"></div>
+    </div>
+</div>
+<script>
+    //需求1：找到box3上所有的结构父级；
+    var oBox3=document.getElementById('box3');
+    /*var par=oBox3.parentNode;
+    while(par){
+        alert(par.id);
+        par=par.parentNode;
+    }*/
+    //需求2：求当期元素上的所有定位父级
+    /*var par=oBox3.offsetParent;
+    while(par){
+        alert(par.id);
+        par=par.offsetParent;
+    }*/
+    //需求3：求当前元素到body的距离；
+    function offset(curEle){
+        var l=curEle.offsetLeft;
+        var t=curEle.offsetTop;
+        var par=curEle.offsetParent;
+        while(par){
+            //因为在IE8浏览器下，offsetLeft已经包含了border；所以不需要再加border；
+            //不是IE8浏览器； 所以，只对不是IE8的加上border；
+            if(navigator.userAgent.indexOf('MSIE 8.0')===-1){
+                l+=par.clientLeft;
+                t+=par.clientTop;
+            }
+            l+=par.offsetLeft;
+            t+=par.offsetTop;
+            par=par.offsetParent;//有定位父级的话，继续找定位父级的定位父级；
+        }
+        return {left:l,top:t}
+    }
+    console.log(offset(oBox3).left)
+</script>
+</body>
+</html>

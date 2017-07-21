@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function toDou(n){
+        return n>=0 && n<10?'0'+n:''+n;
+    }
+    function countDown(){
+        var oDate=new Date();
+        var newDate=new Date('2016/8/9 9:30:00');
+        var s=Math.floor((newDate.getTime()-oDate.getTime())/1000);
+        var d=Math.floor(s/86400);
+        s%=86400;
+        var h=Math.floor(s/3600);
+        s%=3600;
+        var m=Math.floor(s/60);
+        s%=60;
+        str=toDou(d)+'天'+toDou(h)+':'+toDou(m)+':'+toDou(s);
+        document.body.innerHTML=str;
+    }
+    countDown();
+    var timer=setInterval(countDown,1000);
+</script>
+</body>
+</html>

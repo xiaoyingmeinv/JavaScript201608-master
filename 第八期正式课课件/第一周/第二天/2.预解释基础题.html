@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var n=123;
+    var ary=[23,54,60,12];//[100,54,60,12]
+    /*function fn(n){
+        alert(n)
+        n=15;
+        alert(n)
+    }
+    fn(n);
+    alert(n);*/
+    /*function fn(n){
+        alert(n) //undefined
+        n=15;
+        alert(n)//15
+    }
+    fn();
+    alert(n);//123*/
+    /*function fn(n){
+        n[0]=100;
+        console.log(n)
+        n=456;
+        console.log(n)
+    }
+    fn(ary);*/
+    function fn(n){//n=xxff00; [100,54,60,12] ; n=[500];
+        n[0]=100;
+        console.log(n) //[100,54,60,12]
+        n=[];
+        n[n.length]=500;
+        console.log(n)// [500]
+    }
+    fn(ary);
+    console.log(ary);// [100,54,60,12]
+
+</script>
+</body>
+</html>

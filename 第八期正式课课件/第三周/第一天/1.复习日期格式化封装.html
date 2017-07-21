@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='2016/8/9 11:0/3';
+    String.prototype.myFormatDate=function(tmp){
+        tmp=tmp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+        var ary=this.split(/[^\d]+/g);
+        tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+            var n=ary[$1];
+            return n=n>=0 && n<10?'0'+parseInt(n):n;
+        })
+        return tmp;
+
+    }
+   console.log(str.myFormatDate()) ;
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+珠峰培训
+<!--
+  API接口文档
+  1、获取服务器的时间
+    URL:/getServerTime  HEAD
+    参数:无
+    返回:只要返回响应头信息即可(响应头中包含了服务器的时间),主体信息什么都不需要
+-->
+<script type="text/javascript">
+    var xhr = new XMLHttpRequest;
+    xhr.open('HEAD', '/getServerTime');
+    xhr.onreadystatechange = function () {
+        if (/^2\d{2}$/.test(xhr.status)) {
+            //->获取服务器的时间
+            if (xhr.readyState === 2) {
+                var time = new Date(xhr.getResponseHeader('Date'));
+                console.log(time);
+            }
+        }
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>

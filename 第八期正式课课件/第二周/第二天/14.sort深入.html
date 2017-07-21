@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //var ary=[12,34,21,9,8];
+    var ary=[
+        {w:'郑伟'},
+        {w:'杜婧秋'},
+        {w:'马超'},
+        {w:'武光顺'},
+        {w:'爱国'}
+    ];
+    ary.sort(function(a,b){
+        //a:当前项 {w:12}
+        //b:后一项 {w:34}
+        //a-b a.w-b.w
+       // return a.w - b.w;//a-b他们比较的数字；
+        a= a.w;
+        b= b.w;
+        return a.localeCompare(b); //汉字排序
+    });
+   // console.log(ary)
+</script>
+</body>
+</html>

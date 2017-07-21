@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+    Function.prototype.call=function(){
+        //this这个实例(都是函数数据类型)中的“this”关键字变成call的第一个参数；如果实例中没有this关键字，不需要替换，直接执行即可；
+        //把this这个实例（fn）调用；
+        this();
+    };
+    function fn(){
+        alert(this)
+    }
+    fn.call(obj);//当函数被调用的时候，点前面是谁，this就是谁；
+    /*关于call改变this关键字这里：
+    * 1.把call点前面的函数中的this关键字变成call的第一个参数；
+    *   注意：如果call前面的函数中没有this关键字，那么就不需要修改，直接调用此函数即可；
+    * 2.把call点前面的函数调用；
+    * */
+</script>
+</body>
+</html>

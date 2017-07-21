@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //hasPubProperty:它的返回值必须是布尔值
+    function hasPubProperty(attr,obj){
+        /*if(attr in obj && !obj.hasOwnProperty(attr)){
+            return  true;
+        }else{
+            return false;
+        }*/
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+</script>
+</body>
+</html>

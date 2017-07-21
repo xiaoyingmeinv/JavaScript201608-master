@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数中都是私有属性
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype.showX=function(){};
+    var f=new Fn;
+    console.dir(f)
+    //alert('showX' in f) //in:用来判断这个属性是否在对象上，这个属性包含（公有+私有）
+    //alert(f.hasOwnProperty('x'))//x是f的私有属性；
+    //alert(f.hasOwnProperty('showX')) //showX：他属于对象上的公有属性，所以返回值为false；
+    function hasPubProperty(attr,obj){//判断是否为公有属性的方法封装；
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+    alert(hasPubProperty('showX',f))
+</script>
+</body>
+</html>

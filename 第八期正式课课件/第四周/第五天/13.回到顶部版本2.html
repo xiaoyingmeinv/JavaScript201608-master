@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 1000%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: lightgreen;
+            background: -webkit-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -moz-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -ms-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            font-size: 30px;
+            color: white;
+            background: darkgreen;
+            box-shadow: 4px 4px 10px #333;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //1.点击按钮的时候，回到顶部
+    var timer=null;
+    $(window).on('scroll',computedDisplay);
+    function computedDisplay(){
+        //$(window).height() 可视区的高度
+        if($(window).scrollTop()>$(window).height()){
+            $('div').show();
+        }else{
+            $('div').hide();
+        }
+    }
+    $('div').click(function(){
+        $(this).hide();
+        $(window).off('scroll',computedDisplay);
+        var target=$(window).scrollTop();
+        var duration=1000;
+        var interval=30;
+        var step=target/duration*interval;
+        clearInterval(timer);
+        timer=setInterval(function(){
+            var curT=$(window).scrollTop();
+            if(curT<=0){
+                clearInterval(timer);
+                $(window).on('scroll',computedDisplay);
+                return;
+            }
+            curT-=step;
+            $(window).scrollTop(curT);
+        },interval);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+1.获取元素的7种方式
+id
+name
+tagName
+className
+document.documentElement
+document.body
+querySelector
+querySelectorAll
+2.节点类型
+               nodeType         nodeName      nodeValue
+元素节点           1             大写的标签名       null
+文本节点           3             #text          文本内容
+注释节点           8             #comment       注释内容
+document节点      9             #document         null
+3.节点关系
+parentNode
+children
+childNodes
+previousSibling   previousElementSibling
+nextSibling       nextElementSibling
+firstChild
+lastChild
+4.元素的动态操作
+1)动态创建
+     document.createElement(标签名)
+     obj.cloneNode(boolean) 克隆
+2）动态插入
+    parent.appendChild(curEle);
+    parent.insertBefore(newEle,oldEle);
+3)删除和替换
+    parent.removeChild(curEle);
+    parent.replaceChild(curEle,oldEle);
+........................................................
+样式的操作和元素获取： className   css
+1)getByClass
+2)hasClass
+3)addClass
+4)removeClass
+5)getCss
+6)setCss
+7)setGroupCss
+8)css合并
+9)win
+10)offset
+节点关系
+
+1)getChildren
+2)prev
+3)prevAll
+4)next
+5)nextAll
+6)sibling
+7)siblings
+8)firstChild
+9)lastChild
+10)index
+元素的动态操作
+1）appendChild
+2)prependChild
+3)insertBefore
+4)insertAfter
+.......................
+makeArray
+jsonParse
+rnd

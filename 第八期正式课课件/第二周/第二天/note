@@ -1,0 +1,140 @@
+1.this的总结
+    1.当元素的事件被触发的时候，执行一个方法，方法中的this指向当前这个元素
+    2.自执行函数中的this，永远是window；
+    3.当函数被调用的时候，点前面是谁，this就是谁；
+    4.构造函数中的this指向当前实例
+    5.回调函数中的this一般是window；
+    6.当遇到call,apply,bind的时候，以上规律都不适用，他们可以通过第一个参数去改变this指向；
+    setInterval();
+    sort();
+2.数组常用方法
+    1.增加，删除和替换
+    push()
+    pop();
+    shift();
+    unshift();
+    splice()
+        splice(n,m)
+        splice(n,0,m);
+        splice(n,m,x);
+    2.查找和克隆
+    克隆:
+    slice(0)/slice()
+    concat()
+    splice(0)
+
+    slice(n,m) 从索引n开始，到索引m,不包含m；
+    concat(); 数组拼接的作用
+    3.排序
+    sort（function(a,b){return a-b}）
+    reverse（）//数组翻转
+    4.数组转字符串
+    toString()
+    join() 配合eval()可以实现加减运算
+    5.常用但不兼容的方法
+    indexOf()
+    forEach()
+    map()
+3.字符串常用方法
+    1.通过索引找字符
+    charAt()
+    charCodeAt()
+    2.通过字符找索引
+    indexOf()
+    lastIndexOf()
+    3.字符串转大小写
+    toUpperCase()
+    toLowerCase()
+    4.字符串查找
+    substr(n,m) 从索引n开始，找m个；
+    substring(n,m) 从索引n开始，找到索引m；不包含m；
+    slice(n,m) 功能跟substring一样，但是可以取负值
+    5.跟正则配合的字符串方法
+    search() 匹配 如果找到返回对应内容的索引，找不到，返回-1；
+    match() 捕获
+    split() 切割
+    replace() 替换
+4.匿名函数:函数表达式 和 自执行函数
+5.预解释无节操：
+6.继承：
+    1.call继承：把父类私有的给了子类私有的
+    2.冒充继承：把父类公有+私有的给了子类私有的
+    3.原型链继承：把父类私有+公有的给了子类公有的；
+    4.混合继承1：call继承+原型链继承
+    5.混合继承2：call继承+拷贝继承
+    6.寄生式组合继承 call继承+Object.create() 思想；
+7.构造函数中的6个细节知识点：
+    1.构造函数中的this指向当前实例
+    2.他没有返回值，如果手动返回：
+        1）返回的是基本数据类型：不会有任何效果，也不会改变实例上的属性和方法
+        2）如果返回是引用数据类型：实例会受影响，实例上的属性和方法不能正常使用
+    3.构造函数中的存放的都是私有的属性和方法
+    4.构造函数中实例只跟this.xxx有关，跟变量没有任何关系
+    5.构造函数是类和实例打交道
+    6.在创建一个实例的时候，如果没有参数，小括号可以省略；
+。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+1.Object 和 Function的关系
+    1.Function 是Object的爹；
+    2.Object.prototype 是 Function.prototype的爹；
+    3.Object 也是 Function的爹；
+2.数据类型检测：
+    1.typeof 能检测基本数据类型； 缺点：不见检测引用数据类型，具体是属于数组还是其他；
+    2.instanceof 判断实例是否属于某个类；
+    3.constructor 根据打印出的构造函数来判断
+    4.Object.prototype.toString.call();
+3.数据类型检测的问题
+    1.typeof 缺点：不见检测引用数据类型，具体是属于数组还是其他类；
+    2.instanceof 问题：
+    1）只要在该对象的原型链上，用instanceof判断都是true
+    2)instanceof不能检测null 和 undefined;
+    3.constructor
+    1)不能用来检测 null 和 undefined;
+    2）一旦我们给类的原型赋值为自定义的对象 {}，constructor一定会出问题；
+    3）通过原型链继承，constructor也会出问题；
+    4.Object.prototype.toString.call()
+    toString()：把toString方法中的this这个实例的所属类的详细信息打印出来；
+    “[object Object]”
+        1.object  告诉你它是个对象
+        2.Object：打印出对象的类的详细信息；所以，首字母一定是大写（告诉你该对象具体属于哪个类）;
+    不能直接用[].toString();
+    注意点：
+    因为我们每个类自己原型上的toString()，它的功能是把实例转为字符串；所以，不要直接使用 实例.toString()来进行数据类型的检测；
+    只能使用Object.prototype.toString.call(实例)
+   核心： 因为Object.prototype.toString()方法中，只是把toString()中的this实例的所属类的详细信息打印出来，所以，我们想检测某个实例具体属于某个类，必须通过call改变this实例的指向；
+6.call，apply，和bind区别
+call,apply在this被改变后，函数会立即执行；
+bind属于预处理机制:bind（）会提前修改后函数中的this和参数，然后返回个修改后的函数；等我们需要的时候，手动调用；
+bind的传参方式，跟call一样；只有apply的第二个参数是一个数组；其他的都是从第二个参数开始一个个的传参；
+7.封装类数组转数组-utils里；
+8.浏览器异常捕获 try{}catch(e){}finally{}
+throw new Error(e) e->代表错误信息
+9.sort深入
+1）找到每一项的数字进行排序
+2）找到每一项的汉字进行排序 a.localeCompare(b);
+10.排序三步骤：
+    1）类数组专数组
+    2）sort排序
+    3）把排好序的数组重新插入页面
+11.DOM映射：HTML结构 和 元素集合 之间存在相互映射的关系；
+12.页面绑定的三种方法：
+    1）直接通过DOM操作-》问题：引发多次回流
+    2）文档碎片 ：注意 文档碎片的释放--堆内存的释放
+    3）字符串拼接
+13.JSON：
+    JSON.parse(str) 把JSON格式的字符串转成JSON格式的数据（对象）
+    JSON.stringify(json) 把JSON格式的数据转成JSON格式的字符串；
+14.ajax：
+    1）创建一个xml对象 xml=new XMLHttpRequest;
+    2）打开一个地址 xml.open()
+    3)响应状态  xml.onreadystatechange: xml.readyState 和 xml.status;
+    4)发送请求 xml.send();
+
+
+
+
+
+
+
+
+
+

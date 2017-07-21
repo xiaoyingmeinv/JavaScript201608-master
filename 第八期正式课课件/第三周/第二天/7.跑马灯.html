@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width: 800px;
+            height: 200px;
+            border:4px dashed lightgreen;
+            margin:50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        div ul{
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        div li{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        div li img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li><img src="img/1.jpg" alt=""/></li>
+        <li><img src="img/2.jpg" alt=""/></li>
+        <li><img src="img/3.jpg" alt=""/></li>
+        <li><img src="img/4.jpg" alt=""/></li>
+    </ul>
+</div>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aLi=oUl.getElementsByTagName('li');
+    oUl.innerHTML+=oUl.innerHTML;//把ul的内容克隆一份一模一样的放在后面
+    //oUl的宽度=li的个数*第一个li的宽度；
+    //通过offset拿到的值都是没有单位的；但通过getComputedStyle,currentStyle拿到的是有单位的；
+    oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';//在设置行内样式时，有单位的一定要加上单位；
+    var curLeft=oUl.offsetLeft;
+    //先取到当前定位的left值，通过定时器不断改变left值；
+    var timer=setInterval(function(){
+        curLeft-=3;
+        if(curLeft<=-oUl.offsetWidth/2){
+            curLeft=0;
+        }
+        oUl.style.left=curLeft+'px';
+    },10)
+</script>
+</body>
+</html>

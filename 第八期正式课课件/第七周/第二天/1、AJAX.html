@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript">
+    var xhr = new XMLHttpRequest;
+    console.log(xhr.readyState);//->0
+
+    xhr.open('GET', 'note.txt?_=' + Math.random());
+    console.log(xhr.readyState);//->1
+
+    xhr.setRequestHeader('zhufeng','zhufengpeixun');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 2) {
+            console.log(new Date(xhr.getResponseHeader('Date')));//->在状态为2的时候获取服务器的时间,并且把获取的结果转换成北京时间；在2的时候获取可以减少时间差。
+        }
+        if (xhr.readyState === 4) {
+            console.log(xhr.responseText);
+        }
+        console.log(xhr.readyState);//->2 3 4
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>

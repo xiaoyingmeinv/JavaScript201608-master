@@ -1,0 +1,150 @@
+  客户端发送请求给服务器端(有可能把部分信息传给服务器端) REQUEST -> 服务器端接收到请求后把对应的数据和内容返回给客户端 RESPONSE
+
+  ->客户端可以把内容传递给服务器端:请求URL地址的问号传参、通过请求主体传递、设置自定义请求首部传递
+  ->服务器端也可以把内容返回给客户端:通过响应主体传递、设置自定义的响应首部传递
+
+  客户端和服务器之间传输的内容都是通过传输协议(HTTP、HTTPS、FTP...)完成的
+
+1、HTTP事物:REQUEST+RESPONSE
+
+2、HTTP报文:客户端和服务器端传输的内容统称为HTTP报文,传输的所有内容都可以在谷歌浏览器控制台的NETWORK选项中查看到
+   起始行:一些基本的信息
+   首部:通用首部、请求首部、响应首部、自定义首部、主体首部 (头)
+   主体:请求主体、响应主体
+
+   HEADERS(首部或者头)
+   ->General(通用首部:请求和响应共用的)
+     Request URL:请求的地址
+     Request Method:请求的方式 GET、POST、PUT、DELETE、HEAD...
+     Status Code:HTTP响应状态码 200、301、302、304、401、403、404、500、501...
+     Remote Address:服务器的外网IP地址及访问服务的端口号
+
+   ->Response Headers(响应头:服务器端设置,客户端获取)
+     response.writeHead([STATUS],[SETTINGS])=>服务器端的程序设置响应头信息
+
+     HTTP/1.1 200 OK  响应起始行:使用的传输协议版本号 网络状态码 状态码的描述
+     content-type: text/html;charset=utf-8; 响应内容的MIME类型及编码
+     Date: Wed, 07 Sep 2016 07:34:50 GMT  给客户端返回内容开始的时候服务器对应的时间(而且这个时间是格林尼治时间)
+     Connection: keep-alive
+     Transfer-Encoding: chunked
+
+   ->Request Headers(请求头:客户端设置,服务器端获取)
+     GET /index.html HTTP/1.1 请求的起始行:请求的方式  请求的地址  协议的版本号
+     Host: localhost:8080
+     Connection: keep-alive
+     Cache-Control: max-age=0
+     Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+     Upgrade-Insecure-Requests: 1
+     User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2679.0 Safari/537.36
+     Accept-Encoding: gzip, deflate, sdch
+     Accept-Language: zh-CN,zh;q=0.8
+
+   ->自定义首部:自定义请求首部、自定义响应首部
+     作用:为客户端和服务器端的数据内容的传输增加新的渠道
+     例如：如果客户端需要把数据传递给服务器端，那么我们可以把需要传递的数据放在“自定义的请求首部中”，服务器端通过获取请求的首部信息即可得到传递的内容
+     例如：如果服务器端需要把某些内容返回给客户端，除了放在响应主体中以外，还可以放在“自定义的响应首部中”返回给客户端
+     真实项目中通过这种渠道我们可以传递很多内容，比如说：客户端和服务器端之间COOKIE信息的传递就可以使用这种传输方案。
+
+   Response(响应主体:服务器端返回给客户端的内容基本上都是在响应主体中返回的)
+   Request PayLoad(请求主体:在POST的请求方式中,客户端传递给服务器端的数据内容都是放在请求主体中传递过去的)
+
+
+3、AJAX
+ ->什么是AJAX?
+   async javascript and xml 异步的JS和XML(不是说AJAX只能是异步,它也有同步处理)
+
+ ->AJAX是干什么的?
+   前一天半我们前后端的交互请求都是在获取资源文件中的源代码，而这些请求的发送都是浏览器自己去完成的，不需要我们使用AJAX
+
+   在客户端的JS中,我们可以使用AJAX技术向服务器端发送一个请求,服务器端接收到请求后会把客户端想要的“数据”返回==>AJAX是用来实现客户端和服务器数据请求交互的
+
+   GMAIL是全世界第一个使用AJAX技术处理的项目
+
+4、扫盲
+  HTML:超文本标记语言 使用W3C规范的标记标签搭建一个WEB页面,页面中除了文字以外还可以包含图片以及音视频等富媒体资源
+  XHTML:语法更加严谨的HTML
+  DHTML:页面中的数据内容是动态绑定的
+
+  XML:可扩展的标记语言,它里面所使用的标签都是自己瞎写的，我们使用一些具有特殊意义的自定义的标记标签来存储我们的数据结构
+
+
+5、AJAX的操作及细节知识点
+  ->创建AJAX对象
+    var xhr = new XMLHttpRequest; ->不兼容IE6及更低版本的浏览器,在IE6及以下需要使用new ActiveXObject('...')处理
+
+  ->设置AJAX请求的配置参数,以及打开请求的URL地址
+    xhr.open([HTTP METHOD],[REQUEST URL],[SYNC OR ASYNC],[USER NAME],[USER PASS]);
+    REQUEST URL请求的URL地址
+    SYNC OR ASYNC使用JS的同步请求还是异步请求:默认是TRUE,使用的是异步,写成FALSE代表使用JS的同步请求
+    USER NAME && USER PASS:一般都不需要写,只有当服务器端做了安全限制,只允许特定的用户才能向服务器发送请求的时候,我们需要提供对应的账号和密码
+
+    HTTP METHOD请求的方式：GET、POST、PUT、DELETE、HEAD...
+      不管使用哪种方式,客户端都可以给服务器端传递内容,服务器端也可以给客户端返回内容;多种方式之间本质意义上来讲没有区别,比如:给服务器端的内容少,从服务器端获取的多,理论上我们使用GET,但是使用POST也是可以的,而接下来我们讲的区别都是项目中大家约定俗称的一些规律而已...
+
+      GET:主要是从服务器端获取内容,可以说是给服务器的少,从服务器端获取的多
+      POST:推送,给服务器端的多,从服务器端获取的少
+      PUT:放,客户端想在服务器上放一些文件
+      DELETE:删除,客户端想把服务器上的某些文件删除掉
+      HEAD:头部,客户端只想获取服务器端的响应头信息,例如:我们只想获取服务器端的时间,就可以只获取响应头信息了
+
+      GET PK POST:
+        使用GET请求传递给服务器端内容,我们一般都把需要传递的内容放在请求URL的末尾,通过问号传递参数的方式传递给服务器
+        xhr.open('GET','/getAllList?lx=1&name=zf&age=7');
+        xhr.send(null);
+
+        使用POST请求传递给服务器端内容,我们一般都把需要传递的内容放在请求的主体中传递给服务器
+        xhr.open('POST','/addInfo');
+        xhr.send('{"name":"zf","age":7,"lx":2....}');//->在SEND中书写的内容就是请求主体中传递给服务器的内容,一般都是JSON格式的字符串
+
+        ->大小上的区别:
+          每一个浏览器对于URL的长度都是有限制的(谷歌8KB、火狐7KB、IE2KB),GET请求传递给服务器的内容都是放在URL的末尾,如果传递的内容过多,URL就会超过限制的长度,超过的部分会被浏览器截取掉,这样传递给服务器的内容就不完整了,所以使用GET请求,我们需要限制传递内容的大小；而POST是都放在请求主体中传递过去的，理论上不存在大小的限制；
+
+        ->缓存问题:
+          GET请求经常容易出现缓存(浏览器的默认缓存)，例如第一次请求的地址是'/getList?n=12' 第二次我想重新通过这个地址获取最新的数据,请求的地址依然是'/getList?n=12'；而POST请求不存在这个问题；
+          那么使用GET请求如何避免浏览器的缓存呢?
+            在每一次请求的URL地址后面都加上随机数即可
+            xhr.open('GET','/getList?n=12&_='+Math.random());
+            xhr.send(null);
+
+        ->安全问题
+          GET请求传递给服务端的内容都在URL上,在互联网圈子中有一种技术叫做URL劫持,这样的话传递给服务端的内容暴露了,不安全；POST传递的内容在请求主体中，不会受到URL劫持的影响，所以相对来说安全一些；
+
+
+  ->个AJAX对象的“状态改变事件”绑定方法，当AJAX状态发生改变后，就会触发对应的方法执行
+    xhr.onreadystatechange=function(){}
+
+    AJAX的状态:readyState
+        0 UNSEND 未发送,开始创建一个AJAX对象状态就是0
+        1 OPEND 已经执行了xhr.open,请求的URL地址被打开,相关参数已经被配置
+        2 HEADER_RECEIVE 响应头信息已经被客户端接收
+        3 LOADING 响应主体的内容正在准备和返回中
+        4 DONE 响应主体的内容也已经被客户端接收了
+
+    获取响应头信息:xhr.getResponseHeader([key])
+    设置请求头信息:xhr.setRequestHeader([key],[value])
+    获取响应主体信息:xhr.responseText/xhr.responseXML...
+
+    HTTP状态码:xhr.status
+    200 或者 2XX 都代表成功
+    301 Moved Permanently 永久移动(永久重定向) 在最新的HTTP规范中,307才是永久重定向
+    302 Move temporarily 临时移动(临时重定向) 服务器的负载均衡
+    304 Not Modified 读取的是缓存中的内容
+    400 Bad Request 传递给服务器的参数出现错误
+    401 Unauthorized 权限不够,不能通过服务器的验证
+    404 Not Found 请求的地址不存在
+    500 Internal Server Error 服务器出现未知的错误
+    503 Service Unavailable 服务器超过负载
+    ...
+
+
+
+
+
+
+135 在周六上课前看完即可
+
+
+
+
+
+

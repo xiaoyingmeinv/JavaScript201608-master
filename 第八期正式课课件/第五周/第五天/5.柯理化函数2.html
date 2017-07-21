@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<script>
+    //bind是典型的预处理机制；
+    var obj={};
+    function fn(n,m){
+        console.log(arguments[2].clientX);
+    }
+    //1.myBind这个方法挂在Function这个类的原型上；
+    //obj：是用来改变this指向的；
+    Function.prototype.myBind=function(obj){
+        //拿到除了obj之外的其他参数
+        var outArg=Array.prototype.slice.call(arguments,1);
+        var _this=this;
+        if('bind' in Function.prototype){//标准浏览器直接用bind方法；
+            return this.bind.apply(this,[obj].concat(outArg));
+        }
+        return function(){
+            var innerArg=Array.prototype.slice.call(arguments);
+            innerArg.length==0?innerArg[innerArg.length]=window.event:null;
+            _this.apply(obj,outArg.concat(innerArg));
+        }
+    };
+    document.body.onclick=fn.myBind(obj,2,3)
+</script>
+</body>
+</html>

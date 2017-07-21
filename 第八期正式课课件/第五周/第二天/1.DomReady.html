@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        window.onload=function(){
+            alert('javascript')
+        };
+        /*$(function(){
+            alert('jquery')
+        })*/
+       /*$(document).ready(function(){//只加载DOM结构
+           alert('jquery')
+       })*/
+        domReady(function(){
+            alert(123)
+        });
+        function domReady(fn){
+            //火狐下有专门的当DOM结构加载完成的时候，去触发'DOMContentLoaded'这个行为,他的行为只能通过addEventListener来绑定; chrome也可以使用这个行为；
+            if(document.addEventListener){//标准浏览器 规律：只要遇到这种大写字母开头的：例如-》DOMContentLoad； 我们都需要通过DOM2级事件来绑定；
+                document.addEventListener('DOMContentLoaded',function(){
+                    fn&&fn();
+                },false)
+            }else{//IE浏览器 当页面发生变化的，可以通过这个事件监听页面发生变化的过程
+                document.onreadystatechange=function(){
+                    //readyState 属性返回当前文档的状态（载入中……）
+                    /* uninitialized - 还未开始载入
+                     loading - 载入中
+                     interactive - 已加载，文档与用户可以开始交互
+                     complete - 载入完成
+                     */
+                    if(document.readyState==='complete'){
+                        fn&&fn();
+                    }
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

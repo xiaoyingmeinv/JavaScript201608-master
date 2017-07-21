@@ -1,0 +1,64 @@
+->DOM0事件绑定
+  原理：
+  ->给当前元素某一个私有的属性赋值,例如:onclick就是document的一个私有的属性
+  ->由于一个对象的属性名不能重复,一个属性名只能赋值一次,所以我们第二次绑定的方法会把第一次绑定的方法给覆盖掉
+  =>“DOM0级事件绑定只能给当前元素的某一个事件绑定一次方法”
+  =>“DOM0级事件绑定的方法只能在事件的冒泡传播阶段执行”
+  document.onclick=function(){
+     console.log(1);
+  }
+  document.onclick=function(){
+     console.log(2);//->2
+  }
+
+  document.onclick=null;//->移除
+
+->DOM2事件绑定
+  原理:
+  只要使用的是DOM2事件绑定,不管是标准浏览器还是IE6~8,浏览器都会给当前操作的元素默认开辟一个事件池(一个存放方法的容器),紧接着浏览器会把绑定的所有方法依次存储到事件池中
+  =>“DOM2事件绑定可以给当前元素的某一个事件绑定多个不同的方法，当事件触发，浏览器会到默认创建的事件池中把之前存放的所有方法按照顺序依次的执行”
+
+  [标准浏览器]
+  //->addEventListener:本意就是把绑定的方法依次的放入到事件池中
+  //->removeEventListener:本意把某一个绑定的方法在事件池中移除
+  document.addEventListener('click',function(){alert(1);},false);
+  document.addEventListener('click',function(){alert(2);},false);
+  document.addEventListener('click',function(){alert(3);},false);
+
+  [IE6~8]
+  //->attachEvent:存放到事件池
+  //->detachEvent:从事件池中移除
+  document.attachEvent('onclick',function(){});
+
+  区别:
+  ->事件在IE6~8下需要在前面加on
+  ->标准浏览器中通过控制最后一个参数是false还是true,可以控制绑定的方法在冒泡还是捕获阶段执行(一般都用false,代表在冒泡阶段执行)；在IE6~8下只能在冒泡阶段执行；
+
+  ->THIS问题:
+    标准浏览器中使用DOM2绑定的方法,在事件触发方法执行的时候,方法中的THIS都是当前的元素;但是在IE6~8下方法中的THIS是window;
+
+  ->重复问题:
+    标准浏览器在往事件池中存储方法的时候，天生自带去重的机制，也就是不能给同一个元素的某一个事件绑定多个相同的方法，但是IE6~8下没有这个去重的机制，是可以给同一个元素的某一个事件绑定多个相同方法的;
+
+  ->执行的顺序问题:
+    标准浏览器绑定的时候，往事件池中存储的顺序和绑定的先后顺序一致，执行的时候也是按照绑定的顺序依次执行的；但是IE6~8下执行的时候顺序是混乱的，和绑定的顺序没啥关系；
+
+
+document.onclick=function(){
+   console.log(1);
+}
+document.onclick=function(){
+   console.log(2);
+}
+document.addEventListener('click',function(){alert(1);},false);
+document.addEventListener('click',function(){alert(2);},false);
+document.addEventListener('click',function(){alert(3);},false);
+//->2 1 2 3
+
+
+->DOM0和DOM2的一些区别:
+  DOM0中使用的事件在DOM2中都可以使用，而DOM2还提供了一些DOM0中没有的事件类型，例如：DOMContentLoaded...
+  //document.onDOMContentLoaded=function(){} 这样绑定不了方法
+
+  document.addEventListener('DOMContentLoaded',function(){},false);
+  document.attachEvent('onDOMContentLoaded',function(){})//->IE6~8下不支持标准浏览器中新增加的这个事件,我们使用另外一个事件来代替:onreadystatechange

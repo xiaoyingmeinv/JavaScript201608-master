@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={
+        fn:function(){
+            alert(this);
+            return function(){
+                alert(this);
+            }
+        }
+    };
+    var f=obj.fn;
+    f(); // window
+    f()(); // window window
+    obj.fn()(); //obj window
+</script>
+</body>
+</html>

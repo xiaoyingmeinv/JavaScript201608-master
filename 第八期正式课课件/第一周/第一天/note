@@ -1,0 +1,45 @@
+1. 如何配置git
+    git config -- global user.name "github的用户名"
+    git config -- global user.email "github的邮箱"
+
+    检查自己的git是否安装成功： git --version 只需要能出现版本号，证明安装成功；
+2.如何把本地文件夹变成git仓库？--建立本地仓库
+    1.建立一个新的文件夹，并点击进入
+    2.通过gitBash或(左手按住shift，点击鼠标右键，选择“在此处打开命令行”)或（先打开命令行 输入： cd 把文件拖拽到此，再按回车）在命令行进入该文件；
+    3.通过git init,把此文件夹初始化为一个git仓库
+3.建立远程仓库
+    1.在github网站上，点击 new repository --》建立一个新的仓库
+    2.输入新仓库的名称，并且选择public； 点击创建即可
+    3.复制仓库地址
+    4.进入命令行 git remote add origin(远程仓库地址的名称) 粘贴你的远程仓库地址；
+    --这样就连接远程仓库了；
+    如何查看是否连接远程仓库成功？
+    git remote -v 它可以查看你链接了哪些远程仓库；
+    git remote rm origin  删除远程仓库
+4.git工作流--用的最频繁;
+    1）git add ./-A/test111.txt 把本地仓库保存到暂存区
+    2）git commit -m"注释"  把内容保存到历史区
+    3)git push origin master 把历史区的内容推送到远程仓库的master分支上；
+    4)输入用户名和密码；
+5.学员更新老师讲义 -- 更新你们自己的项目：
+    1）把老师讲义的地址放到自己github的地址栏；按回车键；
+    2）fork老师的讲义：叉子的图标；
+    3）git clone  克隆自己github上已经fork的老师的讲义的地址；
+    https://github.com/自己的用户名/JavaScript201608.git
+    注意：一定要进入你克隆下来的文件夹；在这个文件夹下，通过git remote -v能看到已经自动连接了自己的远程仓库；
+    4）建立与老师远程仓库的联系：
+    git remote add teacher 老师github上的远程地址；
+    https://github.com/zhufengpeixun/JavaScript201608.git
+    5）当老师讲义更新的时候
+    1.更新远程地址 git remote update teacher
+    2.把更新的内容拉倒本地仓库 git pull teacher master
+    6）学员如何提交作业
+    1.建立和自己远程的联系：
+    git remote add origin https://github.com/自己的用户名/JavaScript201608.git
+    2.更改本地仓库的内容：添加了学员作业
+    3.把本地仓库的内容，推送到自己的远程仓库
+        1)git add .
+        2)git commit -m"注释"
+        3)git push origin master
+    4.登录自己的github,点击pullrequest按钮；进行合并请求；
+

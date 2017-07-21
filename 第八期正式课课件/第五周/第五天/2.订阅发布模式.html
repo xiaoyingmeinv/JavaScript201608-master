@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //订阅发布模式： 订阅-提前 发布-通知
+    //1.当你结婚的时候，我就来干。。。 --订阅：把没有关系的函数，提前订阅在某个行为上；
+    //2.等你结婚那天，通知他们开始干自己的事情 --发布；
+    //思想：跟我们昨天学的自己的事件池很类似:把所有的方法都绑定自己事件池中，等发布的时候，把自己事件池中每个方法都顺序执行；
+    //本质：就是通过回到函数同一管理所有的函数或方法；
+    var obj={};
+    //结婚之前先绑定--订阅模式；把所有方法都订阅在自定义行为上；
+    on('mywedding',chenyixun);
+    on('mywedding',songzuying);
+    on('mywedding',erye);
+    on('mywedding',jikexun);
+    on('mywedding',eatting);
+
+    marry();//结婚当天
+    function marry(){
+        console.log('我终于结婚了');
+        //一定要明白自己在什么时候发布；
+        fire('mywedding'); //--发布时候  可以把发布做为一个接口；
+    }
+    function chenyixun(){
+        console.log('我来唱浮夸');
+    }
+    function songzuying(){
+        console.log('今天是个好日子')
+    }
+    function erye(){
+        console.log('我来演老九门')
+    }
+    function jikexun(){
+        console.log('我从土里蹦出来，来跳舞了')
+    }
+    function eatting(){
+        console.log('开席了，吃吧，，，，，')
+    }
+    //在某个行为上，绑定某个方法；
+    function on(type,fn){ //自己定义的行为；
+        if(!obj.type){
+            obj.type=[];
+        }
+        var a=obj.type;
+        a.push(fn);//自己的事件池建好了；
+    }
+    function fire(type){//通知该行为下，所有提前绑定的方法，让他们可以执行了
+        //1.拿到自己的事件池
+        var a=obj.type;
+        for(var i=0; i< a.length; i++){
+            a[i]();
+        }
+    }
+</script>
+</body>
+</html>

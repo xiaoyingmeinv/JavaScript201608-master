@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div{
+            width: 400px;
+            height: 400px;
+            background: #cccccc;
+            margin:30px auto;
+            position: relative;
+        }
+        #mark{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    //需求：
+    //1)当鼠标移入div的时候，创建一个小div; document.createElement
+    //2)当鼠标移动的时候，小div跟着鼠标走 clientX,clientY
+    //3)当鼠标移出的时候，小div消失； removeChild
+    var oDiv=document.getElementById('div');
+    var oMark=null;
+    /*oDiv.onmouseover=function(e){
+        //用关联元素的思想解决；onmouseover-formElement
+        /!*e=e||window.event;
+        var oTo= e.fromElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;*!/
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+        //当我们移入mark的时候，就触发了mark父级的onmouseover事件，就会创建，现在我们对mark的onmouseover阻止了冒泡，就不会触发他父级的事件了；
+        //error
+        /!*oMark.onmouseover=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };*!/
+
+    };
+    //当鼠标移入mark的时候，
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+
+
+    oDiv.onmouseout=function(e){
+        //用关联元素的思想解决；onmouseout-toElement
+        /!*e=e||window.event;
+        var oTo= e.toElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;*!/
+        //error
+        /!*oMark.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };*!/
+
+        this.removeChild(oMark);
+    }*/
+    //移入创建元素
+    oDiv.onmouseenter=function(e){
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+    };
+    //移动时，mark跟着鼠标走
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    //移出删除元素
+    oDiv.onmouseleave=function(e){
+        this.removeChild(oMark);
+    }
+
+</script>
+</body>
+</html>

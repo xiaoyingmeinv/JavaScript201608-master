@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:400px;
+            top:50px;
+        }
+        input{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<input type="button" value="向左走" id="btnL"/>
+<input type="button" value="向右走" id="btnR"/>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var oBtnL=document.getElementById('btnL');
+    var oBtnR=document.getElementById('btnR');
+    oBtnR.onclick=function(){
+        move(800);
+    };
+    oBtnL.onclick=function(){
+        move(0)
+    };
+    function move(target){
+        _move();
+        function _move(){
+            var curLeft=utils.css(oDiv,'left');
+            if(target>curLeft){ //向右走
+                if(curLeft+10>target){
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curLeft+=10;
+                utils.css(oDiv,'left',curLeft);
+            }else if(target<curLeft){ //向左走
+                if(curLeft-10<target){
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curLeft-=10;
+                utils.css(oDiv,'left',curLeft);
+            }else{
+                return;
+            }
+            clearInterval(oDiv.timer);
+            oDiv.timer=setTimeout(_move,10);
+        }
+
+    }
+</script>
+</body>
+</html>

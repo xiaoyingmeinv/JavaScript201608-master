@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[12,34,56,89];
+    var obj={};
+    //没有返回值：1.不写return 2.写了return但不赋值；
+    /*
+    * myForEach() 应该有两个参数：1.回调函数 2.this指向； 他没有返回值，所以，在myForEach中不要给return后面写返回值；
+    *关于回调函数：
+    * 1.回调函数被调用的次数 --数组的长度
+    *2.回调函数是否传参：3个参数 1.数组中的每一项 2.索引 3.原数组
+    * 3.回调函数是否改变this指向：如果改变用call（）
+    * */
+    Array.prototype.myForEach=function(callback,context){
+        context=context||window;//第二个参数如果穿了，就按传的来，没传，默认是window；
+        //判断浏览器兼容：通过属性是否在对象上来判断
+        if('forEach' in Array.prototype){//高级浏览器兼容，就直接用forEach这个方法；
+            this.forEach(callback,context);
+            return;//阻断程序执行的作用；
+        }
+        for(var i=0; i<this.length; i++){
+            callback.call(context,this[i],i,this)//相当于匿名函数的调用；
+        }
+
+    };
+    ary.myForEach(function(item,index,input){
+        input[index]=item*100;
+    },obj)
+    console.log(ary)
+</script>
+</body>
+</html>

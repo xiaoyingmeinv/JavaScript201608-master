@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'zhufeng'};
+    //call：用来改变this指向；
+    function fn(n,m){
+        console.log(this+(n+m)); //()用来提高优先级
+    }
+    fn.call(obj,2,3);//window的全局方法；
+    // call()中第一个参数：用来改变this指向
+    //call()中从第二个参数开始，相当于给call点前面的函数，从左往右一个个的传参；
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name,age,fn){//构造函数中放的都是私有的属性和方法；
+        //var obj={};系统自动帮我们创建对象；
+        //构造函数中的this：指向当前new出来的这个实例；
+        this.name=name; //给对象添加了属性
+        this.age=age;
+        /*this.showName=function(){//给对象添加了方法；
+            alert('我的名字是'+this.name);
+        };*/
+        //return this;系统帮我们自动返回；
+        //return {};
+    }
+    //把构造函数中对象的方法，放在了prototype原型上：原型就是用来保存公有的属性和方法；
+    Person.prototype.showName=function(){
+        alert('我的名字是'+this.name);
+    };
+    var p1=new Person('lichan',16);
+    var p2=new Person('zhufeng',8);
+    p1.showName();
+    p2.showName();
+    p1.abc();
+    //alert(p1.showName===p2.showName);
+    /*
+    * 在函数调用的时候，如果加上new,系统就会自动为我们干很多事：
+    * 1.在函数定义阶段；系统会自动为我们创建一个对象，用this代替；
+    * 2.在函数定义阶段；当我们给系统提供的对象，添加完属性和方法后，系统会自动帮我们把对象返回；
+    *
+    * */
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*var obj={name:'zhufeng',age:8}; //对象
+    var obj={"name":'zhufeng',"age":8}; //JSON*/
+    //在JSON中属性名都有双引号，并且引号不能省略；
+    //JSON的作用：是用来解析数据的；
+    //在我们html页面中和txt文件中，存放的都是字符串；JSON就是用来解析字符串的；
+    var str='[{"name":"zhufeng"},{"age":8}]';
+    var obj=[{"name":"zhufeng"},{"age":8}];
+    /*
+    * JSON属于window下的全局属性，他有两个方法：
+    * JSON.parse(str):把字符串转成JSON对象（JSON格式的数据）
+    * JSON.stringify(json):把JSON格式的数据转成JSON格式的字符串；
+    * */
+    /*var json=JSON.parse(str); //IE6-7不兼容
+    console.log(json)*/
+   // var str2=JSON.stringify(obj);
+    console.log(eval('('+str+')')) //IE6-7下，解析数据应该用eval+小括号；注意：小括号一定不能省略；
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //给数组添加一个去重的方法；
+    Array.prototype.rmSame=function(){
+        var obj={};
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            if(obj[cur]===cur){
+                this.splice(i,1);
+                i--;
+            }else{
+                obj[cur]=cur;
+            }
+        }
+        return this;
+    }
+</script>
+</body>
+</html>

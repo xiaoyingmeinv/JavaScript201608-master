@@ -1,0 +1,51 @@
+1、gitHub博客
+  我们可以把写好的前端的项目资源文件(HTML/CSS/JS/IMG...)通过gitHub这个平台进行发布,生成一个网址,以后别人通过网址就可以看到项目了(不是项目原代码,而是项目的展示)
+
+  https://daneden.github.io/animate.css/ 这个地址就是daneden通过gitHub的博客发布出来的一个项目,如果想看项目的源代码:daneden是它gitHub的用户名 \ animate.css是它gitHub的仓库名 https://github.com/daneden/animate.css/
+
+2、使用gitHub
+   建议大家养成使用gitHub的习惯
+   ->我们前端需要的框架或者类库的官方源代码及说明在gitHub上都有,我们以后在学习的话可以通过查看源代码来学习
+
+   ->如果我们的gitHub的粉丝比较多的话,对于自己未来的职业生涯非常的有帮助,很多大公司的核心部门面试的话需要你的gitHub账号
+   任务：把珠峰培训交给大家的DOM库、AJAX库、动画库、事件库整理完善一下，传到自己的gitHub上，并且写出完善的使用文档(README.MD)
+        把你所知道的框架或者类库，克隆到自己的仓库一份，以后有时间可以从查看官方源代码的角度上去从新学习一遍:jQuery、Zepto、sea.js、require.js、Angular、React、React Native、vue.js、swiper、iscroll、touch.js(https://github.com/Clouda-team/touch.code.baidu.com.git)、ejs...
+
+3、如何在gitHub上发布?
+  1、创建一个仓库
+    README.MD 是对仓库的描述,可以在这个文件中编写本仓库托管框架的使用或者描述等(编写的时候使用的是MARK DOWN语法编写 http://wowubuntu.com/markdown/index.html#header)
+
+  2、发布博客
+    在仓库的界面 ->Settings ->(Options)GitHub Pages ->Launch Automatic page generator ->Continue to layouts ->Publish page
+
+    发布成功后:
+    ->Your project page has been created at http://zhouxiaotian.github.io/blog/. Read more at https://help.github.com/pages.
+      http://zhouxiaotian.github.io/blog/ 就是以后让别人访问的地址,别人通过这个地址就可以访问我的博客了
+      其实我们访问的是blog这个仓库根目录下的index.html文件,如果访问的是index.html的话,我们可以把具体的文件名在URL省略(其他的文件名不能省略)
+
+    ->仓库之前只有master这个主分支，发布成功后多了一个gh-pages这个分支，并且我们当前项目的源文件都在gh-pages这个分支下呢: 使用gitHub发布博客,项目资源文件统一交给gh-pages分支管理
+
+
+  3、修改仓库的默认分支为gh-pages
+     Settings ->(Branches)Default branch ->修改默认分支为gh-pages
+
+  4、对仓库中gh-pages分支下的文件进行管理
+    1)把仓库克隆到本地一份
+      $ git clone https://github.com/zhouxiaotian/blog.git
+
+      如果默认生成的博客资源文件对我们没有用的话,就把他们都删除掉即可,然后把我们的项目资源文件COPY到这本地仓库文件夹下
+
+    2)把我们本地最新的资源文件推送到gitHub的blog仓库下的gh-pages这个分支下
+      $ git add .
+      $ git commit -m'备注信息'
+      $ git push origin gh-pages
+
+  5、把自己的博客地址生成一个二维码让别人访问
+     http://cli.im/ (草料二维码生成)
+
+
+
+
+
+
+

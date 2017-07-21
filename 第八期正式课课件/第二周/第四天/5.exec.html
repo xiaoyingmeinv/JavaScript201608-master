@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='zhufeng2016yangwang2017zhangwo2018';
+    //var reg=/\d+?/g;
+    var reg=/\d+/g;
+    /*console.log(reg.lastIndex);
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));
+    console.log(reg.exec(str));*/
+    /*var ary=[];
+    var res=reg.exec(str);//第一次捕获，只有第一次捕获成功，才可能开始以后的不断捕获；
+    while(res){
+        ary.push(res[0]);
+        res=reg.exec(str);
+    }
+    console.log(ary);*/
+    console.log(str.match(reg));
+</script>
+</body>
+</html>

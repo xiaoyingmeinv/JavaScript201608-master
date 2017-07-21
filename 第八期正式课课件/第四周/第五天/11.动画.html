@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        input{
+            width: 200px;
+            height: 40px;
+            position: absolute;
+            left:50%;
+            margin-left: -100px;
+        }
+        div{
+            width: 200px;
+            height: 300px;
+            background: red;
+            position: absolute;
+            left:50%;
+            margin-left: -100px;
+            top:40px;
+            opacity:0;
+            /*display: none;*/
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="点我吧"/>
+<div></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $('input').click(function(){
+        //在加运动前，一定要关闭运动；stop；
+        /*$('div').hide('fast',function(){
+            alert('收完了')
+        });*/
+       // $('div').show(1000)
+        //$('div').stop().toggle(500);
+       // $('div').slideDown();
+        //$('div').stop().slideToggle();
+        /*$('div').animate({opacity:1},1000,function(){
+            alert('game over')
+        })*/
+    })
+</script>
+</body>
+</html>

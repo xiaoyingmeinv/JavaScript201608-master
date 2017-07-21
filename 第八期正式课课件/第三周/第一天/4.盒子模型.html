@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div2{
+            width: 500px;
+            height: 500px;
+            background: lightcyan;
+            border: 5px dashed black;
+            position: relative;
+            margin: 30px auto;
+        }
+        #div1{
+            width: 200.933px;
+            height: 200px;
+            background: red;
+            padding:10px;
+            border:20px solid green;
+            position: absolute;
+            left:30px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<p style="height: 1000px"></p>
+<div id="div2">
+    <div id="div1">基本路线的完整表述是“党在社会主义初级阶段的基本路线”。
+        　　其内容为：“领导和团结全国各族人民，以经济建设为中心，坚持四项基本原则，坚持改革开放，自力更生，艰苦创业，为把我国建设成为富强、民主、文明的社会主义现代化国家而奋斗。”
+        　　核心是“一个中心、两个基本点”。
+        　　2012年11月，刚刚就任总书记的习近平就在十八届中央政治局第一次集体学习时指出，我们在实践中要始终坚持“一个中心、两个基本点”不动摇，既不偏离“一个中心”，也不偏废“两个基本点”。</div>
+</div>
+<script>
+    var oDiv=document.getElementById('div1');
+    // console.dir();
+    console.log(oDiv.clientWidth)
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[23,12,9,4,8];
+    /*
+    * 第一轮比较4次：虽然没有实现最终目标，但是把最大值放在后面
+    * [12,23,9,4,8]
+    * [12,9,23,4,8]
+    * [12,9,4,23,8]
+    * [12,9,4,8,23]
+    * 第二轮3次：
+    * [9,12,4,8,23]
+    * [9,4,12,8,23]
+    * [9,4,8,12,23]
+    * 第三轮2次：
+    * [4,9,8,12,23]
+    * [4,8,9,12,23]
+    *第四轮1次：
+    *[4,8,9,12,23]
+    * 第五轮0次；
+    * */
+    function bubbleSort(ary){
+        for(var i=0; i<ary.length; i++){
+            for(var j=0; j<ary.length-1-i; j++){
+                if(ary[j]>ary[j+1]){
+                    var tmp=ary[j+1];
+                    ary[j+1]=ary[j];
+                    ary[j]=tmp;
+
+                }
+            }
+        }
+        return ary;
+    }
+    console.log(bubbleSort(ary))
+</script>
+</body>
+</html>

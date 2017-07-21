@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //补充知识：
+    var str='123'; //字面量的创建方式；
+    var str2=new String('123'); //实例创建；
+    //console.log(str2 instanceof String)//必须拿实例去检测所属的类；
+    str.charAt(0);//String.prototype.charAt(0)
+    //基本数据类型（字符串，数字，布尔）通过字面量方式创建的时候，如果使用属性和方法，他会找到对应的包装类型(String,Number,Boolean)的原型去使用公有的属性和方法;
+    /*
+    * 1.'123'.charAt(0)
+    * 2.对应的包装类型，会把自己的属性和方法给了'123',让他去使用
+    * 3.然后包装类型迅速消失；
+    * */
+
+</script>
+</body>
+</html>

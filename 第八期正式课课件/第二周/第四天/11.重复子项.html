@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   // var str='wood feel look foot feed cook cool week';
+    //var str='wcwm';
+    //var reg=/^\w(\w)\1\w$/;
+    //var reg=/(\w)c\1\w/;
+    /*var str='waawwd';
+    var reg=/(\w)(\w)\2\1{2}\w/;
+    alert(reg.test(str))*/
+    var str='aaAAAbbbBcCCCC';
+    str.replace(/(\w)\1+/gi,function(){
+        console.log(arguments)
+    })
+</script>
+</body>
+</html>

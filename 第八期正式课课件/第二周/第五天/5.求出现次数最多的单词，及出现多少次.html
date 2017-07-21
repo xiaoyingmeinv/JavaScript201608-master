@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='SSSadsdccCCCAdkdkkkkDccdddaaaccCCsSSSSSs';
+    //利用对象不重名的特性
+    var max='';
+    var maxValue='';
+    /*var obj={};
+     for(var i=0; i<str.length; i++){
+        var cur=str[i].toLowerCase();
+         if(obj[cur]){
+             obj[cur]++
+
+         }else{
+             obj[cur]=1;
+         }
+     }
+    for(var attr in obj){
+        if(obj[attr]>max){
+            max=obj[attr];
+        }
+    }
+    for(var attr in obj){
+        if(obj[attr]==max){
+            maxValue+=attr;
+        }
+    }
+*/
+    str=str.split('').sort(function (a,b){return a.localeCompare (b)}).join('');
+    str.replace (/(\w)\1+/gi,function ($0,$1){
+       // console.log(arguments);
+        if($0.length>max){
+            max=$0.length;
+            maxValue=$1;
+        }else if($0.length==max){
+            maxValue+=$1;
+        }
+    });
+
+
+</script>
+</body>
+</html>

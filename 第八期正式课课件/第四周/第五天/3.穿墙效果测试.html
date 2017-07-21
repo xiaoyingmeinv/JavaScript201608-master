@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: lightcyan;
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+            position: relative;
+            overflow: hidden;
+            float: left;
+            margin:50px 10px;
+            background-position: center;
+            background-repeat:  no-repeat;
+            box-shadow: 0 0 10px #ccc;
+        }
+        div.bg1{
+            background-image: url("logo/1.jpg");
+        }
+        div.bg2{
+            background-image: url("logo/2.jpg");
+        }
+        div.bg3{
+            background-image: url("logo/3.jpg");
+        }
+        div.bg4{
+            background-image: url("logo/4.jpg");
+        }
+        div span{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left:-200px;
+            top:0;
+            background: darkgreen;
+            color:white;
+            opacity: 0.5;
+            filter:alpha(opacity=50)
+
+        }
+    </style>
+</head>
+<body>
+<div class="bg1"><span>我是遮罩层1</span></div>
+<div class="bg2"><span>我是遮罩层2</span></div>
+<div class="bg3"><span>我是遮罩层3</span></div>
+<div class="bg4"><span>我是遮罩层4</span></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    //需求：当鼠标移入oDiv的时候，求出从哪个方向进入
+    var aDiv=document.getElementsByTagName('div');
+    for(var i=0; i<aDiv.length; i++){
+        move({
+            ele:aDiv[i]
+        })
+    }
+    function hoverDir(obj,e){
+        //想用公式Math.atan2(y,x);
+        var r=obj.offsetWidth/2;
+        var x=obj.offsetLeft+r- e.clientX;
+        var y=obj.offsetTop+r- e.clientY;
+        //弧度转角度公式：180*i/Math.PI;
+        return  Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;//核心
+        /*
+        * 1.首先通过Math.atan2(y,x)求出弧度
+        * 2.弧度转角度 180*i/Math.PI  -180~180
+        * 3.都+180 =》 0~360之间
+        * 4.都除以90度，并且四舍五入  （0 4） 1 2 3
+        * 5.%4；正好求出4边；
+        * */
+    }
+    function move(opt){
+        var oDiv=opt.ele;
+        var effect=opt.effect||0;
+        var time=opt.time||300;
+        var oSpan=oDiv.getElementsByTagName('span')[0];
+        /*
+         * 关于onmouseover的问题：两种解决办法
+         * 1）懒办法 ： onmouseenter;
+         * 2)让关联元素不执行代码；
+         * */
+        oDiv.onmouseover=function(e){
+            e=e||window.event;//事件对象的兼容处理；
+            var oTo= e.fromElement||relatedTarget;//里面的关联元素
+            if(this.contains(oTo)) return;
+            var n=hoverDir(this,e);//通过hoverDir这个函数，可以返回一个数值，这个数值直接决定我们从哪个方向移入；
+            switch (n){
+                case 0://当我鼠标从右边移入,span应该快速的到达 left:200px top:0;
+                    utils.css(oSpan,{left:200,top:0});
+                    break;
+                case 1://当鼠标从下边移入，span应该快速到达 left:0 top:200
+                    utils.css(oSpan,{left:0,top:200});
+                    break;
+                case 2://从左边移入
+                    utils.css(oSpan,{left:-200,top:0});
+                    break;
+                default ://3 ：从上边移入
+                    utils.css(oSpan,{left:0,top:-200});
+                    break;
+            }
+            animate(oSpan,{left:0,top:0},time,effect)
+        };
+        oDiv.onmouseleave=function(e){
+            e=e||window.event;
+            var oTo= e.toElement||relatedTarget;
+            if(this.contains(oTo)) return;
+            var n=hoverDir(this,e); //n是为了拿到我们从哪个方向出去
+            switch (n){
+                case 0:
+                    animate(oSpan,{left:200,top:0},time,effect);
+                    break;
+                case 1:
+                    animate(oSpan,{left:0,top:200},time,effect);
+                    break;
+                case 2:
+                    animate(oSpan,{left:-200,top:0},time,effect);
+                    break;
+                default : //default代表3
+                    animate(oSpan,{left:0,top:-200},time,effect);
+                    break;
+            }
+
+
+        }
+    }
+</script>
+</body>
+</html>

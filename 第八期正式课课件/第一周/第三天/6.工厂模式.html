@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 工厂模式如何改成构造函数模式：
+    * 1）函数名首字母大写；
+    * 2）创建实例的时候，用new；
+    * */
+    function person(name,age,fn){
+        var obj={};
+        obj.name=name; //给对象添加了属性
+        obj.age=age;
+        obj.showName=function(){//给对象添加了方法；
+            alert('我的名字是'+this.name);
+        }
+        return obj;
+    }
+    var p1=person('lichan',16);
+    var p2=person('zhufeng',8);
+    var ary=new Array();
+</script>
+</body>
+</html>

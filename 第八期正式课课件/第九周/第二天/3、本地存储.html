@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+</head>
+<body>
+<!--
+  本地存储:存储到客户端的浏览器中了(存储到某个设备的某个浏览器中的某个域下了)
+    1、cookie
+    2、HTML5 WebStorage(localStorage sessionStorage)
+    3、browser cache
+    4、browser sql
+    本地存储受设备、浏览器、域的限制:A设备存储的信息,B设备得不到;A设备的谷歌下存储的信息,A设备中的IE浏览器也获取不到;A谷歌在京东存储的信息,A谷歌在珠峰网站上获取不到;
+
+    查看本地存储:
+    [谷歌] 控制台->Resources
+    存储的信息都是明文存储,在控制台中都可以看到,所以项目中的存储到本地的重要信息都需要进行加密处理,保证信息的安全
+    常用的加密方式:
+    ->可逆转加密:每一个公司用的都不一样,很多公司都是自己研发的加密方式 比如用户的电话等就需要使用可逆转的加密
+    ->不可逆转的加密:MD5加密 比如密码都是不可逆转的加密
+
+  服务器存储:存储到服务器端了
+    1、session
+    2、server sql:mysql、sql server、access、oracle、db2...
+    3、server cache
+-->
+
+
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+    //->加密
+    //    var str = 'ZhuFeng_2016_peixun';
+    //    console.log(hex_md5(str));//->'66933355bd7608b0c9eb9fc4abb6f663'
+    //    console.log(hex_md5('000000'));
+    //    //->简单的密码还是有在线平台可以破解的，所以我们的密码最好复杂一些，当然优秀的网站都会把MD5加密的结果再进行二次加密处理...
+
+    //->cookie
+    //1)兼容所有的浏览器
+    //2)cookie存储的内容有大小的限制,一个源下一般只能存储4KB的大小
+    //3)用户可能出于安全的角度禁用cookie存储,例如:浏览器的无痕浏览模式(Ctrl+Shift+N开启谷歌浏览器的无痕浏览器模式)
+    //4)360等杀毒软件或者浏览器清除垃圾都有可能会把cookie删除掉,存储的不稳定
+    //5)cookie存储的内容有过期时间,我们可以设置存储多长时间,到时间后自动把cookie清除
+    //6)cookie不单纯是本地存储,它和服务器之前还有点猫腻
+
+    //->webStorage
+    //1)不兼容低版本的浏览器
+    //2)webStorage存储的大小也有限制,一个源下一般只能存储5MB大小
+    //3)webStorage不受无痕浏览模式的影响
+    //4)webStorage不受杀毒软件的影响
+    //5)localStorage属于永久存储到本地,只要自己不手动的去清除,会一直存储下去
+    //6)webStorage完全的本地存储不受服务器的影响
+
+    //真实项目中
+    //->像用户名等用户一些基本信息我们都使用cookie存储,还有需要兼容的也需要使用cookie存储
+    //->像JS/CSS/一些缓存的数据文件,我们可以使用webStorage存储(尤其是移动端我们经常使用webStorage做优化处理)
+</script>
+
+<script type="text/javascript" src="js/cookie.js"></script>
+<script type="text/javascript">
+    //->cookie
+    //    cookieRender.set({
+    //        name: 'name',
+    //        value: '珠峰培训'
+    //    });
+    //    cookieRender.get('name');
+    //    cookieRender.remove({
+    //        name: 'name'
+    //    });
+
+    //->localStorage
+    //    localStorage.setItem('name', '珠峰培训');
+    //    localStorage.getItem('name');
+    //    localStorage.removeItem('name');
+    //    localStorage.clear();//->把当前域下存储的所有信息都移除
+    //    localStorage.length;//->获取存储的条数
+
+    //->sessionStorage 临时会话存储,只要页面不关闭(刷新页面不是关闭)就能存储,一但页面关闭我们存储的信息都消失了
+</script>
+</body>
+</html>

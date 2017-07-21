@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //"use strict"//严格模式
+    var obj={};
+    function fn(){
+        alert(this)
+    }
+    //在严格模式下，给call的第一个参数传什么，this指向就是什么
+    fn.call(null);
+    fn.call(undefined);
+    fn.call();//不传也是undefined;
+    //非严格模式下；
+    //fn.call();//没有穿第一个参数，this 是window；
+    //fn.call(null)//传null,this也是window；
+    //fn.call(undefined)//传undefined，this也是window；
+    //备注：apply跟call在this方面一模一样；
+</script>
+</body>
+</html>

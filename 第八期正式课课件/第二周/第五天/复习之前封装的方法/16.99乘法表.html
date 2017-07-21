@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            list-style: none;
+            font-size: 20px;
+        }
+        li{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 10px;
+        }
+        li.bg0{
+            background: lightgoldenrodyellow;
+        }
+        li.bg1{
+            background: lightcyan;
+        }
+        li.changeBg{
+            background: darkmagenta;
+            color:white;
+        }
+        li span{
+            float: left;
+            width: 80px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div id="ul"></div>
+<script>
+    var oUl=document.getElementById('ul');
+    var aLi=oUl.getElementsByTagName('li');
+    var str='';
+    var old=null;
+    for(var i=1; i<=9; i++){ //行  li
+        str+='<li>'
+        for(var j=1; j<=i; j++){ //列 span
+            str+='<span>'+(j+'*'+i+'='+j*i)+'</span>';
+        }
+        str+='</li>';
+    }
+    oUl.innerHTML=str;
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].className='bg'+i%2;
+        aLi[i].onmouseover=function(){
+            old=this.className;
+            this.className='changeBg';
+        };
+        aLi[i].onmouseout=function(){
+            this.className=old;
+        };
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    *obj1.isPrototypeOf(obj2) obj1是否在obj2的原型链上；
+    *propertyIsEnumerable() 可枚举不可枚举
+    * */
+    function Fn(){
+        this.x=100;
+    }
+    Fn.prototype.showX=function(){};
+    var f=new Fn;
+
+//需求：让Sn的原型跟Fn的原型一样；并且，当Sn的原型发生变化的时候，不影响Fn的原型；
+    function Sn(){
+        this.y=200;
+    }
+    var s=new Sn;
+    //Fn.prototype 它是一个对象
+    //f:也是一个对象
+    console.log(Fn.prototype.isPrototypeOf(f));
+</script>
+</body>
+</html>

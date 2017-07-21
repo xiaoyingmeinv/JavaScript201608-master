@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 300%;
+        }
+        div{
+            width: 400px;
+            height: 250px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<p style="height: 1000px;"></p>
+<div><img realImg="img2/1.jpg" alt=""/></div>
+<div><img realImg="img2/2.2.jpg" alt=""/></div>
+<div><img realImg="img2/3.jpg" alt=""/></div>
+<div><img realImg="img2/4.3.jpg" alt=""/></div>
+<div><img realImg="img2/5.jpg" alt=""/></div>
+<script src="utils.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var aImg=document.getElementsByTagName('img');
+    //当滑动滚动的时候，如果满足条件，开始加载图片
+    window.onscroll=function(){
+        //满足条件:（每个div距离body的长度+div自身高度)<(可视区的高度+浏览器卷去的高度)
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        for(var i=0; i<aDiv.length; i++){
+            var imgPos=utils.offset(aDiv[i]).top+utils.css(aDiv[i],'height');
+            if(imgPos<=scrollBottom){
+                lazyImg(aImg[i]);
+            }
+        }
+    };
+    //加载图片:1.创建一个图片对象 2.给它附上真正的地址 3.校验地址
+    function lazyImg(img){
+        if(img.loaded) return;
+        var tmpImg=new Image;
+        tmpImg.src=img.getAttribute('realImg');
+        tmpImg.onload=function(){
+            img.src=this.src;
+            img.loaded=true;
+            tmpImg=null;
+        };
+        tmpImg.onerror=function(){
+            img.loaded=true;
+            tmpImg=null;
+            utils.css(img.parentNode,'backgroundImage','url("img2/error.gif")')
+
+        }
+    }
+
+
+
+</script>
+</body>
+</html>

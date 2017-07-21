@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 300%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border: none;
+        }
+        div{
+            width: 400px;
+            height: 300px;
+            background: url("img2/default.gif") center no-repeat #e1e1e1;
+            position: absolute;
+            top:1000px;
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div><img realImg="img2/1.1.jpg" alt=""/></div>
+<script src="utils.js"></script>
+<script>
+    /*
+    * 1.一开始图片不显示，我们只把正确的图片地址保存在realImg这个自定义属性上；
+    * 2.所有的一切都发生在触发滚轮事件中；
+    * 3.当满足条件的时候：
+    *   1.创建一个tmpimg标签
+    *   2.tmpimg.src=我们正确的图片地址
+    *   3.tmpimg校验图片地址是否能加载成功；如果加载成功进onload；否则，加载失败进onerror;
+    * */
+    var oDiv=document.getElementsByTagName('div')[0];
+    var oImg=document.getElementsByTagName('img')[0];
+    //2.所有的一切都发生在触发滚轮事件中；
+    window.onscroll=function(){
+        //3.当满足条件的时候加载图片： 元素.offsetTop+元素的高度 < scrollTop+clientHeight
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        var imgPosition=oDiv.offsetTop+oDiv.offsetHeight;
+        if(imgPosition<=scrollBottom){
+            lazyImg();
+        }
+    }
+    function lazyImg(){
+        //已经加载过的图片不重复加载
+        if(oImg.loaded) return;
+        //1.创建一个图片对象
+       // var tmpImg=document.createElement('img');
+        var tmpImg=new Image;
+        tmpImg.src=oImg.getAttribute('realImg');
+        //如果加载成功进onload；
+        tmpImg.onload=function(){
+            oImg.src=this.src;
+            tmpImg=null;
+            oImg.loaded=true;
+        };
+        tmpImg.onerror=function(){
+            tmpImg=null;
+            oImg.loaded=true;
+            oDiv.style.backgroundImage='url("img2/error.gif")';
+        }
+    }
+</script>
+</body>
+</html>

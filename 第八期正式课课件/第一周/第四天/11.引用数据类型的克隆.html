@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var a={name:'zhufeng',age:8};
+    var b={};
+    //把a克隆一份一模一样的给b;可以通过for in a对象中的每一项；把他分别赋值给b;
+    for(var attr in a){//attr代表属性名
+        //attr : name, age
+        b[attr]=a[attr];
+        // b[name]='zhufeng'
+        //b[age]=a[age]=8;
+    }
+    b.sex='你猜';
+    console.log(a)
+    console.log(b)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width: 960px;
+            margin:0 auto;
+        }
+        div ul{
+            width: 300px;
+            margin:0 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    var aUl=oDiv.getElementsByTagName('ul');
+    //1.创建1个li;
+    function createLi(){
+        var oLi=document.createElement('li');
+        oLi.style.height=utils.rnd(100,300)+'px';
+        oLi.style.background='rgb('+utils.rnd(0,255)+','+utils.rnd(0,255)+','+utils.rnd(0,255)+')';
+        return oLi;
+    }
+    //2.创建50个li,每次都插入最短的ul;
+    li50();
+    window.onscroll=function(){
+        //(浏览器卷去的高度+可视区的高度+500)>=页面内容的高度
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        if(scrollBottom+500>=document.body.scrollHeight){
+            li50();
+        }
+    };
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            //1.类数组转数组
+            var ary=utils.makeArray(aUl);
+            //2.数组排序
+            ary.sort(function(a,b){
+                //return a.offsetHeight- b.offsetHeight;
+                return utils.css(a,'height')-utils.css(b,'height');
+            });
+            ary[0].appendChild(oLi);
+        }
+    }
+</script>
+</body>
+</html>

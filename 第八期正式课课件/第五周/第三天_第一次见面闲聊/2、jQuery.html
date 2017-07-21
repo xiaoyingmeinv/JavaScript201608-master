@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+<script charset="utf-8" type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    //    (function () {
+    //        var jQuery = function (selector, context) {
+    //            return new jQuery.fn.init(selector, context);
+    //        };
+    //        jQuery.fn = jQuery.prototype = {
+    //
+    //        }
+    //        window.jQuery = window.$ = jQuery;
+    //    })();
+    //$(); <===> jQuery();  => $ === jQuery
+
+    //$([选择器],[上下文:不传递的话默认是document]) =>$() 通俗都把它叫做jQuery的选择器(因为通过这个方法执行可以获取到我们需要的元素)
+
+    //->jQuery本身是一个类,我们使用$()或者jQuery()执行都是在获取当前这个类的一个实例
+    //通过$([selector],[context])获取到的结果是jQuery的实例,也被称之为jQuery对象,它是一个类数组
+    var $div = $('#div1');//->JQ对象
+    var oDiv = document.getElementById('div1');//->JS对象
+
+    //->把JQ对象和原生JS对象进行相互的转换
+    //JQ->JS: JQ对象[索引]
+    //$div[0] <==> $div.get(0)  获取的是JS对象
+    //$div.eq(0) 获取的依然是JQ对象,只不过把一个JQ对象中指定索引位置的元素拿出来变为一个新的JQ对象
+
+    //JS->JQ: $(JS对象)
+    //$(oDiv)
+
+
+    //->jQuery中提供的方法整体来说分为两种:
+    //把jQuery当做一个类,定义在jQuery.prototype上的方法:dir(jQuery.fn)
+    //通过查看我们发现属性上有很多的方法:addClass、animate...
+    //    $().addClass()
+    //    $().animate()
+
+    //把jQuery当做一个普通的对象,定义在jQuery对象本身上的方法:dir(jQuery)
+    //通过查看我们发现属性上有很多的方法:Callbacks、each、ajax...
+    //    $.ajax();
+    //    $.each();
+
+    //->extend:给jQuery扩展方法
+    //把JQ看做对象扩展到私有的属性上:这样扩展经常是为了完善类库
+    //    $.extend({
+    //        aa: function () {
+    //
+    //        }
+    //    });
+    //    $.aa()
+
+    //扩展到JQ的原型上的:我们经常用如下的方式扩展JQ插件
+    //    $.fn.extend({
+    //        bb: function () {
+    //
+    //        }
+    //    });
+    //    $().bb()
+
+    //框架:不仅仅提供了常用的方法,而且还提供了完整的编程设计思想,例如：angular...
+    //类库:只是提供一些常用的方法,不提供任何的编程思想以及具体的业务逻辑,例如:jQuery、Zepto...
+    //插件:把一个具体的业务操作封装完整(一般来说把CSS+HTML+JS都写好了),我们只需要按照它的要求引入进来,并且配置一下,就可以实现对应的功能，例如：轮播图插件、弹出层插件、Swiper、Iscroll...
+    //UI组件:把CSS\HTML\JS完全的封装好,一般来说一个UI组件是由很多的插件组成的,相对于插件来说UI组件可以构建一个全套的项目，例如：bootstrap、jQuery EasyUI...
+</script>
+</body>
+</html>

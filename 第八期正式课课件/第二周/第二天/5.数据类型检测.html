@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var ary=[23,21,45,78];
+    //数组原型上的toString(); 还有 Object.prototype上的toString();
+    //console.log(ary.toString());//ary.prototype上的toString(); 把数组转为字符串
+    //console.log(ary.__proto__.__proto__.toString());//Object.prototype.toString(); "[object Object]"
+   // console.log(ary.__proto__.__proto__.toString.call(ary));
+    /*
+    * "[object Object]"
+    * object：是对象数据类型
+    * Object:toString()这个方法中的this实例所属的类的详细信息；
+    *
+    * */
+    //2.instance
+    //原型链继承：把父类私有+公有，都给了子类公有的；
+    function Fn(){};//构造函数
+   // Fn.prototype=new Array;
+    var f=new Fn;
+   // console.log(f instanceof  Array);//只要我们把数组的方法挂在某个实例的原型上，这个实例就能使用数据的常用方法； 检测出来该实例属于数组类，是不正确的；
+    var oDiv=document.getElementById('div');
+   // console.dir(oDiv);
+    //div--HTMLDivElement.prototype--HTMLElement.prototype--Element.prototype--Node.prototype--EventTarget.prototype--Object.prototype
+
+    //console.log(oDiv instanceof Object) //不能细分该对象到底属于哪个类；只要在原型链上的， 用instanceof判断都是true；
+    //constructor:
+    //console.log(f.constructor)//当我们通过原型链继承，对象.constructor他找的类，是离他最近的类，但不是真正属于他的类；
+    //如果我们直接给类.prototype赋值自己定义的对象；constructor一定会出问题；
+
+    var obj={};
+    //console.dir(obj) //原理就在这里；
+    console.log({}.toString.call(ary))
+    console.log({}.toString.call(''))
+    console.log({}.toString.call(null))
+
+    //。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+    //不要使用实例.toString() --它的功能转字符串
+    //想检测数据类型，必须使用{}.toString.call(实例)；
+    //                    Object.prototype.toString.call(实例)
+
+
+</script>
+</body>
+</html>

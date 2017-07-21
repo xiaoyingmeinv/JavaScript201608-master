@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 1000%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: lightgreen;
+            background: -webkit-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -moz-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -ms-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            font-size: 30px;
+            color: white;
+            background: darkgreen;
+            box-shadow: 4px 4px 10px #333;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="js/utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    window.onscroll=abc;
+    function abc() {
+        if(utils.win("scrollTop")>utils.win("clientHeight")){
+            oDiv.style.display="block";
+        }
+    }
+    oDiv.onclick= function () {
+        this.style.display="none";
+        window.onscroll=null;
+        var scroll=utils.win("scrollTop");
+        var a=1000;
+        var interval=30;
+        var step=scroll/a*interval;
+        var timer=setInterval(function () {
+            if(scroll<=0){
+                clearInterval(timer);
+                window.onscroll=abc;
+            }
+            scroll-=step;
+            utils.win("scrollTop",scroll);
+        },interval);
+    }
+</script>
+</body>
+</html>

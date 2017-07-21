@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 1000%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: lightgreen;
+            background: -webkit-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -moz-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -ms-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            font-size: 30px;
+            color: white;
+            background: darkgreen;
+            box-shadow: 4px 4px 10px #333;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    window.onscroll=computedDisplay;
+    function computedDisplay(){ //机器控制+手动控制；
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oDiv.style.display='block';
+        }else{
+            oDiv.style.display='none';
+        }
+    };
+    oDiv.onclick=function(){
+        this.style.display='none';
+        window.onscroll=null;
+        //根据已知条件 求step
+        var target=utils.win('scrollTop');//总距离
+        var duration=1000;//总时间
+        var interval=10;//频率
+        var step=target/duration*interval;
+        //开启定时器，每次在最新的距离上减去一个step；
+        var timer=setInterval(function(){ //机器控制的
+            //每次求最新的距离
+            var curTop=utils.win('scrollTop');
+            if(curTop<=0){//判断如果已经走到顶，停止运动，并且后面的代码不再执行
+                clearInterval(timer);
+                window.onscroll=computedDisplay;//当停止定时器以后，再回复onscroll绑定的方法；
+                return;
+            }
+            curTop-=step;
+            utils.win('scrollTop',curTop);
+        },interval);
+    }
+</script>
+</body>
+</html>

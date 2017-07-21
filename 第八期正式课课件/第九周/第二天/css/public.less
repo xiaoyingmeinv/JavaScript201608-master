@@ -1,0 +1,17 @@
+@color-text: #555;
+@color-gray: #999;
+@color-blue: #1C90F2;
+@color-white: #FFF;
+@color-red: #F82D2D;
+
+@url: '../img';
+
+.animation(@name,@duration:1s,@time-function:linear,@delay:0s,@iteration-count:1,@fill-mode:both) {
+  -webkit-animation: @arguments;
+  animation: @arguments;
+}
+
+.transition(@property:all,@duration:1s,@time-function:linear,@delay:0s) {
+  -webkit-transition: @arguments;
+  transition: @arguments;
+}

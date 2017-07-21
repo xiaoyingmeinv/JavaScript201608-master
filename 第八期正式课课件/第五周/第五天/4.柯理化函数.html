@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<script>
+    //预处理的思想
+    var obj={};
+    function fn(n,m,e){
+        console.log(arguments)
+    }
+    /*function myBind(fn,obj){
+        var outArg=Array.prototype.slice.call(arguments,2);
+        return function(){
+            var innerArg=Array.prototype.slice.call(arguments);
+            innerArg.length==0?innerArg[innerArg.length]=window.event:null;
+            fn.apply(obj,outArg.concat(innerArg));//先把fn中的this修改为我们指定的obj,然后返回一个小函数，等我们需要的时候才会调用；
+        }
+    }*/
+    //fn.call(obj)会立即执行，执行结果返回一个undefined
+    //bind是预处理机制，先提前把bind前面函数中的this，和参数都传了，等需要的时候，才会调用；--不兼容IE 6-8
+    //setTimeout(fn.bind(obj),1000)
+    //setTimeout(myBind(fn,obj,2,3),1000);
+   // document.body.onclick=myBind(fn,obj,2,3)
+    //把实例this中的this关键字变成obj;
+    Function.prototype.myBind=function(obj){
+        //outArg拿的是除了obj之外的其他参数； obj：是用来改变this这个实例中的this关键字；
+        var outArg=Array.prototype.slice.call(arguments,1);
+        var _this=this;
+        //标准浏览器如果支持bind的时候，我们直接用系统的bind
+        if('bind' in Function.prototype){//检测系统是否支持bind方法；
+            //注意，bind中传参不能直接用数组；他只能接受从左往右一个个的传参；所有如果想用数组，必须配合apply;
+            return this.bind.apply(this,[obj].concat(outArg));
+        }
+        //以下是对IE浏览器的兼容处理；
+        return function(){
+            var innerArg=Array.prototype.slice.call(arguments); //e
+            innerArg.length==0?innerArg[innerArg.length]=window.event:null;
+            //改变this实例-fn中的this关键字，并且，给他从左往右的一个个传参；apply会立即执行
+            _this.apply(obj,outArg.concat(innerArg));
+        }
+    };
+    document.body.onclick=fn.myBind(obj,2,3);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 800px;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var target=800;
+    var duration=1000;
+    var interval=10;
+    var step=target/duration*interval;
+    //以上根据已知条件求出step；
+    //开启定时器，每次获取最新的位置，最新的位置+=step；然后再设置新的位置；
+    var timer=setInterval(function(){
+        var curLeft=utils.css(oDiv,'left');
+        //停止条件：当当前位置+step>=目标值的时候，让其位置等于目标值；
+        if(curLeft+step>=target){
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        curLeft+=step;
+        utils.css(oDiv,'left',curLeft);
+    },interval)
+
+</script>
+</body>
+</html>

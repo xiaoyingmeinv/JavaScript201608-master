@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script charset="utf-8" type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script charset="utf-8" type="text/javascript">
+        //->养成良好的代码编写习惯(代码洁癖):WB->CODE->Reformat Code(CTRL+ALT+L)
+
+        //->只要HTML结构加载完成(DOM结构渲染完成)就会触发对应的事件(DOMContentLoaded),把绑定的方法执行
+        //->DOMContentLoaded是DOM2级事件相对于DOM0级事件新增加的一个事件类型
+        //  $(document).ready(function () {});
+        //  $(function () {}); =>这种写法是上述的简写,作用是一样的
+
+
+        //->jQuery中的ready方法的实现原理(采用的是DOM2事件绑定 && 使用的是DOMContentLoaded事件)
+        //        if ('addEventListener' in document) {
+        //            document.addEventListener('DOMContentLoaded', function () {
+        //                console.log(document.getElementById('div1'));//->#div1
+        //            }, false);
+        //        } else {
+        //            document.attachEvent('onreadystatechange', function () {
+        //                if (document.readyState === 'complete') {
+        //                    console.log(document.getElementById('div1'));
+        //                }
+        //            });
+        //        }
+
+        //console.log(document.getElementById('div1'));//->null
+
+        //->jQuery中提供的ready方法可以在同一个页面中使用多次(原理是DOM2绑定)
+        //        $(function () {
+        //            console.log(document.getElementById('div1'));
+        //        });
+        //        $(function () {
+        //            console.log(document.getElementById('div1'));
+        //        });
+
+
+        //->面试题:
+        //我把当前的JS写在HEAD中了,我还想获取到BODY中的元素进行操作,可以怎么做?
+        //->使用JQ中的$(document).ready()
+        //->使用window.onload
+        //->把JS放在外部文件中,通过SCRIPT引入,引入的时候设置属性：async、defer <script src='xxx.js' async defer...
+
+        //JQ中的READY和WINDOW.ONLOAD的区别?
+        //->JQ中的READY是等HTML结构加载完成就会触发事件执行
+        //->WINDOW.ONLOAD是只有等到页面中的HTML结构、图片、文字等所有资源都加载完成才会触发事件执行
+
+        //->JQ中的READY可以在同一个页面中使用多次；WINDOW.ONLOAD在同一个页面中只能使用一次(想使用多次的话用DOM2绑定)
+        //window.addEventListener('load')
+
+        //        $(function () {//->所有的事件绑定都是异步编程,READY也是一个DOM2的事件绑定,所以它也是异步编程的
+        //            console.log('zhufeng');//->2)zhufeng
+        //        });
+        //        console.log('peixun');//->1)peixun
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

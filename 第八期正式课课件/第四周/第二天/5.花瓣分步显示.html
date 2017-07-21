@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: red;
+            margin:10px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    //1.实现一个个的显示出来；--注意：不要用for循环，否则，一下子全都显示出来；
+    var n=0;
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        //aDiv[n].style.opacity=1;
+        animate(aDiv[n],{opacity:1});
+        n++;
+        if(n===aDiv.length){
+            clearInterval(timer);
+        }
+    },300)
+</script>
+</body>
+</html>

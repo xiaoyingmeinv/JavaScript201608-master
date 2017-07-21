@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="ul1">
+</ul>
+<script src="json.js"></script>
+<script src="utils.js"></script>
+<script>
+    var oUl=document.getElementById('ul1');
+    var aLi=oUl.getElementsByTagName('li');
+    for(var i=0; i<jsonAry.length; i++){
+        var cur=jsonAry[i];
+        var oLi=document.createElement('li');//动态创建
+        oLi.innerHTML=cur.age;
+        oUl.appendChild(oLi);//动态插入
+    }
+    //1.类数组转数组
+    var ary=utils.makeArray(aLi);
+    //2.从小到大的排序
+    //从页面上所拿到的东西都是字符串；
+    ary.sort(function(a,b){
+        a=parseInt(a.innerHTML);
+        b=parseInt(b.innerHTML);
+        return a-b;
+    });
+    //3.把排好序的数组插入页面
+    for(var i=0; i<ary.length; i++){
+        oUl.appendChild(ary[i]);
+    }
+    //页面中已经有6个，咱们appendChild()插入了6了，应该是12个，但是我们只能看到6个；---DOM映射
+
+</script>
+</body>
+</html>

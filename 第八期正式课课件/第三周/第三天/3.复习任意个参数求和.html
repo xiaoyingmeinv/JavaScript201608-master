@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function sum(){
+        //console.log(arguments.callee) //callee：代表函数本身；
+        var total=0;
+        for(var i=0; i<arguments.length; i++){
+            if(!isNaN(arguments[i])){
+                total+=Number(arguments[i]);
+            }
+        }
+        return total;
+    }
+    sum(1,2,'3')
+</script>
+</body>
+</html>

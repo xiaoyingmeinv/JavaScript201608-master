@@ -1,0 +1,103 @@
+考试:
+  AJAX分页 (最晚09月28日晚上)
+  移动端的简历+PC的项目 (最晚10月08日晚上)
+
+  ->移动端简历必须要好看(这个是以后面试的时候加分项)
+  ->必须要把自己做的PC和移动端的项目发布出去,全日制各组组长把本组组员的项目地址发给我即可
+    马超
+    PC:xxxxx
+    移动端:xxxxx
+
+复习:
+  处理兼容的思想:
+    ->优雅降级：按照高版本的浏览器开发,对于低版本不兼容的效果选择使用其它技术解决或者不解决也可以
+    ->渐进增强：按照低版本的浏览器开发,对于高版本的浏览器在增加一些有助于用户体验的效果
+
+  [HTML5]
+    1、HTML5中新增加一些构建页面语义化结构的标签(修改和删除的标签也有) HTML5.MIN.JS
+    2、对于传统的表单元素新增加一些类型(记住哪些类型以及新增加类型的好处:可以调取出对应的键盘、新增加CSS和JS验证方式、一些有助于开发的效果...)、新增加placeholder属性(低版本浏览器使用JS模拟placeholder效果)
+    3、移动端的键盘是虚拟的键盘，没有keyup/keydown事件，统一使用input事件代替
+    4、audio/video
+    5、canvas(自己研究:基本语法、做一些简单的DEMO、ADOBE公司出来看的绘制CANVAS的工具 adobe edge、常用的一些canvas插件[eCharts、highChats...])
+    6、新增加一些项目开发中常用的API:geolocation获取地理位置的、webStorage本地存储、webWorks、webScoket、postMessage...
+    7、离线存储
+
+  [CSS3]
+    "图解CSS3 ->大漠 http://www.w3cplus.com/"
+    1、常用的属性:border-radius、box-shadow、text-shadow...
+    2、对于背景的变革:
+        background-color
+        background-image
+        background-position
+        background-repeat
+        background-repeat
+        background-attachment:fixed
+
+        background:rgba(0,0,0,0.1)
+        background:-webkit-linear-gradient / -webkit-radial-gradient
+        background-size:cover/contain/具体值
+        background-clip:border-box/padding-box/content-box 背景图片的裁切
+        background-origin:border-box/padding-box/content-box 设置背景图起始的位置
+
+    3、filter滤镜的升级
+       -webkit-filter: normal; 正常
+       -webkit-filter: blur(0.5); 模糊度,取值范围0-1
+       -webkit-filter: grayscale(1); 灰度，取值范围0-1
+       -webkit-filter: brightness(0.5); 亮度，取值范围0-1
+       -webkit-filter: invert(1); 反色，取值范围0-1, 0为原图，1为彻底反色之后
+       -webkit-filter: sepia(0.5); 叠加褐色，取值范围0-1
+       -webkit-filter: hue-rotate(30deg); 色相（按照色相环进行旋转，顺时针方向，红-橙-黄-黄绿-绿-蓝绿-蓝-蓝紫-紫-紫红-红）此处为叠加黄色滤镜
+       -webkit-filter: saturate(4); 饱和度，取值范围0 ~ *, 0为无饱和度，1为原图，值越高饱和度越大
+       -webkit-filter: contrast(2); 对比度，取值范围0 ~ *, 0为无对比度（灰色），1为原图，值越高对比度越大
+       -webkit-filter: opacity(0.8); 透明度，取值范围0 ~ 1, 0为全透明，1为原图
+       -webkit-filter: drop-shadow(0 0 20px red); 阴影
+
+    4、CSS3的选择器
+    5、CSS3变形
+        transform:rotate(X|Y|Z)、scale、skew(X|Y|Z)、translate(X|Y|Z)、matrix矩阵
+        transform-origin:center center 0; 变形的起始位置
+
+        [3D变形]
+        perspective:2000px; 视距(给舞台设置)
+        transform-style: preserve-3d; 设置成为3D变形(给元素设置)
+
+    6、CSS3动画
+       transition:property、duration、time-function、delay  过渡动画:先设置过渡效果,以后只要元素的样式属性值变化了,都会按照过渡效果来运动
+
+       animation:name、duration、time-function、delay 、iteration-count(infinite运动无限次)、fill-mode(设置动画完成后停留的位置:none、forwards停留在最后一帧、backwards在动画出现延迟的时候，元素保持在动画第一帧的位置、both拥有forwards和backwards两个特性)
+       @keyframes:设置帧动画运动的轨迹
+       帧动画:它是先把元素的运动轨迹在CSS中绘制好,以后只需要让其按照轨迹来运动即可
+
+    7、盒子模型
+      column:多列布局
+      box-sizing:border-box/padding-box/content-box; CSS3提供的新的盒子模型
+      flexbox:伸缩盒子模型 http://www.zhufengpeixun.com/qianduanjishuziliao/CSS3heHTML5zhuanti/2016-06-24/439.html
+
+    8、@font-face 导入网络字体包
+    9、@media 媒体查询,主要用来做响应式布局的
+
+  [响应式布局]
+    1、流式布局:外层盒子的宽度不固定,使用百分比,其余的样式属性都是固定(严格按照设计稿来写),针对于不用的设备使用@media进行微调整  ->猎豹,这样响应式布局方案主要应用于PC和移动端使用的是同一套项目的
+
+    2、等比布局:REM响应式布局(flexible淘宝的REM响应式布局框架) ->经常应用于移动端是单独的一套项目:页面的样式属性严格按照设计稿来写,但是所有的属性值都把PX转换为REM(根据HTML的fontSize的值),最后在JS中通过计算出当前设备的宽度和设计稿的宽度的比例，动态的计算HTML的fontSize值,这样页面中的相关尺寸都会跟着自动调整
+
+    3、在真实项目开发的时候,我们会在其他的响应式布局基础上融合flexbox
+
+  [移动端的事件]
+
+
+  [移动端的细节知识]
+    跨域请求常用的是JSONP,但是还有其他的方法,自己回去查去,面试经常被问到
+
+    移动端的横竖屏幕检测：http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-08-14/581.html
+
+    HyBird模式开发：http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/511.html
+
+    检测是PC浏览器还是移动端浏览器:http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-15/510.html
+
+    常用的META标签
+    http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-06-29/457.html
+    常用的META标签(移动端)
+    http://old.zhufengpeixun.cn/qianduanjishuziliao/mobileDevelopment/2016-07-02/480.html
+
+

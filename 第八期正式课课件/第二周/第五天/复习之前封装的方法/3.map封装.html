@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+     * 回调函数需要注意的几点：
+     * 1.回调函数在哪里调用，被调用多少次
+     * 2.callback是否需要传参
+     * 3.callback中的this指向
+     * 4.是否有返回值；
+     * */
+    var ary=[12,45,32,8,9];
+    var obj={};
+    Array.prototype.myMap=function(callback,context){
+        context=context||window;
+        if('map' in Array.prototype){
+            return this.map(callback,context);
+        }
+        var ary=[];
+        for(var i=0; i<this.length; i++){
+            var val=callback.call(context,this[i],i,this);
+            ary.push(val);
+        }
+        return ary;
+    };
+    var res=ary.myMap(function(item,index,input){
+        console.log(this==obj)
+    },obj);
+   // console.log(res[0]);
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        li{
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="div" class="div1">span</div>
+<ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<input type="text" value="t1"/>
+<input type="text" value="t2"/>
+<input type="button" value="btn1" disabled="disabled"/>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //模拟CSS选择元素
+    //用jquery获取元素：$div   oDiv-JS获取元素
+    /*var $div=$('#div');
+    var $div=$('.div1');
+    var $span=$('.div1 span');
+   // var $div=$('div');
+   // var oDiv=document.getElementById('div');
+    console.log($div)
+    console.log($span)
+    //console.log(oDiv)*/
+    //独有的表达式选择
+    //$('li:eq(0)').css('background','red')
+   // $('li:even').css('background','red')
+    var aTxt=$('input:disabled');
+    //console.log(aTxt)
+</script>
+</body>
+</html>

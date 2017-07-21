@@ -1,0 +1,25 @@
+1、AJAX核心操作只有三步
+   var xhr = new XMLHttpRequest();
+   xhr.open('GET', 'note.txt?_=' + Math.random());
+   xhr.send(null);
+
+  只有在JS中我们想获取响应主体内容的时候,我们才为XHR的状态改变事件绑定一个方法,当状态改变为4的时候,我们获取到响应主体内容即可xhr.responseText
+  xhr.onreadystatechange = function () {}
+
+  AJAX其实就是一件事:向服务器发请求拿数据的这件事
+    开始阶段：xhr.send() 只有执行send之后AJAX的这件事才开始
+    结束阶段：xhr.readyState=4的时候，证明响应主体内容已经返回成功，此时AJAX这件事才算完成
+
+
+2、JS的同步编程和异步编程
+  ->JS都是单线程的:JS脑子只有一根筋,一次只能做一件事情,不能同时做多件事情
+
+
+
+
+
+
+
+
+
+

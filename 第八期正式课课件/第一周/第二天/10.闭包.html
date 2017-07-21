@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+<script>
+    /*
+    闭包的作用：
+    * 1.避免变量名冲突 : 1)在闭包中重新定义变量 2）给形参赋值；
+    * 2.在闭包中影响全局：1)在闭包中不定义跟全局变量一样的变量名  2）用自执行函数中的this/直接用window；
+    * 3.封装
+    *
+    * */
+    var name='zhufeng';
+    var age=8;
+    /*(function(){
+        var name='duqiang';
+        var age=28;
+        alert(name)
+    })();*/
+    /*(function(name,age){
+        window.name='duqiang';
+        window.age=28;
+        alert(window.name)
+    })();
+    alert(name)*/
+    /*(function (){
+        function fn(){
+            alert('a')
+        }
+        window.bb=fn;
+    })();
+    bb();*/
+    var aLi=document.getElementsByTagName('li');
+    (function(){
+        function prev(curEle){
+            //previousElementSibling:直接可以拿到上一个哥哥元素，但是他不兼容，他只支持标准浏览器；
+            if('previousElementSibling' in curEle){
+                return curEle.previousElementSibling;
+            }
+            //先保存上一个哥哥节点；
+            var pre=curEle.previousSibling;
+            //判断条件：pre是节点，并且不是元素节点；
+            while(pre && pre.nodeType !== 1){
+                pre=pre.previousSibling;//只要条件成立，继续在当前节点上找他的上一个节点，直到找到元素节点后，就没法进while循环了；
+            }
+            return pre;
+        }
+        window.prev=prev;//在闭包中封装的方法，如果想让外面用，需要通过window.xx把他输送出去；否则，外面用不了
+    })();
+   console.log(prev(aLi[3]))
+
+</script>
+</body>
+</html>

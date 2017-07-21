@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 回调函数需要注意的几点：
+    * 1.回调函数在哪里调用，被调用多少次
+    * 2.callback是否需要传参
+    * 3.callback中的this指向
+    * 4.是否有返回值；
+    * */
+    var ary=[12,45,32,8,9];
+    var obj={};
+    Array.prototype.myForEach=function(callback,context){
+        context=context||window;
+        if('forEach' in Array.prototype){
+            this.forEach(callback,context);
+            return;
+        }
+        for(var i=0; i<this.length; i++){
+            callback.call(context,this[i],i,this);
+        }
+    };
+    /*
+    * 测试的时候需要测试3点
+    * 1.callback中的实参是否能拿到；
+    * 2.this指向
+    * 3.返回值
+    * */
+    var res=ary.myForEach(function(item,index,input){
+        console.log(this===obj)
+    },obj)
+    console.log(res);
+</script>
+</body>
+</html>

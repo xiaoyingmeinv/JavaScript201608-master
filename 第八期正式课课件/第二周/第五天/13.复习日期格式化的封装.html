@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var strCode='2016/8/7 15:11:3';
+    var str='{0}年{1}月{2}日';//模板
+    //需求：strCode 转成 模板；
+    String.prototype.myFormatDate=function(tmp){
+        //this-》strCode
+        tmp=tmp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+        //1.字符串中的数字都提到数组中
+        var ary=this.split(/[^\d]+/g);
+        //2.replace替换
+        tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+            var n=ary[$1]; //2016 8 7 15 11 3
+            //1为数都变成两位；
+            return n=n>=0 && n<10?'0'+parseInt(n):n;
+        });
+        return tmp;
+
+    };
+    console.log(strCode.myFormatDate(str));
+</script>
+</body>
+</html>

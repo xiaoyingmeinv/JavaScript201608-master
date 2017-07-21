@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            background: #000;
+        }
+        div{
+            text-indent: 2em;
+        }
+        span{
+            font-size: 50px;
+            color:white;
+            font-weight: bold;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+    </style>
+</head>
+<body>
+<div><!--<span>北</span>--></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var str='北京时间8月17日，2016年里约奥运会女排1/4决赛的争夺全部结束。面对主场作战的卫冕冠军巴西，中国女排在首局完败后及时变阵，敢打敢拼与对手激战五局成功翻盘，3-2力克巴西锁定4强最后1席，五局比分为15-25、25-23、25-22、22-25和15-13，惜败的巴西无缘奥运3连冠。中国时隔8年后再度打入奥运半决赛，将与荷兰争夺决赛权。完！';
+    var oDiv=document.getElementsByTagName('div')[0];
+    var aSpan=oDiv.getElementsByTagName('span');
+    var frg=document.createDocumentFragment();
+    for(var i=0; i<str.length; i++){
+        var oSpan=document.createElement('span');
+        oSpan.innerHTML=str.charAt(i);
+        frg.appendChild(oSpan)
+    }
+    oDiv.appendChild(frg);
+    frg=null;
+    show();
+    function show(){
+        var n=0;
+        clearInterval(timer);
+        var timer=setInterval(function(){
+            n++;
+            //用运动的小技巧：先实现要的基本功能，再使用运动库；
+            /*aSpan[n].style.opacity=1;*/
+            animate(aSpan[n],{opacity:1});
+            if(n===aSpan.length){
+                clearInterval(timer);
+            }
+        },100)
+    }
+</script>
+</body>
+</html>

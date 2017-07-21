@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='http:www.baidu.com?a=0&b=1&c=2';
+    //需求：通过地址(字符串)，拿到键值对（对象）
+    String.prototype.myQueryUrlPar=function(){
+        //this -》字符串
+        var obj={};
+        var reg=/([^?=&]+)=([^?=&]+)/g;
+        this.replace(reg,function($0,$1,$2){
+            obj[$1]=$2;
+        });
+        return obj;
+    };
+    console.log(str.myQueryUrlPar());
+</script>
+</body>
+</html>

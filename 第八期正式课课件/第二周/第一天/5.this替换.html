@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+    var str="alert(123)";
+    //1.把函数中的this关键字变成call的第一个参数； obj
+    str=str.replace('this','obj');
+    //2.把函数执行；把堆内存中代码字符串作为JS代码来执行；
+    eval(str)
+</script>
+</body>
+</html>

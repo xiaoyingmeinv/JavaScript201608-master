@@ -1,0 +1,336 @@
+@import (reference) "public";
+
+html, body {
+  width: 100%;
+  height: 100%;
+  color: @color-gray;
+  background: #F4F4F4;
+  overflow: hidden;
+}
+
+a, a:hover, a:visited, a:active {
+  color: @color-gray;
+}
+
+/*ISCROLL*/
+.iScrollIndicator {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+/*--HEADER--*/
+.header {
+  @h: 63;
+  height: unit(@h, px);
+  background: @color-white;
+  border-bottom: 1px solid @color-border;
+
+  .content {
+    margin: 0 auto;
+    padding: 0 10px;
+    width: unit((@width-con)-20, px);
+    height: unit(@h, px);
+
+    /*LOGO*/
+    .logo {
+      float: left;
+      margin-right: 60px;
+      width: 160px;
+      height: unit(@h, px);
+      font-size: 0;
+      background: url("@{url}/kbs-logo.png") no-repeat center center;
+    }
+
+    /*NAV*/
+    .nav {
+      float: left;
+      a {
+        float: left;
+        width: 90px;
+        height: unit((@h)-8, px);
+        line-height: unit((@h)-8, px);
+        text-align: center;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        font-size: 16px;
+        font-weight: bold;
+
+        &.bg {
+          color: @color-white;
+          background: @color-blue;
+        }
+
+        &:hover {
+          border-top-color: @color-blue;
+        }
+
+        &.liveQQ {
+          width: unit(@h, px);
+          height: unit(@h, px);
+          border: none;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &.downLoad {
+          position: relative;
+          .down {
+            position: absolute;
+            top: unit((@h)-4, px);
+            left: -15px;
+            z-index: 10;
+            padding: 0 15px;
+            width: 90px;
+            height: 0;
+            overflow: hidden;
+            .transition(@duration: 0.3s);
+
+            img {
+              display: block;
+              width: 90px;
+              height: 90px;
+            }
+            p {
+              font-size: 14px;
+              font-weight: normal;
+              line-height: 20px;
+              text-align: center;
+            }
+          }
+          .downBg {
+            .down;
+            z-index: 9;
+            background: @color-white;
+            .opacity(@v: 0.6);
+          }
+
+          &:hover {
+            .down, .downBg {
+              padding: 20px 15px;
+              height: 130px;
+            }
+          }
+        }
+      }
+    }
+
+    /*LOGIN*/
+    .login {
+      float: right;
+      margin-top: unit(((@h)-28)/2, px);
+      width: 46px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      cursor: pointer;
+      color: @color-white;
+      background: @color-blue;
+      border-radius: 2px;
+
+      &:hover {
+        background: darken(@color-blue, 10%);
+      }
+    }
+  }
+}
+
+/*--CON BODY--*/
+.conBody {
+  margin: 20px auto;
+  width: unit(@width-con, px);
+  height: 0; /*高度是需要在JS中计算的:一屏幕的高度-HEADER的高度64-MARGIN40*/
+  overflow: hidden;
+}
+
+/*MENU*/
+.menu {
+  position: relative;
+  float: left;
+  width: 198px;
+  background: @color-white;
+  border: 1px solid @color-border;
+  overflow: hidden;
+
+  li {
+    a {
+      display: block;
+      position: relative;
+      padding-left: 24px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 16px;
+      border-left: 5px solid transparent;
+      i {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 17px;
+        width: 16px;
+        height: 16px;
+
+        .arrow {
+          position: absolute;
+          top: 2px;
+          left: 50%;
+          z-index: 5;
+          margin-left: -3px;
+          width: 0;
+          height: 0;
+          font-size: 0;
+          border: 6px solid transparent;
+          border-left-color: @color-blue;
+        }
+
+        .over {
+          z-index: 6;
+          margin-left: -5px;
+          border-left-color: @color-blue-lite;
+        }
+      }
+
+      &:hover, &.bg {
+        color: @color-blue;
+        background: @color-blue-lite;
+        border-left-color: @color-blue;
+      }
+      &.bg {
+        i {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+/*RIGHT*/
+.right {
+  float: right;
+  width: 820px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/*CALENDER*/
+.calender {
+  position: relative;
+  height: 80px;
+  background: @color-white;
+  border: 1px solid @color-border;
+
+  /*按钮*/
+  .btnLeft, .btnRight {
+    position: absolute;
+    top: 0;
+    width: 24px;
+    height: 100%;
+    cursor: pointer;
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 5;
+      margin: -9px 0 0 -9px;
+      width: 0;
+      height: 0;
+      font-size: 0;
+      border: 9px solid transparent;
+    }
+  }
+  .btnLeft {
+    left: 0;
+    span {
+      margin-left: -13.5px;
+      border-right-color: #999;
+      &.over {
+        z-index: 6;
+        margin-left: -11.5px;
+        border-right-color: @color-white;
+      }
+    }
+    &:hover {
+      span {
+        border-right-color: @color-blue;
+        &.over {
+          border-right-color: @color-white;
+        }
+      }
+    }
+  }
+  .btnRight {
+    right: 0;
+    span {
+      margin-left: -4.5px;
+      border-left-color: #999;
+      &.over {
+        z-index: 6;
+        margin-left: -6.5px;
+        border-left-color: @color-white;
+      }
+    }
+    &:hover {
+      span {
+        border-left-color: @color-blue;
+        &.over {
+          border-left-color: @color-white;
+        }
+      }
+    }
+  }
+
+  /*CON*/
+  .con {
+    position: relative;
+    margin: 0 24px;
+    height: 100%;
+    overflow: hidden;
+    .wrapper {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 5px 0;
+      width: 1000px; /*需要在JS中设置:A的宽度*A的个数*/
+      height: 70px;
+      a {
+        float: left;
+        width: 110px;
+        height: 100%;
+        span {
+          display: block;
+          line-height: 27px;
+          text-align: center;
+          font-size: 16px;
+          &.week {
+            margin-top: 9px;
+            color: lighten(@color-gray, 30%);
+          }
+        }
+
+        &:hover, &.bg {
+          color: @color-blue;
+          background: @color-blue-lite;
+          span {
+            &.week {
+              color: @color-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

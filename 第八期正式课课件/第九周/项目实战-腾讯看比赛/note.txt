@@ -1,0 +1,69 @@
+1、扫盲
+  [管理系统]
+    CRM客户管理系统
+    ERP企业战略管理系统(融合了企业的战略管理手段,有企业的管理思想的)
+    OA企业办公管理系统
+    CMS内容发布管理系统(织梦、帝国...)
+    进销存管理系统
+    ...
+
+    http://echarts.baidu.com/ 报表统计
+
+2、搭建一个页面
+  [初期]
+    控制浏览器页卡上展示的文字或者图标
+    <title>xxx</title>
+    <link rel="icon" type="image/x-icon" href=""/>
+
+  [SEO]
+    <meta name="keywords" content="javascript培训,js培训,HTML5培训,css培训,前端开发培训,node.js培训,nodeJS培训,移动端培训,北京珠峰培训"/>
+    <meta name="description"
+          content="珠峰培训是中国前端开发知名品牌，七年JS前端培训，以专注立身；70%的同学来自老学员推荐，以诚信立业。先学习考试通过后交学费；四周内可无条件退学费；工资不到9千退学费。我们专注的特色培训有：javascript培训,node.JS培训,前端开发培训,HTML5培训,移动端培训"/>
+
+    什么是SEO优化?
+    使用一些手段(代码优化\关键词\友情链接\软文\外链推广...),让百度或者谷歌等搜索引擎尽量多抓取我们网站中的主要内容(排名),这样当用户在百度或者谷歌搜索的时候就很有可能会把我们的网站搜索到(我们网站的SEO做的好,那么搜索的所有结果中我们的网站就会靠前)
+
+    什么是SEM优化?
+    百度竞价排名,我们可以设置一些关键词,给每一个关键词加钱,这样只要用户搜索对应的关键词,就会看到我们的网站,而且都在前几条
+
+3、
+@import "public"; 不仅仅可以使用PUBLIC中的方法和变量,而且会把PUBLIC中的样式也进行编译
+@import (reference) "public"; 只是使用PUBLIC中的发方法,不进行编译
+
+浏览器不能直接渲染我们的LESS代码,需要先编译为正常的CSS代码才可以渲染,把其编译成为CSS的方案：
+->在页面中引入LESS.JS文件即可(低版本浏览器不支持这个JS)：这种方式经常用于项目的开发
+->在NODE环境中通过安装LESS模块:npm install less -g，然后使用:lessc xxx.less xxx.css -x这种方式进行编译
+->使用工具
+...
+
+
+4、
+在H5中我们新增加了很多的构建页面语义化结构的标签:header、footer、nav、section、article....但是这些标签在IE6~8不兼容，如果想处理兼容：原理就是在IE6~8下把新的标签都替换为DIV即可，我们可以使用HTML5.MIN.JS来做这件事情
+
+5、
+ /*background: rgba(255, 255, 255, 0.5); ->不兼容*/
+ /*opacity: 0.5; ->里面的子元素也都透明了*/
+
+6、使用iscroll-5.1.3.min.js实现页面中某一个区域的局部滚动:
+
+   为什么使用ISCROLL?
+   ->在移动端项目开发中，使用position:fixed不兼容(大部分手机都不兼容)，所以在移动端我们尽量少position:fixed的使用，尤其是对于固定定位一个评论框的部分，使用这个样式肯定会出问题
+   ->解决这个问题我们使用ISCROLL实现局部滚动
+
+   new IScroll('.menu', {
+      scrollbars: true //->显示滚动条:当new IScroll的时候,并且设置展示滚动条,iscroll会默认的向当前滚动的容器.menu中追加一个<div class='iScrollVerticalScrollbar'> 这个div就是我们的滚动条，它的样式中默认是position: absolute;，所以如果想让它在menu中，需要给menu加：position: relative;
+
+      mouseWheel: true //->设置鼠标滚轮滚动的时候它也跟着滚动
+      bounce: false //->去除到达边界的反弹效果
+   });
+
+   当我们new IScroll的时候，一些前提：
+   ->menu区域的高度是固定的
+   ->menu中的第一个子元素(也就是我们真实内容的区域)的高度需要比menu大
+   当初始化的时候，ISCROLL会把menu区域的第一个子元素做容器内容的局部滚动，反过来，我们需要滚动的内容必须在menu的第一个子元素中
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //需求：让S的原型跟F的原型一样；并且，当S的原型发生变化的时候，不影响F的原型；
+    //可把F的原型做为S的原型；这样，S的实例就可以使用F的原型的方法了；s.__proto__.__proto__
+    var obj={name:'zhufeng',age:8};
+    /*var obj2={};
+    for(var attr in obj){
+        obj2[attr]=obj[attr];
+    }*/
+    //把obj做为obj2的原型；
+    var obj2=Object.create(obj);
+    function F(){
+        this.x=100;
+    }
+    F.prototype=obj;//var a=obj; var b=a; 引用数据类型是对地址的操作；
+    var f=new F;
+    console.dir(f);
+    /*
+    * x:100
+    *  __proto__:
+    *  name:'zhufeng',
+    *  age:8
+    *  __proto__:Object
+    *  constrctor:Object;
+    * */
+
+    function S(){
+        this.y=200;
+    }
+    S.prototype=obj2;//会一样吗？他变化会影响F.prototype吗？
+    S.prototype.constructor=S;
+    var s=new S;
+    console.dir(s);
+    /*
+    * y:200;
+    * __proto__:
+    * constrctor:S,
+    * name:'zhufeng',
+    * age:8
+    * __proto__:Object
+    * constrctor:Object,
+    * toString.....
+    *
+    *
+    * */
+</script>
+</body>
+</html>

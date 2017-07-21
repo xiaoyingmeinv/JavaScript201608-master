@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 100px;
+            height:100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div style="background: yellow; left:120px;"></div>
+<div style="background: green; top:120px;"></div>
+<script src="js/event.js"></script>
+<script src="js/drag.js"></script>
+<script>
+    // =赋值 +=在以前的基础上再累加；
+    var aDiv=document.getElementsByTagName('div');
+    var g=9.8;
+    var flg=0;
+    var zIndex=0;
+    for(var i=0; i<aDiv.length; i++){
+        $event.on(aDiv[i],'mousedown',down);
+        $event.on(aDiv[i],'myDragStart',clearMove);
+        $event.on(aDiv[i],'myDragStart',creaseIndex);
+        $event.on(aDiv[i],'myDragging',getSpeedx);
+        $event.on(aDiv[i],'myDragEnd',getMove);
+    }
+
+    function clearMove(){
+        clearTimeout(this.flyTimer);
+        clearTimeout(this.dropTimer);
+    }
+    function getSpeedx(e){
+        //求横向速度
+        if(!this.prevx){
+            this.prevx=e.clientX;
+        }else{
+            this.speedx=e.clientX-this.prevx;
+            this.prevx=e.clientX; //新人变旧人；
+        }
+    }
+    function getMove(){
+        //让物体运动起来；
+        fly.call(this);
+        drop.call(this);
+    }
+    function fly(){
+        clearTimeout(this.flyTimer)
+        var _this=this;
+        this.speedx*=0.93;
+        var l=this.offsetLeft+this.speedx;
+        var maxl=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        if(l>=maxl){
+            l=maxl;
+            this.speedx*=-1; //到边界的时候会弹往相反的方向；
+        }else if(l<=0){
+            l=0;
+            this.speedx*=-1;
+        }
+        if(Math.abs(this.speedx)>=0.5){
+            this.style.left=l+'px';
+            this.flyTimer=setTimeout($event.processThis(fly,this),30);
+        }
+    }
+    function drop(){
+        clearTimeout(this.dropTimer);
+        if(!this.speedy){
+            this.speedy=g; //赋值
+        }else{
+            this.speedy+=g;
+        }
+        this.speedy*=0.93;
+        var t=this.offsetTop+this.speedy;
+        var maxt=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        if(t>=maxt){//触底
+            t=maxt;
+            this.speedy*=-1;
+            flg++;//当连续触底，flg只会无限制自增；说明物体已经停止运动
+        }else{//正常
+            flg=0;
+        }
+        if(flg<2){
+            this.style.top=t+'px';
+            this.dropTimer=setTimeout($event.processThis(drop,this),30);
+        }
+    }
+    function creaseIndex(){
+        this.style.zIndex=++zIndex;
+    }
+</script>
+</body>
+</html>

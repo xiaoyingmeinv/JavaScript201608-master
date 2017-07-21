@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <div class="box1 box2 box3 box4"></div>
+    <div class="box1 box2 box3"></div>
+    <div class="box1 box2"></div>
+    <div class="box1"></div>
+</div>
+<script></script>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    console.log(getByClass('box1 box2 box3',oDiv));
+    function getByClass(strClass,parent){
+        parent||(parent=document);
+        if('getComputedStyle'in window){
+            return parent.getElementsByClassName(strClass);
+        }
+        var aryClass=strClass.replace(/(^ +)|( +&)/g,'').split(/ +/g);
+        var nodeList=parent.getElementsByTagName('*');
+        var ary=[];
+        for(var i=0;i<nodeList.length;i++){
+            var curEle=nodeList[i];
+            var bOk=true;
+            for(var j=0;j<aryClass.length;j++){
+                var reg=new  RegExp('(^| +)'+aryClass[j]+'( +|$)');
+                if(!reg.test(curEle.className)){
+                   bOk=false;
+                }
+            }
+            if(bOk){
+                ary.push(curEle);
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div{
+            width: 200px;
+            height: 200px;
+            background: lawngreen;
+            background: -webkit-linear-gradient(top,lightgoldenrodyellow,lightcyan,lightpink,lightgoldenrodyellow);
+            background: -ms-linear-gradient(top,lightgoldenrodyellow,lightcyan,lightpink,lightgoldenrodyellow);
+            border-radius: 50%;
+            margin:50px auto;
+            text-align: center;
+            line-height: 200px;
+            font-size: 100px;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">0</div>
+<script>
+    //需求：点击按钮的时候，让他不断的自增；
+    var oDiv=document.getElementById('div');
+    //思路1：全局变量 容易发生变量名冲突，不建议；
+    /*var n=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++n;
+    }*/
+    //思路2：闭包
+    /*(function(){
+        var n=0;
+        oDiv.onclick=function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    //闭包第二种思想，利用自执行函数返回值，自执行函数不销毁的原理；
+    /*
+    * 自执行函数自己被执行，返回一个匿名函数，把它作为值赋值给元素的事件；这样的话，自执行函数中的东西被外面的事件占用了，自执行函数无法效果；它里面的n没点击一次都会进行累加；
+    * */
+    /*oDiv.onclick=(function(){
+        var n=0;
+        return function(){
+            oDiv.innerHTML=++n;
+        }
+    })();*/
+    //自定义属性的思想；最实用最建议的；
+    /*oDiv.index=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++this.index;
+    };*/
+    //直接操作DOM的思想：DOM的频繁操作，是非常耗性能的； 不建议的；
+    oDiv.onclick=function(){
+        this.innerHTML++;
+    }
+
+</script>
+</body>
+</html>

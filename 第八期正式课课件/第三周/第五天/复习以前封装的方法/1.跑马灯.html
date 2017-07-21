@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width: 800px;
+            height: 200px;
+            position: relative;
+            margin:30px auto;
+            border: 5px dashed lightgreen;
+            overflow: hidden;
+        }
+        div ul{
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        div ul li{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+        div ul li img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li><img src="img/1.jpg" alt=""/></li>
+        <li><img src="img/2.jpg" alt=""/></li>
+        <li><img src="img/3.jpg" alt=""/></li>
+        <li><img src="img/4.jpg" alt=""/></li>
+    </ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var oUl=oDiv.getElementsByTagName('ul')[0];
+    var aLi=oDiv.getElementsByTagName('li');
+    //1.让ul的内容扩充一倍，然后修改ul的宽度：避免折行；
+    oUl.innerHTML+=oUl.innerHTML;
+    oUl.style.width=utils.css(aLi[0],'width')*aLi.length+'px';
+    //2.获取ul的left：0，通过定时器不断让left减少；
+    var curLeft=oUl.offsetLeft;
+    var timer=setInterval(autoMove,30);
+    function autoMove(){
+        curLeft-=5;
+        //3.判断left当小于ul -width的一半的时候，让left:0
+        if(curLeft<=-utils.css(oUl,'width')/2){
+            curLeft=0;
+        }
+        utils.css(oUl,'left',curLeft);
+    }
+    //鼠标移入停止，移出继续
+    oDiv.onmouseover=function(){
+        clearInterval(timer);
+    };
+    oDiv.onmouseout=function(){
+         timer=setInterval(autoMove,30);
+    };
+
+</script>
+</body>
+</html>

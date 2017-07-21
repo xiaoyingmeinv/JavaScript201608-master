@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            width:450px;
+            height: 200px;
+            margin:10px;
+        }
+        .box input{
+            width: 150px;
+            height: 40px;
+            float: left;
+        }
+        .box input.on{
+            background: lightblue;
+        }
+        .box div{
+            width: 100%;
+            height: 100%;
+            background: lightblue;
+            display: none;
+        }
+        .box div.show{
+            display: block;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/tab2.js"></script>
+    <script>
+        /*$(function(){//jquery页面加载的功能，他跟window.onload是有区别的；
+            $('#box').tab();//在原型上扩充的方法，调用的时候用实例调用；
+            $('#box2').tab();
+        })*/
+        $(function(){
+            $.tab('#box');//在工具类上扩充的方法，通过类直接调用；
+            $.tab('#box2');
+        })
+    </script>
+</head>
+<body>
+<div class="box" id="box">
+    <input type="button" value="按钮1" class="on"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>
+<div class="box" id="box2">
+    <input type="button" value="按钮1" class="on"/>
+    <input type="button" value="按钮2"/>
+    <input type="button" value="按钮3"/>
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</div>
+</body>
+</html>

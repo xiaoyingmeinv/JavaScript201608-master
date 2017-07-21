@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        .main{
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        .boxInner{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        .boxInner .page{
+            width:100%;
+            font-size: 200px;
+            text-align: center;
+            color: white;
+        }
+        .main ul{
+            position: fixed;
+            right:20px;
+            top:50%;
+            margin-top:-80px;
+            z-index: 10;
+        }
+        .main ul li{
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cccccc;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .main ul li.on{
+            background: darkcyan;
+        }
+        .boxInner .p1{
+            background: lightgreen;
+        }
+        .boxInner .p2{
+            background: lightpink;
+        }
+        .boxInner .p3{
+            background: lightblue;
+        }
+        .boxInner .p4{
+            background: lightgray;
+        }
+        .boxInner .p5{
+            background: lightsalmon;
+        }
+
+    </style>
+</head>
+<body>
+<div id="main" class="main">
+    <div class="boxInner">
+        <div class="page p1">page1</div>
+        <div class="page p2">page2</div>
+        <div class="page p3">page3</div>
+        <div class="page p4">page4</div>
+        <div class="page p5">page5</div>
+    </div>
+    <ul>
+        <li class="on"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script src="js/wheel.js"></script>
+<script>
+    //获取元素
+    var oMain=document.getElementById('main');
+    var oBoxInnner=oMain.getElementsByTagName('div')[0];
+    var aDiv=oBoxInnner.getElementsByTagName('div');
+    var oUl=oMain.getElementsByTagName('ul')[0];
+    var aLi=oUl.getElementsByTagName('li');
+    var step=0;//step这个值，都决定了让哪个页面显示；
+    var isWheeling=false;
+    var ch=utils.win('clientHeight');
+    oBoxInnner.innerHTML+='<div class="page p1">page1</div>';
+    //1.让所有的page都加上可视区的高度；
+    for(var i=0; i<aDiv.length; i++){
+        aDiv[i].style.height=ch+'px';
+        aDiv[i].style.lineHeight=ch+'px';
+    }
+    function changePage(){
+        var tmpStep=step>=aLi.length?0:step;
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].className=i==tmpStep?'on':null;
+        }
+        animate(oBoxInnner,{top:-step*ch},300)
+    }
+    wheel(document,function(bOk){
+        if(bOk){
+            if(isWheeling) return;
+            if(step>=aDiv.length-1){
+                step=0;
+                utils.css(oBoxInnner,'top',0)
+            }
+            step++;
+        }else{
+            if(isWheeling) return;
+            if(step<=0){
+                step=aDiv.length-1;
+                utils.css(oBoxInnner,'top',-step*ch);
+            }
+            step--;
+        }
+        isWheeling=true;
+        clearTimeout(document.timer)
+        document.timer=setTimeout(function(){
+            isWheeling=false;
+        },600);
+        changePage();
+    })
+</script>
+</body>
+</html>

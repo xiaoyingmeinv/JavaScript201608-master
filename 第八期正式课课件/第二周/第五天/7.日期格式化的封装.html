@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var strCode='2016-8-7 10:00:3';
+    var str='{0}年{1}月{2}日';
+    String.prototype.myFormatDate=function(tmp){
+        //this 实例日期格式的字符串；
+        tmp=tmp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+        //1.日期格式的字符串转成数组
+        var ary=this.match(/\d+/g);
+        //2.字符串格式替换；
+        tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+            var n=ary[$1];
+            n=n>=0 && n<10?'0'+parseInt(n):''+n;
+            return n;
+        });
+        return tmp;
+    };
+    console.log(strCode.myFormatDate());
+</script>
+</body>
+</html>

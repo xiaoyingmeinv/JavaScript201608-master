@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    String.prototype.myMath=function(reg){
+        //this是谁：实例字符串
+        //函数是否传参
+        //函数的返回值是什么
+        var res=reg.exec(this);
+        var ary=[];
+        while(res){
+            ary.push(res[0]);
+            res=reg.exec(this);
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

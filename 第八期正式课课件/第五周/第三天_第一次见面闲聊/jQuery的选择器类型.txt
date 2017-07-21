@@ -1,0 +1,73 @@
+(1)基本
+#id     $('#div1')
+element $('div')
+.class  $('.bg')
+*       $('*')
+selector1,selector2,selectorN  $("div,.bg,#div1")
+
+(2)层次选择器：
+ancestor descendant  $("#div1 a") 后代查找 $('#div1').find('a')
+parent > child       $("#div1>a") 子代查找 $('#div1').children("a")
+                                  同级筛选 $('div').filter('.bg') 首先获取所有的DIV,然后在集合中进行二次过滤,把拥有BG样式类名的过滤出来
+
+prev + next          $("#div1+a") 下一个弟弟A
+prev ~ nexts         $("#div1~a") 所有弟弟中的A
+
+(3)基本过滤器选择器(二次筛选:在原来集合的基础上在进行过滤的)
+:first
+:last
+:not
+:even
+:odd
+:eq
+:gt  大于某个索引
+:lt  小于某个索引
+:header
+:animated
+
+$('div:not(.bg):gt(2):lt(6)') ->首先获取所有的DIV,在所有的DIV中进行二次筛选获取没有BG样式的,在目前最新的集合基础上把索引大于2的获取到,然后再在现在最新的集合基础上把索引小于6的获取到
+
+
+(4)内容过滤器选择器
+:contains   $("a:contains('珠峰')") 在所有的a中筛选出内容包含珠峰的a
+:empty
+:has
+:parent
+
+(5)可见性过滤器选择器
+:hidden
+:visible
+
+(6)属性过滤器选择器
+[attribute]   $("a[id]") 所有有ID属相的A
+[attribute=value]
+[attribute!=value]
+[attribute^=value]
+[attribute$=value]
+[attribute*=value]
+[attrSel1][attrSel2][attrSelN]
+
+(7)子元素过滤器选择器
+:nth-child    $("a:eq(0)")  $("a:nth-child(1)")
+:first-child
+:last-child
+:only-child
+
+(8)表单选择器
+:input   $("input:text")
+:text
+:password
+:radio
+:checkbox
+:submit
+:image
+:reset
+:button
+:file
+:hidden
+
+(9)表单过滤器选择器
+:enabled
+:disabled
+:checked
+:selected

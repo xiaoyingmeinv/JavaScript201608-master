@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var n=0;
+    setTimeout(function() {
+        n += 2;
+        alert(n);
+    },2);//7
+    setTimeout(function() {
+        n += 5;
+        alert(n);
+    },1);//5
+    for(var i=0; i<1000000; i++){
+
+    }
+    alert(n);//0
+
+</script>
+</body>
+</html>

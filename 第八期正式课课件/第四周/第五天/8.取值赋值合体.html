@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="div1">今天周日，我却没法休息</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //在jquery中，事件都没有on
+   // $('div').html('周日我还在充电'); //设置；
+   // var str=$('div').html(); //获取
+    var num=$('div').css('background','green');//在设置的时候，返回值是jquery元素（实例this）
+    //css 传一个参数是获取，传两个参数是设置；
+   //$('div').css({background:'red',opacity:0.4})
+    var str=$('div').attr('class','aaaaaaa')
+    alert(str)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //原型链继承：把父类私有+公有，给了子类公有的
+    function F(){
+        this.x=100;
+    }
+    F.prototype.showX=function(){};
+
+    function S(){}
+    S.prototype=new F;
+    var s1=new S;
+    var s2=new S;
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<p>sdflkasjldfkjal;ksdjf;alkjf;alskdjf;lsakjf;dlkasjf;lksajdf;lkja;flkdjalskdfjkf</p>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    /*思路：
+     * 1.down的时候需要保存：div的left和top； 旧的clientX/Y;
+     * 2.move的时候：div以前的left+新的clientX-旧的clientX;
+     * 3.up:释放move和up；
+     * */
+    oDiv.onmousedown=down;
+    //把fn这个函数中的this改成obj;
+    function processThis(fn,obj){
+        return function(e){
+            fn.call(obj,e)
+        }
+    }
+
+    function down(e){
+        e=e||window.event;
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my= e.clientY;
+        //焦点捕获；在IE下用焦点捕获和释放焦点 来实现满屏随意拖拽；
+        if(this.setCapture){
+            this.setCapture();
+            this.onmousemove=processThis(move,this);
+            this.onmouseup=processThis(up,this);
+        }else{
+            //要把哪个函数中的this改成谁；
+            //processThis（）直接被调用后，返回的是个匿名函数；匿名函数不会立即执行，只有当move事件被触发的时候，匿名函数才会执行；
+            document.onmousemove=processThis(move,this);
+            document.onmouseup=processThis(up,this);
+        }
+
+    }
+    function move(e){
+        e=e||window.event;
+        this.style.left=this.x+(e.clientX-this.mx)+'px';
+        this.style.top=this.y+(e.clientY-this.my)+'px';
+    }
+    function up(){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+
+    }
+</script>
+</body>
+</html>

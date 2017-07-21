@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            perspective: 2000px;
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-transition: 1s;
+            transition: 1s;
+
+            -webkit-transform: rotateY(45deg) rotateX(45deg);
+            transform: rotateY(45deg) rotateX(45deg);
+        }
+
+        .box span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .box span:nth-child(1) {
+            background: url("img/3D/outer1.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: translateZ(100px);
+            transform: translateZ(100px);
+        }
+
+        .box span:nth-child(2) {
+            background: url("img/3D/outer2.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: rotateY(180deg) translateZ(100px);
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .box span:nth-child(3) {
+            background: url("img/3D/outer3.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: rotateY(90deg) translateZ(100px);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .box span:nth-child(4) {
+            background: url("img/3D/outer4.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: rotateY(-90deg) translateZ(100px);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .box span:nth-child(5) {
+            background: url("img/3D/outer5.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: rotateX(90deg) translateZ(100px);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .box span:nth-child(6) {
+            background: url("img/3D/outer6.jpg") no-repeat center center;
+            background-size: 100% 100%;
+
+            -webkit-transform: rotateX(-90deg) translateZ(100px);
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript">
+    //->Zepto就是移动端专用的jQuery,语法操作和jQuery基本上是一模一样的，但是还是有区别的
+    /*
+     * Zepto比jQuery小很多,它没有处理低版本浏览器的兼容,所以它只能应用于移动端开发
+     * Zepto只是实现了jQuery中常用的一些方法,很多的方法并没有实现 $box.slideDown();//->ERROR:$box.slideDown is not a function
+     * Zepto更适合移动端开发,jQuery不支持CSS3变形的样式操作,Zepto的动画实现了变形的处理
+     *  $box.animate({
+     rotateX: '90deg',
+     rotateY: '90deg'
+     }, 1000);
+     * Zepto专门提供了移动端的事件：tap、singleTap、doubleTap、longTap、swipe、swipeLeft、swipeRight、swipeDown、swipeUp...
+     */
+    var $box = $('.box');
+    $box.attr({
+        rotateX: 45,
+        rotateY: 45
+    });
+    $box.swipeLeft(function (ev) {
+        var curX = parseFloat($box.attr('rotateX'));//->设置的自定义属性值都是字符串格式的数据
+        var curY = parseFloat($box.attr('rotateY'));
+
+        curY -= 90;
+        $(this)[0].style.webkitTransform = 'rotateX(' + curX + 'deg) rotateY(' + curY + 'deg)';
+        $box.attr({
+            rotateX: curX,
+            rotateY: curY
+        });
+//        $(this).css({
+//            rotateX: curX + 'deg',
+//            rotateY: curY + 'deg'
+//        }); Zepto中设置样式的CSS方法不支持CSS3的TRANSFORM变形
+    });
+
+    $box.swipeRight(function (ev) {
+        var curX = parseFloat($box.attr('rotateX'));
+        var curY = parseFloat($box.attr('rotateY'));
+
+        curY += 90;
+        $(this)[0].style.webkitTransform = 'rotateX(' + curX + 'deg) rotateY(' + curY + 'deg)';
+        $box.attr({
+            rotateX: curX,
+            rotateY: curY
+        });
+    });
+
+    $box.swipeUp(function (ev) {
+        var curX = parseFloat($box.attr('rotateX'));
+        var curY = parseFloat($box.attr('rotateY'));
+        curX += 90;
+        $(this)[0].style.webkitTransform = 'rotateX(' + curX + 'deg) rotateY(' + curY + 'deg)';
+        $box.attr({
+            rotateX: curX,
+            rotateY: curY
+        });
+    });
+
+    $box.swipeDown(function (ev) {
+        var curX = parseFloat($box.attr('rotateX'));
+        var curY = parseFloat($box.attr('rotateY'));
+        curX -= 90;
+        $(this)[0].style.webkitTransform = 'rotateX(' + curX + 'deg) rotateY(' + curY + 'deg)';
+        $box.attr({
+            rotateX: curX,
+            rotateY: curY
+        });
+    });
+</script>
+</body>
+</html>

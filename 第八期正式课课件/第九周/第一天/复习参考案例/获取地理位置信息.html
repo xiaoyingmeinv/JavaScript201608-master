@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //->window.navigator.geolocation.getCurrentPosition([success],[error]);
+    ~function () {
+        window.navigator.geolocation.getCurrentPosition(function (pos) {
+            console.log("经度:" + pos.coords.longitude);
+            console.log("纬度:" + pos.coords.latitude);
+            console.log("精准度:" + pos.coords.accuracy);
+        }, function (msg) {
+            console.log(msg);
+        });
+    }();
+    //->项目中我们获取到用户的地理位置信息后,调取第三方地图的相关接口,把我们得到的坐标值传递给第三方,第三方返回给我们相关的数据信息即可
+</script>
+</body>
+</html>

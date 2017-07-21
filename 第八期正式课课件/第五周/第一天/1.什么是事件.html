@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 200%;
+        }
+        div{
+            width:200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div')
+    var n=0;
+    /*window.onresize=function(){
+        document.title=++n;
+    }*/
+    //双击事件
+    /*oDiv.onmouseover=function(e){
+        e=e||window.event;
+        /!*e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+        e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;*!/
+        //事件源的兼容处理
+        e.target= e.target|| e.srcElement;
+        console.log(e.target);
+        //console.log(e.clientY)
+    }*/
+    /*document.body.oncontextmenu=function(e){
+        e=e||window.event;
+       // e.preventDefault();
+       // e.returnValue=false;
+        console.log(e.preventDefault)
+        e.preventDefault? e.preventDefault(): e.returnValue=false;
+    };*/
+    /*oDiv.onclick=function(e){
+        console.dir(this)
+       // alert('div')
+    };*/
+    /*document.body.onclick=function(){
+        alert('body');
+    }*/
+    /*oDiv.addEventListener('click',function(){
+        console.dir(this)
+    },false)*/
+    document.onkeydown=function(e){
+        e=e||window.event;
+        alert(e.keyCode)
+    }
+
+</script>
+</body>
+</html>

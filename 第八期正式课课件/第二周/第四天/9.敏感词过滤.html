@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        textarea{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<textarea id="t1" cols="30" rows="10">李克强指出，要坚持防汛抗洪、李克强安置安抚“双管齐下”。李克强一是以“暴雨”保安全。做好南北两暴雨线、多条江河防汛抗灾准备，国家暴雨防总要分类指导，地方要负起主体责任，暴雨</textarea>
+<input type="button" value="按钮"/>
+<textarea id="t2" cols="30" rows="10"></textarea>
+<script>
+    var oT1=document.getElementById('t1');
+    var oT2=document.getElementById('t2');
+    var oBtn=document.getElementsByTagName('input')[0];
+    oBtn.onclick=function(){
+        var reg=/(李克强|暴雨)/g;
+        oT2.value=oT1.value.replace(reg,function($0){
+            //看看replace的arguments都打印出的是什么东西；
+            var str='';
+            for(var i=0; i<$0.length; i++){
+                str+='*';
+            }
+            return str;
+        });
+    }
+    //replace的原理是跟exec一样；
+    //replace的替换，找到1次，替换1次； 如果找到10次，替换10次；
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul id="ul1">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    var oUl=document.getElementById('ul1');
+    function getChildren(curEle){
+        var nodeList=curEle.childNodes;
+        var ary=[];
+        for(var i=0; i<nodeList.length; i++){
+            var cur=nodeList[i];
+            if(cur.nodeType===1){
+                ary.push(cur);
+            }
+        }
+        return ary;
+    }
+    console.log(getChildren(oUl))
+</script>
+</body>
+</html>

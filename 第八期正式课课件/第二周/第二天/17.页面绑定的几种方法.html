@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0
+        }
+        ul{
+            width: 500px;
+            box-shadow: 4px 4px 10px #333;
+            margin:30px auto;
+        }
+        ul li{
+            padding:0 10px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #e1e1e1;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+            overflow: hidden;
+        }
+        ul li span{
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            line-height: 18px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><span>0</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+    <li><span>1</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+</ul>
+<script src="json1.js"></script>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aLi=oUl.getElementsByTagName('li');
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover=function(){
+            this.style.background='lightBlue';
+        };
+        aLi[i].onmouseout=function(){
+            this.style.background='white';
+        };
+    }
+    //方式1：直接DOM操作
+    /*for(var i=0; i<ary.length; i++){
+        var cur=ary[i];
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+2)+'</span>'+cur.desc;
+        oUl.appendChild(oLi);
+    }*/
+    //回流：当页面由局部变动的时候，整个页面都重新加载；
+    //方式2：文档碎片模式：
+    /*var frg=document.createDocumentFragment();
+    for(var i=0; i<ary.length; i++){
+        var cur=ary[i];
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+2)+'</span>'+cur.desc;
+        frg.appendChild(oLi);//把我们要插入页面的东西都放入frg这个篮子里；
+    }
+    oUl.appendChild(frg);
+    frg=null;//堆内存的释放；为了提高浏览器的性能；*/
+    //方式3：字符串拼接
+    var str='';
+    for(var i=0; i<ary.length; i++){
+        str+='<li><span>'+(i+2)+'</span>'+ary[i].desc+'</li>'
+    }
+    oUl.innerHTML+=str; //oUl.innerHTML=oUl.innerHTML+str;
+    /*工作中的用的最多的-字符串拼接；
+    *字符串拼接的优点：
+    * 1.简单
+    * 2.性能高：只对页面进行一次的DOM操作；不会引发太多的回流
+    *字符串拼接的缺点：
+    * 相当于把页面中的所有内容都拿出来，重新进行字符串拼接，拼接成一个新的字符串，再放入页面，那么每个元素以前的事件，就都没有了；
+    * */
+
+</script>
+</body>
+</html>

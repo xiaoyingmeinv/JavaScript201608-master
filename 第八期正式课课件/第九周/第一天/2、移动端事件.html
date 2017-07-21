@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>盒子模型</title>
+    <link type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <style type="text/css">
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+
+            box-sizing: border-box;
+            padding: 30px;
+            width: 100px;
+            height: 100px;
+            border: 10px solid green;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+<script type="text/javascript" src="js/fastclick.min.js"></script>
+<script type="text/javascript">
+    FastClick.attach(document.body);
+
+    var box = document.querySelector('.box');
+    box.addEventListener('click', function () {
+        console.log(1);
+    }, false);
+</script>
+</body>
+</html>

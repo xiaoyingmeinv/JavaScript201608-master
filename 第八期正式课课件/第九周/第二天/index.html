@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <!--LESS-->
+    <link charset="utf-8" type="text/css" rel="stylesheet/less" href="css/index.less"/>
+    <script charset="utf-8" type="text/javascript" src="js/less-2.5.3.min.js"></script>
+    <script charset="utf-8" type="text/javascript">
+        /*REM*/
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 640 * 100 + 'px';
+    </script>
+</head>
+<body>
+<!--TOP-->
+<section class="top">
+    <header class="header">
+        <h1 class="logo">腾讯体育</h1>
+        <a href="#" class="type">NBA</a>
+        <a href="javascript:;" class="menu">&nbsp;</a>
+        <a href="#" class="login">登录</a>
+    </header>
+    <nav class="nav">
+        <a href="#">NBA</a>
+        <a href="#">CBA</a>
+        <a href="#">英超</a>
+        <a href="#">欧冠</a>
+        <a href="#">亚冠</a>
+        <a href="#">西甲</a>
+        <a href="#">意甲</a>
+        <a href="#">德甲</a>
+        <a href="#">法甲</a>
+        <a href="#">中超</a>
+        <a href="#">NFL</a>
+        <a href="#">综合</a>
+        <a href="#">欧洲</a>
+        <a href="#">社区</a>
+        <a href="#">下载</a>
+    </nav>
+</section>
+
+<!--VIDEO-->
+<section class="video">
+    <!--poster是设置VIDEO的封面图,只有当preload='none'的时候才会起作用-->
+    <video controls preload="none" poster="img/poster.jpg"
+           src="http://111.202.98.144/sports.tc.qq.com/q0021hif065.mp4?vkey=D13B8EC5ADB60C93F280BBA54F11AF4506EF7F8C21D93349618B1A2DA59091F656EC6E94554E0FED1AE1462569270AC0EC5626513E8361557CD333CBC4333145D15FF9D1C451AB04BBE9987A506090CE5B72395F6647DEB1&br=60&platform=2&fmt=auto&level=0&sdtfrom=v3010&locid=0eb2dacc-6c97-400e-abfc-9493f02bba6c&size=16308066&ocid=2570130860"></video>
+</section>
+
+<!--MATCH-->
+<section class="match">
+    <script type="text/template" id="matchTemplate">
+        <div class="top">
+            <div class="home">
+                <img src="<%=matchInfo.leftBadge%>"/>
+                <span><%=matchInfo.leftGoal%></span>
+            </div>
+            <div class="time"><%=matchInfo.startTime.myFormatTime('{1}月{2}日 {3}:{4}')%></div>
+            <div class="away">
+                <span><%=matchInfo.rightGoal%></span>
+                <img src="<%=matchInfo.rightBadge%>"/>
+            </div>
+        </div>
+        <div class="center"><span class="progress"></span></div>
+        <div class="bottom">
+            <div class="home" type="1"><%=matchInfo.leftSupport%></div>
+            <div class="type"><%=matchInfo.matchDesc%></div>
+            <div class="away" type="2"><%=matchInfo.rightSupport%></div>
+        </div>
+    </script>
+</section>
+
+<!--MATCH LIST-->
+<section class="matchList">
+    <ul class="wrapper">
+        <script type="text/template" id="matchListTemplate">
+            <%$.each(data,function(index,item){%>
+            <li class="<%=index===0?'bg':null%>">
+                <div>
+                    <img src="<%=item.pic%>"/>
+                    <span><%=item.duration%></span>
+                </div>
+                <p><%=item.title%></p>
+            </li>
+            <%})%>
+        </script>
+    </ul>
+</section>
+
+<script charset="utf-8" type="text/javascript" src="js/zepto.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/iscroll-5.1.3.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/ejs.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

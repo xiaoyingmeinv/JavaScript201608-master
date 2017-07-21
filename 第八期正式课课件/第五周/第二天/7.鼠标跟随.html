@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        img{
+            border:none;
+        }
+        .box{
+            width:660px;
+            position: relative;
+            margin:50px auto;
+        }
+        .box .mark{
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            display: none;
+        }
+        .box .mark img{
+            width: 100%;
+        }
+        .box img{
+            width: 150px;
+            float: left;
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/apple_1.jpg" realImg="img/apple_1_bigger.jpg" alt=""/>
+    <img src="img/apple_2.jpg" realImg="img/apple_2_bigger.jpg" alt=""/>
+    <img src="img/apple_3.jpg" realImg="img/apple_3_bigger.jpg" alt=""/>
+    <img src="img/apple_4.jpg" realImg="img/apple_4_bigger.jpg" alt=""/>
+    <div id="mark" class="mark"><img src="img/apple_1_bigger.jpg" alt=""/></div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //1.鼠标移入哪张图片的时候，让他对应的大图显示；
+    //2.当鼠标在img中移动的时候，大图跟着走；
+    var $box=$('.box');
+    var $aImg=$box.children('img');
+    var $mark=$('.mark');
+    var $offset=$box.offset();
+    $aImg.mouseover(function(){
+        //当鼠标移入每张图片的时候，让mark显示，并且，让mark里面的img标签，src属性值为当前这个图片的realImg属性上拿到的值；
+        $mark.show().find('img').attr('src',$(this).attr('realImg'));
+    });
+    $aImg.mousemove(function(e){
+        //拿鼠标的x坐标，减去$box距离body的left位置；
+        var l= e.clientX-$offset.left+10;
+        var t= e.clientY-$offset.top+10;
+        $mark.css({left:l,top:t})
+    });
+    $aImg.mouseout(function(){
+        $mark.hide();
+    })
+
+
+</script>
+</body>
+</html>

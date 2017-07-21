@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<p>sdflkasjldfkjal;ksdjf;alkjf;alskdjf;lsakjf;dlkasjf;lksajdf;lkja;flkdjalskdfjkf</p>
+<div id="div"></div>
+<!--div一定要进行定位，否则无法拖动-->
+<script>
+    var oDiv=document.getElementById('div');
+    oDiv.onmousedown=down;
+    function processThis(fn,obj){
+        return function(e){
+            fn.call(obj,e);
+        }
+    }
+    function down(e){
+        //保存4个值；
+        e=e||window.event;
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my= e.clientY;
+        //只针对IE浏览器，焦点捕获；
+        if(this.setCapture){
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else{//this;
+            document.onmousemove=processThis(move,this);
+            document.onmouseup=processThis(up,this);
+        }
+    }
+    function move(e){
+        //move中的this，都是oDiv;因为我们要改变的是oDiv的位置；
+        e=e||window.event;
+        this.style.left= this.x+(e.clientX-this.mx)+'px';
+        this.style.top=this.y+(e.clientY-this.my)+'px';
+    }
+    function up(){
+        //释放move和up；
+        //只针对IE浏览器；
+        if(this.releaseCapture){//释放焦点
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+
+    }
+</script>
+</body>
+</html>

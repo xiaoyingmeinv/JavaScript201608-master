@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var a=123;
+    /*try{//浏览器兼容情况走try;
+        alert(a)
+    }catch(e){//报错的时候，走catch
+        console.log(e)//e:保存报错的信息
+    }finally{//无论try或catch支持否与，都会走finally;所以在正常工作中不用finally
+        console.log('ok')
+    }*/
+    try{
+        alert(b)
+    }catch(e){
+        console.log('ok');
+        throw new Error(e);//可以手动抛出一个错误，同时阻断后续代码的执行；（红色）
+        console.log('ok123');
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+一、
+    1.sort(function(a,b){return b-a});
+    2.删除数组中的最后一项内容，请至少写出三种办法:
+        pop(); ary.length--; ary.splice(ary.length-1,1); ary.length-=1; ary.length=ary.length-1;
+    3.找出数组中的第n项到第m项的内容: slice(n-1,m);
+    4.获取当前浏览器可视区域的宽度(兼容所有的浏览器):
+    document.documentElement.clientWidth||document.body.clientWidth;
+    5.把元素添加到指定的容器中，至少写出两种办法：appendChild() insertBefore(curEle,oldEle);
+    6.获取上一个哥哥元素节点(兼容浏览器):
+    (function(){
+        function prev(curEle){
+            //curEle.previousElementSibling
+            if('previousElementSibling' in curEle){
+                return curEle.previousElementSibling;
+            }
+            var pre=curEle.previousSibling;
+            while(pre && pre.nodeType !==1){
+                pre=pre.previousSibling;
+            }
+            return pre;
+        }
+        window.pre=prev;
+    })()
+    7.获取[n-m]之间的随机整数:Math.round(Math.random()*(m-n)+n)
+    8.把字符串中的某一个字符进行替换: replace('','');
+    9.document.getElementsByTagName('div')[0];
+    document.getElementsByClassName('tabCon')[0];
+    document.getElementById('tab');
+    document.querySelector('div/#tab/.tabCon');
+    document.querySelectorAll('div/#tab/.tabCon')[0];
+    10.[]==false：true; ![]==false:true;
+二、
+1. undefined undefined;
+2.
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'zhufeng',age:8};
+    var obj2=Object.create(obj);//把obj2做为obj的实例；
+    console.log(obj.isPrototypeOf(obj2))//obj 是 obj2的原型，那么obj就在obj2的原型链上
+</script>
+</body>
+</html>

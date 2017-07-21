@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[23,41,56,89];
+    //mySlice是模拟系统slice的方法；
+    Array.prototype.mySlice=function(){
+        //this->ary这个实例；
+        var ary=[];//拷贝
+        for(var i=0; i<this.length; i++){
+            ary[ary.length]=this[i];
+        }
+        //如果想让我们的类数组arguments可以使用数组的slice方法；
+        //改变this指向，就可以让类数组转成数组；
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary[ary.length]=arguments[i];
+        }*/
+        return ary;
+    };
+    console.log(ary.mySlice());
+</script>
+</body>
+</html>

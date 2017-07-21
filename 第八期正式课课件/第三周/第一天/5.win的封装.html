@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       html,body{
+           height: 200%;
+       }
+    </style>
+</head>
+<body>
+<script>
+    //client,offset没法设置；
+    //能设置的是scrollTop/scrollLeft;
+    function win(attr,value){//只要用到typeof，拿到的都先是字符串，里面才是数据类型；
+        /*if(typeof value==='undefined'){//如果想让value等于一个字符串undefined，必须写typeof;
+            alert('第二个参数没传')
+        }*/
+        //当第二个参数没传的时候，说明是获取，必须写return；
+        if(value===undefined){
+            return document.documentElement[attr]||document.body[attr];
+        }
+        //说明第二个参数传了,说明是设置，千万别写return；
+        document.documentElement[attr]=document.body[attr]=value;
+    }
+
+</script>
+</body>
+</html>

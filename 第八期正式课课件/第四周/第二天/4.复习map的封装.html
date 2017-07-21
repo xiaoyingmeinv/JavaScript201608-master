@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[12,34,23,56];
+    var obj={};
+    Array.prototype.myMap=function(callback,context){
+        context||(context=window);
+        if('map' in Array.prototype){
+            return this.map(callback,context);
+        }
+        var ary=[];
+        for(var i=0; i<this.length; i++){
+            var val=callback.call(context,this[i],i,this);
+            ary.push(val);
+        }
+        return ary;
+    };
+    var res=ary.myMap(function(item,index,input){
+        return item*100
+    },obj);
+</script>
+</body>
+</html>

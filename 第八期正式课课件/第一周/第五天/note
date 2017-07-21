@@ -1,0 +1,53 @@
+1.this总结：
+1）当元素的事件被触发，执行一个函数，函数中的this指向当前这个元素
+2）当函数被调用的时候，看前面是否有点，点前面是谁，this就是谁；
+3)自执行函数中的this，永远都是window；
+4）构造函数中的this，指向当前实例；
+5）回调函数中的this，一般是window；
+6）当遇到call,apply,bind的时候，以上规则都不适用，他们可以通过第一个参数改变this指向；
+。。。。。。。。。。。。。。。。。。。。。。。。。
+1.数组常用方法
+    1.增删改
+    push()
+    pop()
+    shift()
+    unshift()
+    splice()
+        splice(n,m) 从n开始，删除m个；
+        splice(n,0,m) 从索引n开始，删除0个，把m新内容添加到索引n的前面；
+        splice(n,x,m) 从索引n开始，删除x个，替换为m的新内容；
+   2.查找和克隆
+   slice(n,m)
+   concat
+   克隆：
+   1）slice()/slice(0)
+   2)splice(0);
+   3)concat();
+   3.数组转字符串
+   toString()
+   join('拼接形式') eval()
+   4.排列和排序
+   reverse()
+   sort(function(a,b){return a-b});
+   5.常用但不兼容
+   indexOf()
+   forEach()
+   map();
+2.隐式数据类型转换
+- * / % ==
+‘53’-4 = 53-4=49；
+===：比较的是值+数据类型；
+==：比较的只是值；
+‘2’==2：true；
+3.
+
+
+
+
+
+
+
+
+
+
+

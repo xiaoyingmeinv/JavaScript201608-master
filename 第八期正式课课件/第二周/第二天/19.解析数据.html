@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="utils.js"></script>
+<script>
+    /*
+    * 异步：能同时干好多事情
+    * 同步：只能一件件的完成任务，当前任务没完成，不能开始下一项任务；
+    * */
+    //为了入门容易，咱们现在用的都是同步；
+    //ajax：实现前后台数据交互，无刷新更新数据；
+    var data=null;
+    var xml=new XMLHttpRequest; //对象
+    //打开一个地址
+    xml.open('get','data.txt',false); //false：同步；
+    //准备状态；
+    /*readyState的五种状态：
+    * 0：请求未初始化（还没有调用 open()）。
+     1：请求已经建立，但是还没有发送（还没有调用 send()）。
+     2：请求已发送，正在处理中（通常现在可以从响应中获取内容头）。
+     3：请求在处理中；通常响应中已有部分数据可用了，但是服务器还没有完成响应的生成。
+     4：响应已完成；您可以获取并使用服务器的响应了。
+    * */
+    /*
+    * status：HTTP状态码
+    * 1xx（临时响应）
+    * 2xx (响应成功)
+    * 3xx (重定向)
+    * 4xx (客服端错误)
+    * 5xx (服务器错误)
+    * */
+    xml.onreadystatechange=function(){
+        //readyState:代表准备好了
+        if(xml.readyState===4 && /^2\d{2}$/.test(xml.status)){
+            data=utils.jsonParse(xml.responseText);
+        }
+    };
+    xml.send(null); //发送请求 send()中可以传null,也可以不写任何参数；
+
+</script>
+</body>
+</html>

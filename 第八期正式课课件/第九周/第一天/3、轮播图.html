@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>珠峰培训</title>
+    <link charset="utf-8" type="text/css" rel="stylesheet" href="css/reset.min.css"/>
+    <!--LESS-->
+    <link charset="utf-8" type="text/css" rel="stylesheet/less" href="css/index.less"/>
+    <script charset="utf-8" type="text/javascript" src="js/less-2.5.3.min.js"></script>
+</head>
+<body>
+<section class="banner">
+    <div class="wrapper">
+
+    </div>
+    <ul class="tip">
+
+    </ul>
+</section>
+
+
+<script charset="utf-8" type="text/javascript" src="js/ejs.min.js"></script>
+<script charset="utf-8" type="text/template" id="wrapperTemplate">
+    <%data.forEach(function(item,index){%>
+    <div class="slide">
+        <img data-src="<%=item.imgUrl%>" src=""/>
+    </div>
+    <%});%>
+</script>
+<script charset="utf-8" type="text/template" id="tipTemplate">
+    <%data.forEach(function(item,index){%>
+    <%if(index===0){%>
+    <li class="bg"></li>
+    <%}else{%>
+    <li></li>
+    <%}%>
+    <%});%>
+</script>
+
+
+<script charset="utf-8" type="text/javascript" src="js/ajax.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

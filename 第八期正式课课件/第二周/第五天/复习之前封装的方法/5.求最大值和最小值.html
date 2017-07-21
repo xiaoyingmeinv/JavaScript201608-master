@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[1.7,2.7,8.7,9.77,6.777,3.7];
+    var max='';
+    var min=ary[0];//注意：min里千万别写0，否则最小值一定不是数组中的；
+    //1.sort排序
+    //2.eval
+    //max=eval('Math.max('+ary.join(',')+')');
+    //max=eval('Math.max('+ary.toString()+')');
+    //3.假设法
+    /*for(var i=0; i<ary.length; i++){
+        if(ary[i]>max){
+            max=ary[i];
+        }
+    }
+    alert(max);*/
+    //4.apply + Math.max()
+    max=Math.max.apply(null,ary);
+    alert(max)
+</script>
+</body>
+</html>

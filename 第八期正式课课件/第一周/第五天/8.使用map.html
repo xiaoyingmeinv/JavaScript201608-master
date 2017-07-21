@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*map有两个参数：1.回调函数 2.用来改变this指向；map有返回值，返回值是个数组；
+    * 1.回调函数被调用的次数-就是数组的长度
+    * 2.回调函数有3个参数：1.数组的内容 2.索引 3.原数组
+    * 3.回调函数中的this-window；call改变this指向
+    * 4.回调函数的返回值，会被数组保存
+    * 回调函数被调用多少次，数组中的长度就是多少个；
+    * */
+    var obj={};
+    var ary=[23,21,6,98];
+    var res=ary.map(function(item,index,input){
+        console.log(this)
+    },obj)
+    console.log(res)//[undefined, undefined, undefined, undefined]：说明了我们每个回调函数的返回值，都被数组保存，并且，最后返回map的是数组；
+</script>
+</body>
+</html>

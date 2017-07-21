@@ -1,0 +1,38 @@
+1.Math常用方法
+    Math.random() 0-1之间的随机小数，不包含1；
+    Math.round()
+    Math.max()
+    Math.min()
+    Math.ceil()
+    Math.floor()
+    Math.abs()
+    Math.pow() 幂
+    Math.sqrt() 开方
+    Math.round(Math.random()*(m-n)+n);
+2. function getChildren(curEle){
+    var ary=[];
+    var nodeList=curEle.childNodes;
+    for(var i=0; i<nodeList.length; i++){
+        var cur=nodeList[i];
+        if(cur.nodeType===1){
+            ary.push(cur);
+        }
+    }
+    return ary;
+}
+.......................................................
+1.隔行换色的表格排序：
+
+
+
+
+
+
+
+
+
+
+
+
+
+

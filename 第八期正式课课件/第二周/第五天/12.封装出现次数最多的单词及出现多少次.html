@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='SSSadsdccCCCAdkdkkkkDccdddaaaccCCsSSSSSs';
+    var max='';//保存次数
+    var maxValue=''; //保存单词
+    //1.字符串排序： 字符串转数组，数组排序，数组转字符串；
+    str=str.split('').sort(function(a,b){return a.localeCompare(b)}).join('');
+    //2.利用重复子项，我们要的是回调函数的第一个（比较长度，得到次数最多）和第二个参数（次数最多对应属性名，单词）
+    str.replace(/(\w)\1+/ig,function($0,$1){
+        if($0.length>max){
+            max=$0.length;
+            maxValue=$1;
+        }else if($0.length==max){
+            maxValue+=$1;
+        }
+    })
+
+</script>
+</body>
+</html>

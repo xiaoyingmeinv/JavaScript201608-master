@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[12,34,21,56];
+    var obj={};
+    Array.prototype.myForEach=function(callback,context){
+        context=context||window;
+        if('forEach' in Array.prototype){
+            this.forEach(callback,context);
+            return;
+        }
+        for(var i=0; i<this.length; i++){
+            callback.call(context,this[i],i,this);
+        }
+    }
+    //测三点 1.参数 2.this 3.返回值；
+    var res=ary.myForEach(function(item,index,input){
+        //console.log(item)
+        //console.log(this===obj)
+    },obj)
+    console.log(res)
+</script>
+</body>
+</html>

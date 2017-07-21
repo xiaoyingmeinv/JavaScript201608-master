@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 预解释： var a=function(){alert('fn')};
+    * a();->alert('fn')
+    * a=123;
+    * alert(a)->123;
+    * a()->报错
+    * */
+    /*a();
+    var a=123;
+    alert(a);
+    a();
+    function a(){
+        alert('fn')
+    }*/
+    /*
+    * var fn=function(){alert('hello')};
+    * typeof(fn) ->function
+    *
+    * */
+    function change() {
+        alert(typeof fn) //function
+        function fn() {
+            alert('hello')
+        }
+        var fn;
+    }
+    change();
+</script>
+</body>
+</html>

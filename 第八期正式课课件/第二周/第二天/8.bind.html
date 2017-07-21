@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+    function fn(n,m){
+        alert(this+(n+m))
+    }
+    var res=fn.bind(obj,2,3); //bind的传参方式跟call 一样；
+    /*预处理机制：
+    * 1.当调用bind方法的时候，会预先把fn中的this改成obj,同时如果有参数的话，也会给fn中的形参赋值
+    * 2.把已经修改好的fn，返回；
+    * 3.在我们需要的时候，手动调用；
+    * */
+    res();//是个新地址，跟以前没关系；
+    fn(2,3);
+</script>
+</body>
+</html>

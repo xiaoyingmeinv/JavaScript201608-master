@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //propertyIsEnumerable
+    Object.prototype.showX=function(){};
+    var obj={name:'zhufeng',age:8};
+    for(var attr in obj){
+        /*if(obj.propertyIsEnumerable(attr)){
+            console.log(attr);//属性名
+        }*/
+        if(obj.hasOwnProperty(attr)){
+            console.log(attr);
+        }
+
+    }
+    //for循环只能遍历出我们自定义的属性和方法，无法枚举出系统内置的属性和方法；
+    /*
+    * propertyIsEnumerable：是否可枚举
+    * 特点：他只能枚举出实例上自定义的属性和方法；不能枚举原型上的属性和方法；
+    *
+    * */
+
+
+
+</script>
+</body>
+</html>

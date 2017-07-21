@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function average(){
+        //1.类数组转数组
+        var ary=Array.prototype.slice.call(arguments);
+        //2.sort
+        ary.sort(function(a,b){
+            return a-b;
+        });
+        //3.掐头去尾
+        ary.pop();
+        ary.shift();
+        //4.return
+        return (eval(ary.join('+'))/ary.length).toFixed(2)
+    }
+    alert(average(1.7,2.7,8.7,9.77,6.777,3.7))
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //只能在IE10及10以下执行；
+    f=function(){return true};
+    g=function(){return false};
+    (function(){
+        //运算符的优先级：算术>比较>逻辑>赋值
+        if(g()&&[]==![]){//条件判断语句中，无论条件是否成立，都会进行预解释
+            f=function(){return false;}
+            function g(){return true;}
+        }
+    })();//自执行函数，不会进行预解释，只有当执行到他的时候，声明+定义+执行同步完成；
+    alert(f());
+    alert(g());
+</script>
+</body>
+</html>

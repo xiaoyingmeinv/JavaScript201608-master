@@ -1,0 +1,68 @@
+浏览器渲染:
+浏览器会把我们编写的HTML/CSS/JS源代码按照对应的规则,使用自己的渲染引擎,把其渲染成对应的页面结构和样式等
+W3C:一个制定HTML/CSS/JS开发规范和标准的组织；开发者按照标准来编写代码，浏览器厂商按照标准来渲染代码，这样就可以看到页面了；
+    -webkit-
+    -moz-
+    -ms-
+    -o-
+主流浏览器的内核(渲染引擎):
+  谷歌:webkit(V8)
+  火狐:Gecko
+  IE:Trident
+  ...
+
+2、JS是一门基于客户端浏览器运行的轻量级的脚本编程语言?
+   之前想让JS代码执行起到作用，需要在一个HTML页面中把其嵌入进来，然后在浏览器中执行HTML的时候，用浏览器的渲染内核把JS也渲染了
+
+   基于NODE环境解析和渲染我们的JS代码(不需要浏览器也可以)
+   ->在WB中调取NODE环境执行：找到对应的JS文件/JS代码,鼠标右键“Run xxx.js”即可
+     "C:\Program Files (x86)\JetBrains\WebStorm 10.0.5\bin\runnerw.exe" "C:\Program Files\nodejs\node.exe" test.js 在WB的编辑器中我们调取NODE.EXE执行TEST.JS文件
+
+   ->找到JS所在的目录，然后 “shift+右键 ->在此处打开名窗口 ->调取出DOS命令”，在DOS窗口中输入 node xxx.js，这样也相当于在某个环境下把JS代码执行了
+
+   ->使用NODE的RPEL命令：在DOS命令中输入node，按enter键，开始编写JS代码（类似于在浏览器的控制台书写JS代码做临时的测验）
+
+3、NODE不是一门新的技术,它只是一个环境或者是一个平台,用来渲染和解析JS的平台(和客户端浏览器差不多),以后我们只要把服务器端安装了NODE,我们就可以使用JS来开发后台的程序了
+  ->NODE采用的是谷歌浏览器的V8引擎来渲染和解析JS的：快、稳定、不需要兼容其他的浏览器
+  ->NODE平台是基于单线程异步的处理方式的
+  ->NODE平台中提供了I/O操作(文件操作)，对比：JS运行在客户端的浏览器中的时候为了保证客户端的安全，浏览器都是不允许你的JS操作客户的本地文件的
+
+4、NODE的模块(包)
+  内置模块：NODE平台天生自带的模块 http、url、fs...
+
+  自定义模块：故名思议自己写的模块 在NODE平台下我们创建一个JS就相当于创建了一个新的模块，和客户端的JS一样，模块和模块之间是独立的，相互不会冲突
+
+    A模块中存在一个方法:sum实现的是任意数求和,我想在B模块中调取这个sum方法
+    1)在B模块中:导入A调取A中提供的方法
+      var A = require('./A');
+      var result = A.sum(1, 2, 3, 4);
+      console.log(result);
+
+    2)在A模块中:把需要让别人使用的方法暴露出来(导出)
+      module是NODE天生自带的一个对象  exports也是NODE天生自带的一个对象
+      module.exports = {
+          sum: sum
+      };
+      //module.exports.sum=sum;
+
+    课堂练习:
+    A ->sum任意数求和
+    B ->avg求多个数的平均数 (给其一堆数，先计算这堆数的和(调取A中的sum)，把获取的和除以总个数求平均数)
+    C ->调取B中的avg 给 96 98 92 87 73 求平均数
+
+
+
+
+
+  第三方模块：在NODE平台下第三方模块的管理是npm命令  https://www.npmjs.com/
+     比如：我们需要使用LESS模块来管理我们的CSS预编译anzhuang
+     安装：npm install less  这样我们就可以通过 var less = require('less'); less.render(); 引入到我们的项目中调取使用了
+     卸载：npm uninstall less
+
+     npm install less 默认安装到当前的项目目录下,只有当前的项目才可以调取这个模块
+     npm install less -g (global)安装到全局NODE环境下，所有基于NODE环境开发的项目都可以调取使用
+
+     思考：在NODE命令中执行 npm install less -g ，把less模块安装上，为下周的LESS学习做准备（查看是否安装成功，只需要执行 lessc -v 出现版本号则代表安装成功）
+
+     131 132 快速过一遍
+     137争取好好看一遍

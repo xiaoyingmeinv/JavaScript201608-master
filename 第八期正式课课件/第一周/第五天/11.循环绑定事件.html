@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+<input type="button" value="按钮4"/>
+<input type="button" value="按钮5"/>
+<script>
+    var aBtn=document.getElementsByTagName('input');
+    var ary=['red','yellow','pink','green','blue'];
+    /*function bindEvent(){
+        for(var i=0; i<aBtn.length; i++){
+            aBtn[i].index=i;//自定义属性存储正确的i值；
+            aBtn[i].onclick=function(){
+                //任何事件中的i值都是有问题的；
+                document.body.style.background=ary[this.index];
+            }
+        }
+    }*/
+    function bindEvent(){
+        for(var i=0; i<aBtn.length; i++){
+            (function (index) {
+                aBtn[i].onclick=function(){
+                    document.body.style.background=ary[index];
+                }
+            })(i)
+        }
+    }
+    bindEvent();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+    }
+    Fn.prototype.showX=function(){
+        alert(this.x);
+    };
+    var f=new Fn;
+    console.dir(f);
+    /*
+    * x:100;
+    * __proto__:Object
+    * constructor:Fn;
+    * showX:function(){};
+    * __proto__:Object
+    * constructor:Object;
+    * toString:
+    * .......
+    * */
+
+</script>
+</body>
+</html>

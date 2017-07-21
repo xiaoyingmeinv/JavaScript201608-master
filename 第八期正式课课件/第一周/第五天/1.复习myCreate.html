@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'zhufeng',age:8}; //原型
+    function myCreate(obj){
+        function Fn(){};
+        Fn.prototype=obj;
+        return new Fn;
+
+    }
+    var obj2=myCreate(obj);//obj2是实例
+</script>
+</body>
+</html>

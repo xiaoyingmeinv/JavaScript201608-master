@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;//私有属性x:100
+        this.y=100;
+    }
+    Fn.prototype={
+        x:200, //公有属性x
+        aa:function(){ //公有方法
+            this.y=200;//直接给实例的私有属性y：100；
+            alert(this.x+this.y)
+        }
+    };
+    var f=new Fn;
+    //f.aa();
+    //f.__proto__.aa();
+    console.log(f.constructor)
+</script>
+</body>
+</html>

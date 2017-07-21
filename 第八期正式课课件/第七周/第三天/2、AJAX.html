@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+    ajax({
+        url: '1.txt',
+        type: 'GET',
+        dataType: 'TXT',
+        success: function (result) {
+            //this->XHR
+            //result->从服务器端获取的内容
+            console.log(result);
+        }
+    });
+
+    ajax({
+        url: '2.txt',
+        cache: false,
+        dataType: 'TXT',
+        success: function (result) {
+            console.log(result);
+        }
+    });
+
+
+    //    ~function () {
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open('GET', '1.txt?_=' + Math.random(), true);
+    //        xhr.onreadystatechange = function () {
+    //            if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {
+    //                console.log(xhr.responseText);
+    //            }
+    //        };
+    //        xhr.send(null);
+    //    }();
+    //
+    //    ~function () {
+    //        var xhr = new XMLHttpRequest;
+    //        xhr.open('GET', '2.txt?_=' + Math.random(), true);
+    //        xhr.onreadystatechange = function () {
+    //            if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {
+    //                console.log(xhr.responseText);
+    //            }
+    //        };
+    //        xhr.send(null);
+    //    }();
+</script>
+</body>
+</html>

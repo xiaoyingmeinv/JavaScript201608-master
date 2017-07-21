@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //var n; 同一个变量，声明的时候，只声明一次；
+    /*var n=12;
+    var n=15;
+    function fn(n){ //var n=15;
+       var n=15;
+    }
+    fn(12);*/
+    function fn(){
+        alert(n);
+        fn2();
+        fn1();
+        return function fn1(){
+            alert('fn1')
+        };
+        var n=456;
+        alert(n)
+        function fn2(){
+            alert('fn2')
+        }
+    }
+    fn();
+</script>
+</body>
+</html>

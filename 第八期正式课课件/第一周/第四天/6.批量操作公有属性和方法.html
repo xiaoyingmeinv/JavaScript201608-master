@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary1=[12,34];
+    /*Array.prototype.aa=function(){
+        alert('aa');
+    };
+    ary1.aa();
+    ary2.aa();
+    ary1.push();
+    ary2.push();*/
+    /*ary1.pop();
+    alert(ary1);*/
+    //一个个删除系统内置类Array的公有方法；--可以删掉；
+    /*Array.prototype.pop={};
+    Array.prototype.push={};
+    Array.prototype.shift={};
+    ary1.shift();
+    alert(ary1)*/
+    //系统内置类的公有方法不能批量删除，这是浏览器对系统内置类的自我保护；所以，如果想删除的话，只能一个个的删除；
+    Array.prototype={
+
+    }
+    ary1.shift();
+    alert(ary1)
+</script>
+</body>
+</html>

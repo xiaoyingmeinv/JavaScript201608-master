@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var strCode='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    //思路1：字符串长度判断；直接拿字符串进行查找，不重复直接添加
+    /*var str='';
+    while(str.length<4){//当字符串的长度=4时，不再满足循环条件
+        var rnd=Math.round(Math.random()*61);
+        //如果字符串中没有找到该字符，再给字符串添加；
+        if(str.indexOf(strCode.charAt(rnd))===-1){
+            str+=strCode.charAt(rnd);
+        }
+    }*/
+    //思路2：for循环
+    var ary=[];
+    var str='';
+    for(var i=0; i<4; i++){
+        var rnd=Math.round(Math.random()*61);
+        if(ary.indexOf(rnd)!==-1){//说明重复了，此次机会不算
+            i--;
+        }else{
+            ary.push(rnd);
+            str+=strCode.charAt(rnd);
+        }
+    }
+
+</script>
+</body>
+</html>

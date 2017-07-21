@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    /*思路：
+    * 1.down的时候需要保存：div的left和top； 旧的clientX/Y;
+    * 2.move的时候：div以前的left+新的clientX-旧的clientX;
+    * 3.up:释放move和up；
+    * */
+    oDiv.onmousedown=function(e){
+        //1.down的时候需要保存：div的left和top； 旧的clientX/Y;
+        e=e||window.event;
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my= e.clientY;
+        //2.move的时候：div以前的left+新的clientX-旧的clientX;
+        oDiv.onmousemove=function(e){
+            e=e||window.event;
+            this.style.left=this.x+(e.clientX-this.mx)+'px';
+            this.style.top=this.y+(e.clientY-this.my)+'px';
+        };
+        //3.up:释放move和up；
+        oDiv.onmouseup=function(){
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[1,2,3,1,2,3,2,3];
+    var ary2=[4,5,6,5,6,5,6];
+    //我们通过prototype去添加系统内置类Array的公有方法；--去重
+    Array.prototype.rmSame=function(){
+        //this--ary数组
+        var obj={};//如果对象中没有，给对象添加，如果有了，说明数组中重复了，删除这一项，同时预防数组塌陷；
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            if(obj[cur]===cur){
+                this.splice(i,1);
+                i--;
+            }else{
+                obj[cur]=cur;
+            }
+        }
+        return this;//去重后的数组；预告：为了链式操作；
+    };
+    ary.rmSame();
+    ary2.rmSame();
+   console.log(ary2) ;
+</script>
+</body>
+</html>

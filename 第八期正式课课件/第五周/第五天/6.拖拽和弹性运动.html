@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+lsdfkjsldfjsldkfjlsadkfjlsakjflaksjflkajsflkajlfjdsalfkjalksfd
+<div></div>
+<div style="background: yellow; left:120px;"></div>
+<div style="background: green; left:220px;"></div>
+<script src="js/event.js"></script>
+<script src="js/drag2.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var g=9.8;
+    var flg=0;
+    var zIndex=0;
+    for(var i=0; i<aDiv.length; i++){
+        $event.on(aDiv[i],'mousedown',down);
+        $event.on(aDiv[i],'myMouseDown',stopMove);
+        $event.on(aDiv[i],'myMouseDown',creaseIndex);
+        $event.on(aDiv[i],'myMouseMove',getSpeedx);
+        $event.on(aDiv[i],'myMouseUp',getMove);
+    }
+
+    function creaseIndex(){
+        this.style.zIndex=++zIndex;
+    }
+    function getSpeedx(e){//获取横向的速度-放在move接口里
+        if(!this.prevx){
+            this.prevx= e.clientX;
+        }else{
+            this.speedx= e.clientX-this.prevx;
+            this.prevx= e.clientX;
+        }
+    }
+    function getMove(){
+        fly.call(this);
+        drop.call(this);
+    }
+    function stopMove(){
+        clearTimeout(this.flyTimer);
+        clearTimeout(this.dropTimer);
+    }
+    function drop(){
+        clearTimeout(this.dropTimer)
+        if(!this.speedy){
+            this.speedy=g;
+        }else{
+            this.speedy+=g;
+        }
+        this.speedy*=.93; //摩擦
+        var t=this.offsetTop+this.speedy;
+        var maxt=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+        if(t>=maxt){
+            t=maxt;
+            this.speedy*=-1;
+            flg++;//只触底，不走正常，说明已经停止运动
+        }else{
+            flg=0;
+        }
+        if(flg<2){
+            this.style.top=t+'px';
+            this.dropTimer=setTimeout($event.processThis(arguments.callee,this),30);
+        }
+    }
+    function fly(){//arguments.callee--代表函数本身
+        clearTimeout(this.flyTimer)
+        //给横向速度加摩擦和边界限制；
+        this.speedx*=.93; //摩擦
+        var l=this.offsetLeft+this.speedx;
+        var maxl=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth;
+        if(l>=maxl){
+            l=maxl;
+            this.speedx*=-1;
+        }else if(l<=0){
+            l=0;
+            this.speedx*=-1;
+        }
+        if(Math.abs(this.speedx)>=0.5){
+            this.style.left=l+'px';
+            this.flyTimer=setTimeout($event.processThis(arguments.callee,this),30)
+        }
+
+    }
+
+</script>
+</body>
+</html>

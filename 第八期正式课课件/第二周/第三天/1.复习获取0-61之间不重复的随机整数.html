@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[];
+    /*for(var i=0; i<4; i++){
+        var rnd=Math.round(Math.random()*61);
+        /!*if(ary.indexOf(rnd) !==-1){
+            i--;
+        }else{
+            ary.push(rnd);
+        }*!/
+        if(ary.indexOf(rnd) !==-1){
+            i--;
+            continue;
+        }
+        ary.push(rnd);
+    }*/
+    while(ary.length<4){
+        var rnd=Math.round(Math.random()*61);
+        if(ary.indexOf(rnd)===-1){
+            ary.push(rnd);
+        }
+    }
+</script>
+</body>
+</html>

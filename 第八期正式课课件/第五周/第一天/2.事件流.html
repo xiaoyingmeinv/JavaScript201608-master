@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            padding:100px;
+            font-size: 50px;
+        }
+        .box{
+            background: red;
+            height: 400px;
+        }
+        .boxInner{
+            background: green;
+            height: 200px;
+        }
+        .boxCenter{
+            background: blue;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">box
+    <div class="boxInner">boxInner
+        <div class="boxCenter">boxCenter</div>
+    </div>
+</div>
+<script>
+    var oBox=document.getElementsByTagName('div')[0];
+    var oBoxInner=document.getElementsByTagName('div')[1];
+    var oBoxCenter=document.getElementsByTagName('div')[2];
+    /*oBox.onclick=function(){
+        alert(this.className)
+    };
+    oBoxInner.onclick=function(){
+        alert(this.className)
+    };
+    oBoxCenter.onclick=function(){
+        alert(this.className)
+    };*/
+    /*oBox.addEventListener('click',function(){
+        alert(this.className)
+    },true);
+    oBoxInner.addEventListener('click',function(){
+        alert(this.className)
+    },false);
+    oBoxCenter.addEventListener('click',function(){
+        alert(this.className)
+    },true);*/
+    document.body.onclick=function(e){
+        e=e||window.event;
+        e.target= e.target|| e.srcElement;
+        alert(e.target.className)
+    };
+</script>
+</body>
+</html>

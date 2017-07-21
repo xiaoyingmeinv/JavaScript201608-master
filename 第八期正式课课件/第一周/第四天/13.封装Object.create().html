@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*
+    * 1.原型链继承； __proto__
+    * 2.call继承: call
+    * 3.冒充继承:
+    * 4.混合继承1：call+原型链继承
+    * 5.混合继承2: call+拷贝继承；
+    * 6.寄生式组合继承：call+Object.create()思想的继承
+    * */
+    var obj={name:'zhufeng',age:8};
+    /*//目标：想把obj2作为obj的实例；obj是原型，obj2是实例；
+    function Fn(){};
+    Fn.prototype=obj; //obj就是原型
+    var obj2=new Fn;//obj2就是实例*/
+    function myCreate(obj){//obj是原型
+        function Fn(){}//自己创建一个空类；
+        Fn.prototype=obj;
+        return new Fn;//返回的是个实例
+    }
+    var obj2=myCreate(obj);//obj作为obj2的原型--兼容；
+    var obj2=Object.create(obj);//obj作为obj2的原型--不兼容
+
+</script>
+</body>
+</html>

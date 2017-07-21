@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //找到字符串中的所有数字；数字成批显示；[1223,789,9890,989];
+    var str='sdlfks1223lksdjflskd789lkdsjfls9890lskdfjl989';
+    var tmp='';
+    var ary=[];
+    /*
+    * 原理：
+    * 1.遍历字符串中的每一项，判断每一项是否为有效数字
+    * 2.如果是有效数字，进行字符串的拼接
+    * 3.如果不是有效数字：判断拼接的字符串是否有内容，如果有，放入数组；
+    * */
+    /*for(var i=0; i<str.length; i++){
+        var cur=str[i];
+        if(!isNaN(cur)){//是有效数字
+            tmp+=cur;
+        }else{//不是有效数字
+            if(tmp){
+                ary.push(tmp);
+                tmp='';
+            }
+
+        }
+    }
+    if(tmp){
+        ary.push(tmp);
+        tmp='';
+    }
+    alert(ary);*/
+    //alert(str.match(/\d+/g))
+
+
+
+</script>
+</body>
+</html>

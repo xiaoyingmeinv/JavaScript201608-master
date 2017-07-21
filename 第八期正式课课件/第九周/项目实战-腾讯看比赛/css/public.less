@@ -1,0 +1,22 @@
+@color-gray: #555;
+@color-border: #ddd;
+@color-white: #FFF;
+@color-blue: #346AFF;
+@color-blue-lite: #EFF3FF;
+
+@width-con: 1040;
+@url: '../img';
+
+.opacity(@v:1) {
+  @v2: @v*100;
+  opacity: @v;
+  filter: ~"alpha(opacity=(@{v2}))";
+}
+
+.transition(@property:all,@duration:1s,@time-function:linear,@delay:0s) {
+  -webkit-transition: @arguments;
+  -moz-transition: @arguments;
+  -ms-transition: @arguments;
+  -o-transition: @arguments;
+  transition: @arguments;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px solid red;
+            text-align: center;
+            line-height: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            margin:50px auto;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">0</div>
+<script>
+    var oDiv=document.getElementById('div');
+    //1.全局变量
+    /*var n=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++n;
+    }*/
+    //2.闭包
+    /*(function(){
+        var n=0;
+        oDiv.onclick=function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    /*oDiv.onclick=(function(){
+        var n=0;
+        return function(){
+            this.innerHTML=++n;
+        }
+    })();*/
+    //3.自定义属性
+    /*oDiv.index=0;
+    oDiv.onclick=function(){
+        this.innerHTML=++this.index;
+    }*/
+    //4.DOM操作
+    oDiv.onclick=function(){
+        this.innerHTML++;
+    }
+</script>
+</body>
+</html>

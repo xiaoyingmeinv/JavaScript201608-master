@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 1000%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background: lightgreen;
+            background: -webkit-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -moz-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+            background: -ms-linear-gradient(top,lightgreen,lightsteelblue,lightgrey);
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            font-size: 30px;
+            color: white;
+            background: darkgreen;
+            box-shadow: 4px 4px 10px #333;
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var timer=null;
+    var bOk=false; //false代表可以让机器一直走；
+    window.onscroll=function(){//机器操作+手动操作；
+        if(bOk){
+            clearInterval(timer);
+        }
+        bOk=true;
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oDiv.style.display='block';
+        }else{
+            oDiv.style.display='none';
+        }
+    };
+    oDiv.onclick=function(){
+        var target=utils.win('scrollTop');
+        var duration=1000;
+        var interval=30; //坑:因为定时器越小越不准确，如果设置30ms以下，当走的很快的时候，我们停止不了；所以，建议如果想在快速运动的过程中能及时停止，一定要把定时器的时间设置30ms以上；
+        var step=target/duration*interval;
+        timer=setInterval(function(){ //纯机器操作；
+            var curTop=utils.win('scrollTop');
+            if(curTop<=0){
+                clearInterval(timer);
+                return;
+            }
+            curTop-=step;
+            utils.win('scrollTop',curTop);
+            bOk=false;
+        },interval)
+    }
+</script>
+</body>
+</html>

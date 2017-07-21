@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            width: 100%;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        .box {
+            margin: 50px;
+            width: 200px;
+            border: 1px solid green;
+            border-top: none;
+        }
+
+        .box span {
+            display: block;
+            padding-left: 10px;
+            height: 30px;
+            line-height: 30px;
+            background: lightgreen;
+            font-weight: bold;
+            cursor: pointer;
+            border-top: 1px solid green;
+        }
+
+        .detail {
+            display: none;
+        }
+
+        .detail li {
+            padding-left: 20px;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<ul class="box">
+    <li>
+        <span>衬衫</span>
+        <ul class="detail" style="display: block;">
+            <li>男士衬衫</li>
+            <li>女士衬衫</li>
+            <li>长款衬衫</li>
+            <li>短款衬衫</li>
+        </ul>
+    </li>
+    <li>
+        <span>衬衫</span>
+        <ul class="detail">
+            <li>男士衬衫</li>
+            <li>女士衬衫</li>
+            <li>长款衬衫</li>
+            <li>短款衬衫</li>
+        </ul>
+    </li>
+    <li>
+        <span>衬衫</span>
+        <ul class="detail">
+            <li>男士衬衫</li>
+            <li>女士衬衫</li>
+            <li>长款衬衫</li>
+            <li>短款衬衫</li>
+        </ul>
+    </li>
+</ul>
+
+
+<script charset="utf-8" type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    //->给所有的SPAN绑定点击事件:
+    //-->点击的时候让当前SPAN的弟弟UL展开或者隐藏(当前展开就隐藏,当前隐藏就展开)
+    //-->让点击的这个SPAN的其他的兄弟SPAN对应的UL隐藏
+
+    //$('.box span')
+    //$('.box').find('span')
+
+    //    $('.box span').on('click',function(){});
+    //    $('.box span').click(function(){}); //->指定事件类型的快捷绑定
+    //    $('.box span').bind('click',function(){});//->BIND  不管是哪一种方式,JQ最后都是用ON来实现绑定处理的
+
+    //->JQ存在内置的循环机制:我们的JQ对象中包含很多的元素,调取一个方法ON,JQ会默认的给集合中的每一个元素都分别绑定点击事件,不需要自己在写循环了
+    //自己写循环
+    //->JQ中的EACH有两个:一个在原型上,另外一个在对象上；原型上的EACH是用来遍历JQ集合的，对象上的EACH是用来遍历数组、对象、类数组的；
+    //    $('.box span').each(function (index, item) {
+    //        //->集合中有几项,回调函数就执行几次;index是当前循环这一项的的索引,item是当前循环的这一项(item是JS原生对象)
+    //        //->this===item
+    //        $(this).on('click', function () {
+    //
+    //        });
+    //    });
+
+    $('.box span').on('click', function () {
+        //->this:当前点击的这个SPAN(JS对象)
+        //->使用JQ动画之前,我们都需要先执行STOP,把当前元素正在运行的动画结束,继续执行下一个的新的动画:show、hide、toggle、slideUp、slideDown、slideToggle、fadeIn、fadeOut、fadeToggle、animate...
+        $(this).next().stop().slideToggle(300)
+                .parent().siblings().children('.detail')
+                .stop().slideUp(300);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='http:www.baidu.com?a=0&b=1&c=2';
+    var reg=/([^?=&]+)=([^?=&]+)/g;
+    var obj={};
+    /*
+    * 1.replace用来替换；要注意两点：1.str需要重新赋值，一定要写str=; 2,回调函数中一定要写return；
+    * 2.利用replace第二个回调函数的参数，做我们想做的事情；不需要写等号和return返回值；
+    * */
+    str.replace(reg,function($0,$1,$2){
+        //console.log(arguments)
+        obj[$1]=$2;
+    })
+</script>
+</body>
+</html>

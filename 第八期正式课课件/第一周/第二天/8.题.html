@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var name='珠峰';
+    var age=500;
+    name=(function(name,age){//2.定义了形参age，但没有赋值，拿到的值就是undefined；
+        arguments[0]='珠峰培训';
+        age=age||this.age;//3. || 前面为假，才会走后面 4.自执行函数中的this-永远都是window；
+        console.log(name,age);//'珠峰培训' 500
+    })(name);//1.只执行函数的返回值：因为没有return，所以返回值是undefined
+    console.log(name,age) //undefined 500
+</script>
+</body>
+</html>

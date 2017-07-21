@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //1.sort 2. 双重循环 3.新数组 4,5 对象
+    var ary=[1,2,3,2,3,4,2,2,2,2];
+    //1.sort
+    /*Array.prototype.rmSame=function(){
+        //this-ary数组实例
+        this.sort(function(a,b){return a-b});
+        for(var i=0; i<this.length; i++){
+            if(this[i]===this[i+1]){
+                this.splice(i,1);
+                i--;
+            }
+        }
+        return this;
+    };*/
+    //2. 双重循环
+    /*Array.prototype.rmSame=function(){
+     //this-ary数组实例
+     for(var i=0; i<this.length; i++){
+     for(var j=i+1; j<this.length; j++){
+     if(this[i]==this[j]){
+     this.splice(i,1);
+     i--;
+     }
+     }
+     }
+     return this;
+     };*/
+    //3.新数组
+    /*Array.prototype.rmSame=function(){
+        //this-ary数组实例
+        var newAry=[];
+        for(var i=0; i<this.length; i++){
+            if(newAry.indexOf(this[i])===-1){
+                newAry.push(this[i]);
+            }
+        }
+        return newAry;
+    };*/
+    //4.对象如果重复，直接删除数组
+    /*Array.prototype.rmSame=function(){
+        var obj={};
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            if(obj[cur]==cur){
+                this.splice(i,1);
+                i--;
+                continue;
+            }
+            obj[cur]=cur;
+        }
+        return this;
+    };*/
+    //5.利用对象不重名的特性
+    Array.prototype.rmSame=function(){
+        var obj={};
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            if(obj[cur]){
+                obj[cur]++;
+            }else{
+                obj[cur]=1
+            }
+        }
+        return obj;
+    };
+    console.log(ary.rmSame());
+
+</script>
+</body>
+</html>

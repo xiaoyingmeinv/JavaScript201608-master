@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border:1px solid #333;
+            font-size: 30px;
+            text-align: center;
+            margin:50px auto;
+        }
+        div:before{
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            content: '我的珠峰培训前面';
+            background: lightblue;
+            font-size: 20px;
+            border-bottom: 4px dashed lightgreen;
+        }
+        div:after{
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            content: '我的珠峰培训前面';
+            background: lightblue;
+            font-size: 20px;
+            border-top: 4px dashed lightgreen;
+        }
+    </style>
+</head>
+<body>
+<div>珠峰培训</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*(function f(){
+        //var f={return 2}
+        function f(){ return 1; }
+        alert (f());
+        function f(){ return 2; }
+    })();*/
+    //只在IE10及以下运行：
+    /*
+    * var fn=function(){'奇数'}；
+    * */
+    /*var n=14;
+    if(n%2===0){
+        function fn(){
+            alert('偶数')
+        }
+        fn();
+    }else{
+        function fn(){
+            alert('奇数')
+        }
+        fn();
+    }*/
+   /* var a=12;
+    alert('a' in window) //in：用来判断该属性是否为对象上的属性 （公有属性+私有属性）*/
+    /*
+    * var a;
+    *
+    * */
+    if(!('a' in window)){
+        var a=15;
+        alert(a)
+    }
+    alert(a)
+</script>
+</body>
+</html>

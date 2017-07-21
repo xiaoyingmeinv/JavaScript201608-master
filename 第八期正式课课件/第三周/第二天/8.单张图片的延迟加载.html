@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            height: 300%;
+        }
+        div{
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            top:1000px;
+            background: url("img2/default.gif") center no-repeat #e1e1e1;
+           /* background-image: url("img2/default.jpg") center no-repeat #e1e1e1;*/
+        }
+        div img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div><img realImg="img2/1.jpg" alt=""/></div>
+<script src="utils.js"></script>
+<script>
+    //所谓延迟加载--一开始的时候，不加载的，只有我们满足一定条件（用户能看到他），才会加载；
+    //在图片加载前可以先找一个默认图片来显示；等图片满足加载条件后，才加载真正的图片
+    /*
+    * 1.在一开始，不能给src中写正确的图片地址，可以把正确的图片地址保存在自定义属性realImg上；
+    * 2.当满足图片加载的条件后： obj.offsetTop+height<scrollTop+clientHeight
+    * 3.把realImg中保存的正确地址给了src；
+    * */
+    //1.获取div和img标签
+    var oDiv=document.getElementsByTagName('div')[0];
+    var oImg=document.getElementsByTagName('img')[0];
+    //2.触发滚轮事件；等待满足条件
+    window.onscroll=function(){
+        //浏览器卷去的高度+可视区的高度
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        //元素距离body顶部的距离+元素自身的高度
+        var imgPositon=oDiv.offsetTop+oDiv.offsetHeight;
+        //满足条件后开始加载图片
+        if(imgPositon<scrollBottom){
+            lazyImg();
+        }
+    }
+    function lazyImg(){
+        //当每次调用lazyImg时，首先判断图片是否已经加载（有可能加载成功，也可能加载失败），加载过的图片不会重复加载
+        if(oImg.loaded) return;
+        //1.创建一个新的图片元素 tmpImg
+        var tmpImg=new Image;
+        //2.tmpImg.src=realImg保存的正确地址
+        tmpImg.src=oImg.getAttribute('realImg');
+        //3.校验图片地址是否正确,如果地址正确，才赋值给oImg.src; 否则，可以进行错误提示；也可以不提示；
+        tmpImg.onload=function(){//能进入onload函数的，说明图片加载成功
+            oImg.src=this.src;
+            oImg.loaded=true;//当图片加载成功之后，不重复加载；
+            tmpImg=null;//当图片加载成功之后，临时的图片标签就不用了；
+        };
+        tmpImg.onerror=function(){//能进入onerror函数的，说明图片加载失败；
+            oImg.loaded=true;
+            oDiv.style.backgroundImage='url("img2/error.gif")';
+            tmpImg=null;
+        };
+
+    }
+</script>
+</body>
+</html>

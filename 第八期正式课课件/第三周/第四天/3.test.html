@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <div class="box1 box2 box3 box4 box5">0</div>
+    <div class="box1 box2 box3">1</div>
+    <div class="box1 box2">2</div>
+    <div class="box1">3</div>
+</div>
+<script src="js/utils.js"></script>
+<script>
+    //需求：通过class名来获取元素
+    var oDiv=document.getElementsByTagName('div')[0];
+    var aDiv=oDiv.getElementsByTagName('div');
+    //var aDiv=oDiv.getElementsByClassName('      box1          box2     ');
+    /*function getByClass(classStr,parent){
+        parent=parent||document;
+        //处理浏览器的兼容性
+        if('getComputedStyle' in window){//标准浏览器
+            return Array.prototype.slice.call(parent.getElementsByClassName(classStr));
+        }
+        //1.字符串转数组,此数组中保存的都是单个的class名； aryClass;
+        var aryClass=classStr.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+        //2.求parent容器下所有的元素 nodeList
+        var nodeList=parent.getElementsByTagName('*');
+        //3.验证每一个nodeList元素身上的class名，是否都包含aryClass中的每一项；如果包含，此元素才是符合我们要求的元素；
+        var ary=[];
+        for(var i=0; i<nodeList.length; i++){
+            var curEle=nodeList[i];
+            var bOk=true;//假设都合格
+            for(var j=0; j<aryClass.length; j++){
+                var reg=new RegExp('\\b'+aryClass[j]+'\\b');
+                if(!reg.test(curEle.className)){
+                    bOk=false;
+                    break;
+                }
+            }
+            if(bOk){
+               ary[ary.length]=curEle;
+            }
+        }
+        //4.返回一个数组；
+        return ary;
+
+
+    }*/
+    //console.log(utils.getByClass('      box1          box2     ',oDiv));
+   // console.log(utils.hasClass(aDiv[2],'box2'))
+    //utils.addClass(aDiv[0],'box4 box5  box3');
+    //utils.removeClass(aDiv[0],'box1 box3')
+    //utils.addClass(aDiv[2],'box6 box7');
+    /*utils.setCss(aDiv[0],'backgroundColor','red');
+    utils.setCss(aDiv[0],'height','30px');
+    utils.setCss(aDiv[0],'opacity','0.1');*/
+    //utils.removeClass(aDiv[0],'box1 box3')
+    /*utils.setGroupCss(aDiv[0],{
+        height:30,
+        background:'green',
+        opacity:0.1,
+        marginLeft:30
+    })*/
+    utils.css(aDiv[1],{ //测试 设置一组样式
+        height:30,
+        width:200,
+        background:'yellow',
+        opacity:0.1,
+        float:'right'
+    });
+   console.log(utils.css(aDiv[1],'height')) //测试 获取
+    utils.css(aDiv[1],'background','red')
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训-同步异步编程</title>
+</head>
+<body>
+<script type="text/javascript">
+    //->异步
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', 'note.txt?_=' + Math.random(), true);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//-> 2  3  4
+    //    };
+    //    xhr.send(null);
+
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->1 2 3 4
+    //    };
+    //    xhr.open('GET', 'note.txt?_=' + Math.random(), true);
+    //    xhr.send(null);
+
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', 'note.txt?_=' + Math.random(), true);
+    //    xhr.send(null);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->2  3  4
+    //    };
+
+    //->同步
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//-> 1 4
+    //    };
+    //    xhr.open('GET', 'note.txt?_=' + Math.random(), false);
+    //    xhr.send(null);//->只有到readyState=4的时候Ajax这件事情才结束,我们才能让其他的事情执行
+
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('GET', 'note.txt?_=' + Math.random(), false);
+    //    xhr.onreadystatechange = function () {
+    //        console.log(xhr.readyState);//->4
+    //    };
+    //    xhr.send(null);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'note.txt?_=' + Math.random(), false);
+    xhr.send(null);
+    xhr.onreadystatechange = function () {
+        console.log(xhr.readyState);//->一次都不会输出
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'zhufeng',showName:function(){}}
+    function Fn(){//构造函数
+        this.x=100;
+        this.y=200;
+    }
+    Fn.prototype.show=function(){//原型prototype
+        alert(this.x);
+    };
+    alert(Fn.prototype.constructor)
+    Fn.prototype=obj;
+    Fn.prototype.constructor=Fn;
+    alert(Fn.prototype.constructor)
+    var f=new Fn;
+    /*
+    * f.show:先找自己私有的，没找到，继续通过__protot__去找，找到了；
+    *Fn.prototype.show：直接到类所属的原型上去找；
+    * f.__proto__.show：直接到prototype上去查找；
+    * */
+    alert(f.show===Fn.prototype.show);
+    alert(f.show=== f.__proto__.show);
+    alert(f.__proto__.show===Fn.prototype.show)
+</script>
+</body>
+</html>

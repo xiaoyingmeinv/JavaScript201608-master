@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //call继承：把父类私有的属性和方法，给了子类私有的；
+    //注意：call继承只跟父类私有属性和方法有关，跟父类公有的方法没有关系；
+    function F(){
+        //this指向F的实例；
+        this.x=100;//父类私有的
+        this.showX=function(){
+            alert(this.x);
+        }
+    }
+    var f=new F;
+    console.dir(f);
+    function S(name){//子类构造函数中，都放的是私有的属性和方法；
+        //this-S的实例
+        F.call(this);//F中的this-F new出来的实例
+        this.y=200;
+        this.name=name;
+    }
+    var s=new S('珠峰');
+    console.dir(s);
+    /*
+    * x:100
+    * showX:.....
+    *
+    * */
+</script>
+</body>
+</html>

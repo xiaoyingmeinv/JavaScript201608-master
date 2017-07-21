@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            font-size: 50px;
+            color: white;
+        }
+        div{
+            width: 1050px;
+            margin:0 auto;
+        }
+        div ul{
+            width: 200px;
+            float: left;
+            margin: 0 5px;
+        }
+        div ul li{
+            width: 100%;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+            margin-bottom: 10px;
+        }
+        div ul li img{
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul><!--<li><img realImg="img2/1.jpg" alt=""/></li>--></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    var aUl=oDiv.getElementsByTagName('ul');
+    var aLi=oDiv.getElementsByTagName('li');
+    var aImg=oDiv.getElementsByTagName('img');
+    //此处是自己造的假数据
+    var data=[
+        {"src":"img2/1.jpg"},
+        {"src":"img2/2.jpg"},
+        {"src":"img2/3.jpg"},
+        {"src":"img2/4.jpg"},
+        {"src":"img2/5.jpg"},
+        {"src":"img2/6.jpg"},
+        {"src":"img2/7.jpg"},
+        {"src":"img2/8.jpg"},
+        {"src":"img2/9.jpg"},
+        {"src":"img2/10.jpg"}
+    ];
+    //1.动态创建1个li,li的宽度不管，高度随机，内容是img；
+    function createLi(){
+        var oLi=document.createElement('li');
+        oLi.style.height=utils.rnd(100,300)+'px';
+        oLi.innerHTML='<img realImg="'+data[utils.rnd(0,9)].src+'" alt=""/>';
+        return oLi;
+    }
+    //2.创建50个li，每次都插入最短的ul
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            var ary=utils.makeArray(aUl);
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            })
+            ary[0].appendChild(oLi)
+        }
+    }
+    li50();
+    showImg();
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        showImg();//延迟加载图片，只要图片进入可视区，才显示图片
+        if(scrollBottom+500>=document.body.scrollHeight){
+            li50();//不管是否进入可视区，只要满足条件，都会动态创建50个；
+        }
+    };
+    function showImg(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        for(var i=0; i<aLi.length; i++){
+            var imgPos=aLi[i].offsetTop+aLi[i].offsetHeight;
+            if(imgPos<scrollBottom){
+                lazyImg(aImg[i],aLi[i]);
+            }
+        }
+    }
+    function lazyImg(img,li){
+        if(img.loaded) return;
+        //1.创建一个图片对象
+        var tmpImg=new Image;
+        //2.添加正确地址
+        tmpImg.src=img.getAttribute('realImg');
+        //3.校验地址
+        tmpImg.onload=function(){
+            img.src=this.src;
+            img.loaded=true;
+            tmpImg=null;
+            img.parentNode.style.height='auto';
+        };
+        tmpImg.onerror=function(){
+            tmpImg=null;
+            img.loaded=true;
+            li.style.backgroundImage='url("img2/error.gif")';
+            li.style.backgroundSize='100%';
+        }
+    }
+
+
+</script>
+</body>
+</html>

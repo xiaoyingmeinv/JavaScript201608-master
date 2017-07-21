@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'zhfueng',age:8};
+    //把obj做为obj2的原型；这样的话，obj2就可以通过__proto__去使用obj的方法；
+    var obj2=Object.create(obj);
+    function F(){//构造函数-私有
+        this.x=100;
+    }
+    F.prototype=obj;//原型-公有
+    var f=new F;//实例-属性和方法
+console.dir(f)
+    function S(){//构造函数-私有
+        this.y=200;
+    }
+    S.prototype=obj2;
+    S.prototype.constructor=S;
+    var s=new S;//s这个实例，就可以使用obj的方法，即F.prototype上的方法；
+    console.dir(s);
+    /*
+    * y:200
+    * __proto__:
+    * constructor:S
+    * __proto__:
+    * name:'zhufeng',
+    * age:8,
+    * __proto__:Object
+    * ....
+    *
+    *
+    *
+    *
+    * */
+</script>
+</body>
+</html>

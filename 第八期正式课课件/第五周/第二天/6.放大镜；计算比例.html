@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .s{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: url("img/iphone.jpg") no-repeat center;
+            border: 1px solid #ccc;
+        }
+        .s .m{
+            width: 220px;
+            height: 220px;
+            background: yellow;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            position: absolute;
+            left:0;
+            top:0;
+            display: none;
+        }
+        .b{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left:410px;
+            top:0;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            display: none;
+        }
+        .b img{
+            width: 200%;
+            height: 200%;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+    </style>
+</head>
+<body>
+<div id="s" class="s">
+    <div class="m"></div>
+</div>
+<div id="b" class="b">
+    <img src="img/iphone_big.jpg" alt=""/>
+</div>
+<script>
+    /*
+    * 1.当鼠标移入s的时候，m和b显示
+    * 2.当鼠标在s移动的时候：1）鼠标在m的中间 2）m跟随鼠标移动 3)边界值的判断
+    * 3.当m移动的时候，大图跟着一起移动，并且，大图和m移动的方向相反；
+    * 4.当鼠标移出的时候，m和b隐藏；
+    * */
+    //获取元素
+    var oS=document.getElementById('s');
+    var oM=oS.getElementsByTagName('div')[0];
+    var oB=document.getElementById('b');
+    var oImg=oB.getElementsByTagName('img')[0];
+    //1.当鼠标移入s的时候，m和b显示
+    oS.onmouseover=function(){
+        oB.style.display='block';
+        oM.style.display='block';
+    };
+    //2.当鼠标在s移动的时候：1）鼠标在m的中间 2）m跟随鼠标移动
+    oS.onmousemove=function(e){
+        e=e||window.event;
+        var l=e.clientX-this.offsetLeft-oM.offsetWidth/2;
+        var t=e.clientY-this.offsetTop-oM.offsetHeight/2;
+        if(l<=0){
+            l=0;
+        }else if(l>=this.offsetWidth-oM.offsetWidth){
+            l=this.offsetWidth-oM.offsetWidth
+        }
+        if(t<=0){
+            t=0;
+        }else if(t>=this.offsetHeight-oM.offsetHeight){
+            t=this.offsetHeight-oM.offsetHeight
+        }
+        oM.style.left= l+'px';
+        oM.style.top= t+'px';
+        //3.当m移动的时候，大图跟着一起移动，并且，大图和m移动的方向相反；
+        oImg.style.left=l/(oS.offsetWidth-oM.offsetWidth)*(oB.offsetWidth-oImg.offsetWidth)+'px';
+        oImg.style.top=t/(oS.offsetHeight-oM.offsetHeight)*(oB.offsetHeight-oImg.offsetHeight)+'px';
+    }
+    //4.当鼠标移出的时候，m和b隐藏；
+    oS.onmouseout=function(){
+        oB.style.display='none';
+        oM.style.display='none';
+    }
+
+
+</script>
+</body>
+</html>

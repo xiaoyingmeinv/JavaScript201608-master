@@ -1,0 +1,53 @@
+第一件事情:
+周啸天
+QQ:1282347298
+TEL:13041086186
+从第六周开始，我是你们的班主任，有事情或者是请假打电话找我
+
+第二件事情：
+你们毕业的项目(B阶段,正式课第九周):
+->PC端网站的首页
+->移动端的个人简历
+(正式课第九周之前完成PC端的,第九周全周是做移动端简历)
+
+[招聘类的]
+拉钩网：http://www.lagou.com/
+猎聘网：http://www.liepin.com/
+
+[电商类的]
+京东：http://www.jd.com/
+美丽说：http://www.meilishuo.com/
+蘑菇街：http://www.mogujie.com/
+天猫
+淘宝
+...
+
+[企业展示]
+小米：http://www.mi.com/
+百度：https://www.baidu.com/
+猎豹：http://www.liebao.cn/ (http://m.liebao.cn/)
+
+[微博类的->这类别的偏难,选择谨慎]
+QQ空间：http://user.qzone.qq.com/
+新浪微博：http://weibo.com/
+
+[视频类的]
+腾讯视频：http://v.qq.com/
+爱奇艺：http://www.iqiyi.com/
+乐视体育：http://www.lesports.com/
+
+上述项目大家可以参考选择，也可以选择自己喜欢的项目，但是不能太简单了
+->在明天18:00之前，把本组每个人员PC端项目及参考网址统计好后，发给周老师(QQ邮箱:1282347298@qq.com)
+
+  第一组
+  xxx 项目名称 参考地址
+  例如:杜婧秋 腾讯视频 http://v.qq.com/
+
+要求：
+->做的PC端项目主要是让大家练习HTML+CSS
+->使用的原生的JS实现轮播图、选项卡等效果(不能使用jQuery等类库或者插件)：主要是为了让大家复习之前讲的JS内容
+->如果参考的网站是使用HTML5+CSS3实现的部分功能,我们也可以使用HTML5+CSS3实现
+->PC端网站做一个首页即可,有精力的同学可以自己多扩展几个
+
+
+第三件事情:

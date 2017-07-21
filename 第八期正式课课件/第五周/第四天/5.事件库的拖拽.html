@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="event5.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    $event.on(oDiv,'mousedown',down);
+    function down(e){
+        //保存4个值：offsetLeft/Top; clientX/Y;
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my= e.clientY;
+        //IE用焦点捕获
+        if(this.setCapture){
+            this.setCapture();
+            $event.on(this,'mousemove',move);
+            $event.on(this,'mouseup',up);
+        }else{
+            this.MOVE=$event.processThis(move,this);
+            this.UP=$event.processThis(up,this);
+            $event.on(document,'mousemove',this.MOVE);
+            $event.on(document,'mouseup',this.UP)
+        }
+    }
+    function move(e){
+        //计算oDiv.left/top;
+        this.style.left=this.x+(e.clientX-this.mx)+'px';
+        this.style.top=this.y+(e.clientY-this.my)+'px';
+    }
+    function up(){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            $event.off(this,'mousemove',move);
+            $event.off(this,'mouseup',up);
+        }else{
+            $event.off(document,'mousemove',this.MOVE);
+            $event.off(document,'mouseup',this.UP);
+        }
+    }
+</script>
+</body>
+</html>

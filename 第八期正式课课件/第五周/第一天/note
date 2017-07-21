@@ -1,0 +1,50 @@
+1.表格排序--data.txt留下，因为你们要获取数据
+2.获取四个不重复的随机验证码
+3.延迟加载的瀑布流+回到顶部
+4.穿墙效果
+中午的时候，把css和HTML留下，把JS干掉；
+下课后，写以上四个JS；不限制用JS OR JQUERY;
+...............................................
+1.事件类型
+    1.鼠标事件
+    onclick ondblclick onmouseover onmouseout onmouseenter onmouseleave...
+    2.键盘事件
+    onkeydown onkeyup onkeypress....
+    3.表单事件
+    onfocus  onblur ....
+    4.系统事件
+    onscroll onload onreasize:当屏幕大小发生变化的时候被触发；
+2.事件对象：描述事件类型的详细信息；
+事件对象的兼容处理：e=e||window.event;
+1）在标准浏览器下，用的是形参e;
+2)在IE浏览器下，跟是否传形参无关，用window.event获取事件对象；
+3.事件的详细信息；
+1)clientX/Y:当前鼠标落脚点，距离可视区左上角的坐标；--兼容
+2)pageX/Y:当前鼠标落脚点，距离第一屏左上角的坐标；当浏览器被卷去的内容越多，pageY就越大--他不兼容；
+    兼容处理：
+    e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+    e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;
+3)e.type:当前所触发的行为类型；--兼容
+4)e.target:事件源--不兼容
+    兼容处理：
+    e.target= e.target|| e.srcElement;
+5)e.keyCode
+6）阻止默认事件 e.preventDefault();--不兼容
+    兼容处理：
+    e.preventDefault? e.preventDefault(): e.returnValue=false;
+7）阻止冒泡
+4.运算符的优先级：算术运算符》比较运算符》逻辑运算符》赋值运算符；
+5.事件流：
+如果事件流包含3阶段：
+1）捕获阶段 --从外向里捕获
+2）事件源 -- e.target 当前放生事件的这个元素
+3）冒泡阶段 -- 从里向外的去触发元素身上相同的事件，当元素身上有绑定的方法的时候，被绑定的方法就会执行；
+如果事件流包含2阶段：捕获阶段 和 冒泡阶段
+注意：只要元素的事件被触发，他所有父级的相同事件都被触发了，只是看他是否有绑定方法而已，如果过绑定方法，才会执行，没有，就不会执行了；
+6.事件分为DOM0级事件和DOM2级事件
+DOM0级事件：
+1）DOM0级事件，是元素的私有属性
+2)只能发生在事件流的冒泡阶段
+DOM2级事件：也可以绑定元素的事件，只是不加on;
+1)DOM2级事件，在元素所属的eventTarget这个类的原型上；所以，它是公有属性；
+2)DOM2级事件可以通过第三个参数，控制事件流在捕获阶段 还是 冒泡阶段；

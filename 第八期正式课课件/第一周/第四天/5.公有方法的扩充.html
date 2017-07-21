@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100;
+    }
+    /*var pro=Fn.prototype;
+    pro.showX=function(){
+        alert(this.x);
+    };
+    pro.showY=function(){
+        alert(this.Y);
+    };
+    pro.showZ=function(){
+        alert(this.Z);
+    };*/
+    //批量操作公有属性，可以用{};用{}的时候，一定要注意两点：1.constructor 2.
+    Fn.prototype={
+        constructor:Fn,
+        showX: function () {},
+        showY: function () {},
+        showZ: function () {},
+    };
+    var f=new Fn;
+    console.dir(f);
+</script>
+</body>
+</html>

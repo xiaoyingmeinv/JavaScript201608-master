@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 140px;
+            height: 50px;
+            position: relative;
+            left:40%;
+            top:100px;
+            background: dimgray;
+        }
+        #mark{
+            width: 400px;
+            height: 200px;
+            background: lightblue;
+            position: absolute;
+            left:0;
+            top:50px;
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+    <div id="mark" style="display: none"></div>
+</div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oMark=document.getElementById('mark');
+    /*oDiv.onmouseenter=function(e){
+        /!*e=e||window.event;
+        var oTo= e.fromElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;*!/
+        oMark.style.display='block';
+        console.log('ok')
+    };
+    oDiv.onmouseleave=function(e){
+        /!*e=e||window.event;
+        var oTo= e.toElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;*!/
+        oMark.style.display='none';
+    };*/
+    //需求：
+    //点击div的时候，显示mark，再点击div，隐藏mark，依次类推
+    //点击mark的时候，不隐藏mark；
+    //在一个容器中，有多个元素需要发生点击事件，我们可以把点击事件委托给父容器；里面根据事件源来做不同的操作；
+    document.body.onclick=function(e){
+        e.target= e.target|| e.srcElement;
+        //个别部分个别处理；
+        if(e.target.id=='div'){
+            if(oMark.style.display=='none'){
+                oMark.style.display='block';
+            }else{
+                oMark.style.display='none';
+            }
+            return;
+        }
+        if(e.target.id=='mark'){
+            return;
+        }
+        oMark.style.display='none';
+    }
+</script>
+</body>
+</html>

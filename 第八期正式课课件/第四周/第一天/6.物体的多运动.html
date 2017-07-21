@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:200px;
+            top:10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    function Linear(t,b,c,d){
+        return t*c/d+b;
+    }
+    //给Linear准备参数
+    var targetL=800,targetT=400;
+    var beginL=utils.css(oDiv,'left'),beginT=utils.css(oDiv,'top');
+    var changeL=targetL-beginL,changeT=targetT-beginT;
+    var duration=1000;
+    var time=0;
+    clearInterval(timer);//开启定时器，开始累加时间
+    var timer=setInterval(function(){
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetL,
+                top:targetT
+            });
+            clearInterval(timer);
+            return;
+        }
+        var curL=Linear(time,beginL,changeL,duration);
+        var curT=Linear(time,beginT,changeT,duration);
+        utils.css(oDiv,{
+            left:curL,
+            top:curT
+        })
+    },10);
+
+</script>
+</body>
+</html>

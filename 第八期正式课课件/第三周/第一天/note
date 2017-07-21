@@ -1,0 +1,57 @@
+1.css盒子模型由四部分构成：设定好的宽高+padding+border+margin
+2.什么是JS盒子模型：JS盒子模型就是通过JS的属性和方法，来获取元素身上的样式（包含行间样式和非行间样式）;
+    client系列：clientWidth clientHeight clientLeft clientTop
+    offset系列：offsetWidth offsetHeight offsetLeft offsetTop offsetParent
+    scroll系列：scrollWidth scrollHeight scrollLeft scrollTop
+3.JS属性和方法的详细解释：
+    1.client系列： clientWidth/height:设定的宽高+左右/上下padding
+                  clientLeft/top:边框的宽度；
+    跟内容是否溢出无关
+    2.offset系列：
+                offsetWidth/height：设定的宽高+左右/上下的padding+边框的宽度；
+                                    clientWidth/clientHeight+border的宽度；
+                offsetLeft/top:当前元素的外边框距离定位父级的内边框之间的距离；
+                offsetParent:定位父级
+    跟内容是否溢出无关
+    3.scroll系列：
+                scrollWidth/scrollHeight:
+                在没有内容溢出的情况下，取到的值跟client一样；
+                如果有内容溢出，约等于 上padding+真实内容的高度
+                scrollLeft/top:都代表被浏览器卷去的高度
+    为什么是约等于呢？
+        1）在不同的浏览器下，取到的值不同；
+        2）在同一浏览器下，内容是否隐藏，取到的值也不同；
+4.遇到4个问题
+    1）浏览器盒子模型的兼容性问题 -- 封装一个win方法：获取和设置浏览器的盒子模型
+    2）浏览器提供的属性和方法只能拿到复合值，不能拿到宽、高之类单个的值； -- 封装一个getCss方法 （获取非行间样式的方法）
+    3）通过浏览器属性拿到的值，只能拿到四舍五入的整数，不能拿到小数 --没办法解决；
+    4）offsetLeft只能求出当前元素的外边框距离定位父级内边框的距离，无法求出到body的距离； --offset封装
+5.是否需要return，是要看我们是想获取  还是 设置；
+获取时是想得到值，所以，函数执行完，需要返回一个值；return
+设置时，只要函数执行过程中修改了或设置了，就结束了，我们不需要得到返回值；
+6.处理浏览器的兼容性问题：
+1)属性判断
+    1.'getComputedStyle' in window;
+    2.window.getComputedStyle
+    3.typeof getComputedStyle ==='function'
+2)try...catch(e)....
+try...catch:因为他只有报错，才能走IE浏览器；所以，无论是否支持，都会走try；所以，相对来说，try...catch性能不是太好；
+3）navigator.userAgent 检测浏览器版本的详细信息
+    1. var reg=/MSIE (6|7|8)\.0/;  reg.test(navigator.userAgent)
+    2.var reg=/MSIE (6|7|8)\.0/;
+    if(navigator.userAgent.search(reg) !==-1){//说明找到了，是IE浏览器
+
+    }else{//标准浏览器
+
+    }
+7.完整版获取非行间样式
+1）判断浏览器兼容性，先写出基础版
+2）升级1：去掉单位的处理
+3）升级2：透明度的兼容处理；
+
+
+
+
+
+
+

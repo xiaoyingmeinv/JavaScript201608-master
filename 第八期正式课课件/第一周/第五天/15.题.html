@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var a=9;
+    function fn(){
+        a=0;
+        return function(b){ return b+a++; }
+    }
+    var f=fn()
+    var m=f(5);alert(m);//5；
+    var n=fn()(5);alert(n);
+    var x=f(5);alert(x);
+    alert(a);
+</script>
+</body>
+</html>

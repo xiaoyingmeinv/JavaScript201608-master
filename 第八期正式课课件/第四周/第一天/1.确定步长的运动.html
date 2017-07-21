@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 800px;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var step=17;
+    var timer=setInterval(function(){
+        //var curLeft=utils.css(oDiv,'left');
+        var curLeft=oDiv.offsetLeft;
+        //边界值判断：当我们预估再走会超出目标的时候，直接让其等于目标；
+        if(curLeft+step>=800){ //边界值判断
+            utils.css(oDiv,'left',800);
+            clearInterval(timer);
+            return;
+        }
+        curLeft+=step;
+       // utils.css(oDiv,'left',curLeft);
+        oDiv.style.left=curLeft+'px';
+    },10);
+
+</script>
+</body>
+</html>

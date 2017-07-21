@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //寄生式组合继承：call继承+
+    function F(){//父类私有的
+        this.x=100;
+    }
+    F.prototype.showX=function(){} //父类公有的；
+
+    //找一个中间类，只把公有的过滤进来；
+    function Tmp(){}; //没有私有的属性和方法
+    Tmp.prototype=F.prototype; //Tmp只保留了F类公有的方法；
+
+    function S(){
+        F.call(this);//call继承：把F私有的属性和方法继承过来了；
+    }
+    S.prototype = new Tmp;//S.prototype这个原型就相当于tmp的实例；就可以享用Tmp私有+公有的方法；但是我们知道，Tmp没有私有方法；只有公有方法；
+    S.prototype.constructor=S;
+    var s=new S;
+    console.dir(s);
+
+</script>
+</body>
+</html>

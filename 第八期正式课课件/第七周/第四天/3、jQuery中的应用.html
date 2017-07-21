@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script charset="utf-8" type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script charset="utf-8" type="text/javascript">
+    //->AJAX:
+    //    $.ajax({
+    //        url: 'data.txt',
+    //        type: 'POST',
+    //        dataType: 'JSON',
+    //        success: function (result) {
+    //            console.log(result);
+    //        },
+    //        cache: false, //->设置在GET请求模式下是是否走缓存,默认是TRUE,是走缓存的
+    //        async: true, //->设置同步还是异步,默认是TRUE,异步请求
+    //        data: {
+    //            name: 'zf',
+    //            age: 12
+    //        },//->GET请求下会把内容自动的拼接到URL的末尾以问号传递参数的方式传递给服务器,在POST请求中,会把内容放在请求主体中传递给服务器
+    //        error: function () {
+    //
+    //        },//->请求失败执行的方法
+    //        complete: function () {
+    //
+    //        },//->不管请求的是成功还是失败,只要完成请求就会执行
+    //        timeout: 2000,//->设置请求的超时时间,如果超过时间HTTP事物还没有完成,AJAX终止
+    //        headers: {}//->自定义请求首部
+    //    });
+    //    console.log(1);
+
+
+    //->JSONP:
+    //    $.ajax({
+    //        url: 'http://localhost:86/queryStudent',
+    //        type: 'GET',//->JSONP都是GET请求
+    //        dataType: 'JSONP',//->之前使用JSON是AJAX请求,加一个P立马成为JSONP跨域请求
+    //        success: function (result) {
+    //            console.log(result);
+    //        },
+    //        jsonp: 'cb',//->把问号后面的callback修改为cb
+    //        jsonpCallback: 'aa'//->更改传递给服务器端的函数名
+    //    });
+</script>
+</body>
+</html>

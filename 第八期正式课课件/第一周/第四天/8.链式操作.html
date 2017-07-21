@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //链式操作，最重要需要明白：你的返回值是什么；
+    var ary=[21,21,12,12,34];
+   // ary.push(8).pop(); 因为ary.push()返回值是新数组的长度，长度只是一个数字，不能调用数组的方法；
+    //被返回的内容必须是个数组才能继续链式操作下去；
+   // ary.reverse().sort(function(a,b){return a-b}).splice(0,6).pop();
+    Array.prototype.rmSame=function(){
+        //this--ary数组
+        var obj={};//如果对象中没有，给对象添加，如果有了，说明数组中重复了，删除这一项，同时预防数组塌陷；
+        for(var i=0; i<this.length; i++){
+            var cur=this[i];
+            if(obj[cur]===cur){
+                this.splice(i,1);
+                i--;
+            }else{
+                obj[cur]=cur;
+            }
+        }
+       return this;//去重后的数组；返回值也是为了链式操作；
+    };
+    ary.rmSame().sort(function(a,b){return a-b}).reverse().push(18);
+    console.log(ary)
+</script>
+</body>
+</html>

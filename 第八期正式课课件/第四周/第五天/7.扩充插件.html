@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/tab2.js"></script>
+<script>
+    //console.log($('div'))
+   // $('div').changeColor('green'); //原型封装的方法
+    $.changeColor('div','yellow');//通过类扩充的方法
+</script>
+</body>
+</html>

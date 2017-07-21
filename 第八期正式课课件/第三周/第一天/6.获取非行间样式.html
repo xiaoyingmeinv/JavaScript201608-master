@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            background: red;
+            opacity: 0.1;
+            filter:alpha(opacity:10);
+        }
+    </style>
+</head>
+<body>
+<div id="div" style="height: 300px"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    //在标准浏览器下，提供的方法 getComputedStyle(元素,垃圾)[属性名] -- 在IE 6-8不兼容
+    //getComputedStyle:获取计算机计算过的样式：（只要元素身上有样式，都会被计算机计算出来）
+    //var val=getCom  putedStyle(oDiv,null)['height'];
+    //在IE浏览器下 对象.currentStyle[属性名]；
+    /*var val=oDiv.currentStyle.width;*/
+    //思想1：属性判断
+    //alert('getComputedStyle' in window)
+    //alert(window.getComputedStyle)
+    //alert(typeof window.getComputedStyle ==='function')
+    /*function getCss(obj,attr){
+        var val=null;
+        if('getComputedStyle' in window){//true：兼容高级浏览器
+            val=getComputedStyle(obj,false)[attr];
+        }else{//false ：兼容IE浏览器
+            val=obj.currentStyle[attr];
+        }
+        return val;
+    }*/
+    /*function getCss(obj,attr){
+        //没有写括号时，是函数的定义阶段
+        var val=null;
+        if(window.getComputedStyle){
+            val=getComputedStyle(obj,false)[attr];
+        }else{
+            val=obj.currentStyle[attr];
+        }
+        return val;
+    }*/
+    //try...catch:因为他只有报错，才能走IE浏览器；所以，无论是否支持，都会走try；所以，相对来说，try...catch性能不是太好；
+    /*function getCss(obj,attr){
+        var val=null;
+        try{
+            val=getComputedStyle(obj,false)[attr];
+        }catch(e){
+            val=obj.currentStyle[attr];
+        }
+        return val;
+    }*/
+   // getComputedStyle(oDiv,false).width;
+   // oDiv.currentStyle.width
+
+   // alert(navigator.userAgent)
+    //判断是否为IE 6-8浏览器；
+    /*var reg=/MSIE (6|7|8)\.0/;
+    //alert(reg.test(navigator.userAgent))
+    if(navigator.userAgent.search(reg) !==-1){//说明找到了，是IE浏览器
+
+    }else{//标准浏览器
+
+    }*/
+
+    function getCss(obj,attr){
+        var val=null;
+        var reg=null;
+        //navigator 是 window的全局属性；
+        if(/MSIE (6|7|8)/i.test(window.navigator.userAgent)){//IE浏览器
+            //升级2:对透明度的兼容处理
+            if(attr==='opacity'){//只处理透明度的兼容性
+                val=obj.currentStyle.filter;// alpha(opacity=10)
+                var reg=/^alpha\(opacity[=:](\d+)\)$/i;
+                return reg.test(val)?reg.exec(val)[1]/100:1;
+            }else{//非透明度处理；
+                val=obj.currentStyle[attr];
+            }
+
+        }else{//标准浏览器
+            val=getComputedStyle(obj,false)[attr];
+        }
+        //对 22px  20pt 20rem +-12.222em;
+        //升级1：对单位的兼容处理；
+        reg=/^([+-])?(\d+(\.\d+)?)(px|pt|rem|em)$/gi;
+        return reg.test(val)?parseFloat(val):val;
+    }
+
+    console.log(getCss(oDiv,'opacity'))
+</script>
+</body>
+</html>

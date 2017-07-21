@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*Function.prototype.call=function(){
+        //this这个实例(都是函数数据类型)中的“this”关键字变成call的第一个参数；如果实例中没有this关键字，不需要替换，直接执行即可；
+        //把this这个实例（fn）调用；
+        this(); //fn2();
+    };*/
+    function fn1(){
+        alert(1)
+    }
+    function fn2(){
+        alert(2)
+    }
+    fn1.call(fn2); //Function.prototype.call()
+    /*
+     * 1.先把fn1这个实例中的this关键字变成call的第一个参数
+     * 2.把fn1这个实例执行；
+     * */
+    var f3=fn1.call.call.call;
+    console.log(f3);
+    fn3.call.call(fn2);
+    /*
+    * 1.把call点前面的f3中的this关键字变成fn2;
+    * 2.把f3执行；
+    * */
+
+
+</script>
+</body>
+</html>

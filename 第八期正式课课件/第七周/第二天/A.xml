@@ -1,0 +1,21 @@
+<root>
+    <student>
+        <name>哈哈哈</name>
+        <age>26</age>
+        <score>
+            <chinese>100</chinese>
+            <english>20</english>
+            <math>98</math>
+        </score>
+    </student>
+
+    <student>
+        <name>嘿嘿嘿</name>
+        <age>25</age>
+        <score>
+            <chinese>98</chinese>
+            <english>12</english>
+            <math>90</math>
+        </score>
+    </student>
+</root>

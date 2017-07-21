@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+            font-size: 50px;
+            color: white;
+        }
+        div{
+            width: 1050px;
+            margin:0 auto;
+        }
+        div ul{
+            width: 200px;
+            float: left;
+            margin: 0 5px;
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var aUl=document.getElementsByTagName('ul');
+    var n=0;
+    //1.动态创建1个li;li的宽度不设置时，跟ul一样宽，高度100-300之间的随机数；颜色随机；
+    function createLi(){
+        //1.动态创建li；
+        var oLi=document.createElement('li');
+        //2.高度随机
+        oLi.style.height=utils.rnd(100,300)+'px';
+        //3.背景色随机
+        oLi.style.background='rgb('+utils.rnd(0,255)+','+utils.rnd(0,255)+','+utils.rnd(0,255)+')';
+        return oLi;//返回一个创建好的li；
+    }
+    function li50(){
+        //动态创建50个li，每次都插入最短的ul中
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            oLi.innerHTML=++n;
+            //ul元素集合：类数组转数组
+            var ary=utils.makeArray(aUl);//类数组转数组；
+            //数组sort从小到大的排序
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            });
+            //直接插入最短的ul;
+            ary[0].appendChild(oLi);
+        }
+    }
+    li50();//在滑动滚轮前，先创建50个li;
+    window.onscroll=function(){
+        //当滑动滚轮的时候，每当满足条件，都动态创建50个li;
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        if(scrollBottom+500>=document.body.scrollHeight){
+            li50();
+        }
+    }
+
+</script>
+</body>
+</html>

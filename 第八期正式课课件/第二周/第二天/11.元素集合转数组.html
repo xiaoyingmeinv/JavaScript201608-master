@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>0</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<script>
+    var aLi=document.getElementsByTagName('li');
+    //console.log({}.toString.call(aLi))
+    var aa=Array.prototype.slice.call(aLi);//这种转发在IE6-8下不支持；
+    console.log({}.toString.call(aa))
+</script>
+</body>
+</html>

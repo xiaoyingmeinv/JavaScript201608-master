@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 300px;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 800px;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    /*
+    * t：走了多久  0+10+10+10+。。。。。=1000；
+    * b:begin
+    * c:change：target-begin=我们剩余距离
+    * d:总共要走多久 1000
+    * */
+    function Linear(t,b,c,d){
+        return t*c/d+b;
+    }
+    var oDiv=document.getElementById('div');
+    //1.给参数求值；
+    var time=0;
+    var begin=utils.css(oDiv,'left');
+    var target=800;
+    var change=800-begin;
+    var duration=1000;
+    //2.开启定时器，1）让时间不断累加 2）根据公式，求出最新位置；
+    var timer=setInterval(function(){
+        time+=10;
+        if(time>=duration){ //当时间超过总时间，应该到达目标，并停止运动
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        var curLeft=Linear(time,begin,change,duration);
+        utils.css(oDiv,'left',curLeft);
+    },10)
+</script>
+</body>
+</html>

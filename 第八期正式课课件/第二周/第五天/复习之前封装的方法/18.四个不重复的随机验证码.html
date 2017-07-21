@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var code='';
+    while(code.length<4){
+        var rnd=Math.round(Math.random()*61);
+        if(code.indexOf(str.charAt(rnd))===-1){
+            code+=str.charAt(rnd);
+        }
+    }
+    document.write(code)
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 0.1;
+            filter:alpha(opacity=10);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="box1 box2 box3 box4" id="div1">0</div>
+    <div class="box1 box2 box3">1</div>
+    <div class="box1 box2">2</div>
+    <div class="box1">
+        <div>0</div>
+        <div>2</div>
+    </div>
+    <p><span></span></p>
+    <p><span>last</span></p>
+</div>
+<script src="js/utils.js"></script>
+<script>
+    var oDiv=document.getElementsByTagName('div')[0];
+    var aDiv=oDiv.getElementsByTagName('div');
+    //console.log(utils.getByClass('box1 box3',oDiv));
+   // console.log(utils.hasClass(aDiv[0],'box2'))
+    /*utils.addClass(aDiv[0],'box3 box0 box4')
+    utils.removeClass(aDiv[0],'box1 box4 box3')
+    console.log(utils.getCss(aDiv[0],'opacity'))*/
+    /*utils.setCss(aDiv[1],'height',40);
+    utils.setCss(aDiv[1],'background','red');*/
+    /*utils.setGroupCss(aDiv[1],{
+        height:40,
+        background:'blue',
+        opacity:0.1
+    })*/
+    //console.log(utils.getChildren(oDiv,'div'))
+    //console.log(utils.prevAll(aDiv[1]))
+    //console.log(utils.nextAll(aDiv[1]))
+    console.log(utils.prevAll(aDiv[3]));
+</script>
+</body>
+</html>

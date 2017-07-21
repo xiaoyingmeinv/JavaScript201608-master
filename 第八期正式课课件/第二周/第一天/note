@@ -1,0 +1,36 @@
+1.函数的三个角色：
+  1.普通函数：会形成一个私有作用域-形参赋值-预解释-代码从上到下的执行；栈内存的释放；
+  2.构造函数：实例，类，原型prototype，constructor：当前所属的类； __proto__ 原型链；
+  3.普通对象：会具有普通对象的特征：属性和方法； 堆内存的释放；
+2.Function和Object的关系：
+Function是Object这个基类的爹；
+Object.prototype 是 Function.prototype的爹；
+
+每个类都是Function这个类的实例；
+所有的实例，最终都能通过__proto__找到Object这个基类的原型；
+3.call,apply,bind
+能使用call,apply,bind的都是函数数据类型； Fn() fn();
+4.call和this
+关于call改变this关键字这里：
+    * 1.把call点前面的函数中的this关键字变成call的第一个参数；
+    *   注意：如果call前面的函数中没有this关键字，那么就不需要修改，直接调用此函数即可；
+    * 2.把call点前面的函数调用；
+5.在严格模式下和非严格模式下，call中传this的区别：
+    在严格模式下，给call的第一个参数传什么，this指向就是什么
+        fn.call(null); //null
+        fn.call(undefined);// undefined;
+        fn.call();//不传也是undefined;
+    非严格模式下；
+        fn.call();//没有传第一个参数，this 是window；
+        fn.call(null)//传null,this也是window；
+        fn.call(undefined)//传undefined，this也是window；
+    备注：apply跟call在this方面一模一样；
+6.关于call和apply的区别：
+call后面传参的时候，从第二个参数开始，一个个的输入；
+  但是，它对call点前面的函数进行传参的时候，相当于给fn1的参数从左往右一个个的传参；
+apply总共有两个参数：1.用来改变this指向  2.把所有的实参放在一个数组中；
+  但是，它对apply点前面的函数进行传参的时候，相当于给fn1的参数哦从左往右一个个的传参；
+7.今天的任务：
+1）把上午的卷子错的地方，用心的抄，尤其是画图的地方，一定好好画；重在掌握；
+2）把下午的知识好好的复习
+3）再预习；

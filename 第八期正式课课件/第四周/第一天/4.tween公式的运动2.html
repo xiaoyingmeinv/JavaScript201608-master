@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 300px;
+            top:0;
+        }
+        #target{
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 800px;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    /*
+    * t:已经走了多长时间
+    * b:begin;
+    * c:change=target-begin;
+    * d:duration 要走的总时间
+    * c/d*t 求的结果是：已经走了多远 300米
+    * 而且我们最终设置位置的时候，通过直接设置left;
+    * 假设起始位置已经是300；又走了300米，我们要设置的实际位置是： 300起始位置+300已经走的距离=目标位置
+    * */
+    //tween公式
+
+    var oDiv=document.getElementById('div');
+    //1.给tween公式的每个参数求值：
+    var begin=utils.css(oDiv,'left');
+    var target=800;
+    var change=target-begin;
+    var duration=1000;
+    var time=0;
+    //2.开启一个定时器，让时间累加；
+    var timer=setInterval(function(){
+        //让时间累加
+        time+=10;
+        if(time>=duration){//当time>=duration总时间时，直接到达目标，并且，停止运动
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        //通过公式求出最新的位置
+        var curLeft=utils.Linear(time,begin,change,duration);
+        utils.css(oDiv,'left',curLeft);
+    },10)
+
+
+
+
+</script>
+</body>
+</html>

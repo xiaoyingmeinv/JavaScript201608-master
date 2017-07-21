@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //回调函数中的this一般都是window；
+    //关于forEach:有两个参数 1）回调函数 2）用来改变this指向；
+    //forEach()本身没有返回值；也没有建立什么数组去接受回调函数的返回值；
+    /*
+    * 1.回调函数被调用4次；回调函数被调用的次数跟数组的长度一样；
+    * 2.回调函数中的参数有三个：1.数组中的每一项 2.索引 3.原数组；
+    * 3.回调函数中的this默认是window，但是如果我们给forEach这个方法，传第二个参数，就会改变this指向；
+    * */
+    var obj={};
+    var ary=[21,34,22,68];
+    /*var res=ary.forEach(function(item,index,input){
+        console.log(this)
+        return '123'
+    },obj)
+    console.log(res)*/
+    //forEach有几个参数：2个参数 1）callback 2）用来改变this指向的；
+    Array.prototype.myForEach=function(callback,context){
+        //this->就是实例；
+        context=context||window;//如果第二个参数不穿，默认是window；
+        if('forEach' in Array.prototype){//标准浏览器兼容处理；
+            this.forEach(callback,context);
+            return;//阻断程序执行的作用；
+        }
+        //低级浏览器的兼容处理；
+        for(var i=0; i<this.length; i++){//看回调函数被调用多少次；
+            callback.call(context,this[i],i,this);//回调函数传参和改变this指向；
+        }
+    };
+    ary.myForEach(function(item,index,input){
+        console.log(this===obj)
+    },obj);
+</script>
+</body>
+</html>

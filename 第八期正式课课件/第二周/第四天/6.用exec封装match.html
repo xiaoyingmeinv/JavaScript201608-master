@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='zhufeng2016yangwang2017zhangwo2018';
+    var reg=/\d+/g;
+    //match本身是兼容的，我们这里只是分析match这个方法封装的原理；
+    String.prototype.myMatch=function(reg){
+        //this --当前实例str;
+        //思路：先找到第一个捕获的内容，第一个存在才满足继续捕获的条件，每次捕获成功都把他返回值的第一项放进数组；找不到的时候，返回null，就不再进行循环了；
+        var res=reg.exec(this);
+        var ary=[];
+        while(res){
+            ary.push(res[0]);
+            res=reg.exec(this);
+        }
+        return ary;
+    };
+   console.log(str.myMatch(reg)) ;
+</script>
+</body>
+</html>

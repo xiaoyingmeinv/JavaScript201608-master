@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*回调函数：就是把函数表达式作为一个值，传给另一个函数的参数；
+    *注意：回调函数做为参数时，一定不能写小括号，否则属于调用；我们拿到的只是函数调用后的返回值；
+    *1）回调函数何时被调用，被调用多少次，都是依据fn函数中的条件来决定；
+    *2）回调函数是否有参数 callback(参数)
+    *3）回调函数中的this指向；--改变回调函数中的this用call；用call的时候，一定要注意第一个参数；因为第一个参数是用来改变this指向的；
+    *4）回调函数是否有返回值？如果有返回值是什么？ return;
+    * */
+    var obj={};
+    function fn(callback){
+        var ary=[];//是用来保存所有回调函数的返回值；回调函数被调用多少次，就会有多少个返回值；
+        for(var i=0; i<3; i++){
+            var res=callback.call(obj,2,3);//aa();
+            ary.push(res);
+        }
+        return ary;//最后把数组输出，就可以拿到所有回调函数的返回值；
+    }
+    function aa(n,m){
+        alert(this+(n+m))
+        return 123;
+    }
+    console.log(fn(aa))
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){
+        this.x=100; //实例f f.x=100;
+        this.show=function(){}//在构造函数中，所有的属性和方法都是私有的；
+    }
+    Fn.prototype.showX=function(){
+        this.x=200;//实例f.x=200;
+        alert(this.x)
+    };
+    var f=new Fn;//f.show()
+    var f2=new Fn;//f2.show();
+    alert(f.x)
+    //所有的实例都是对象数据类型
+    //console.log(f instanceof Fn);
+   /* f.__proto__.showX()//在IE下，浏览器为了保护内置属性不受干扰，禁止我们使用__proto__;*/
+    //f.showX();
+</script>
+</body>
+</html>

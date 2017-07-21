@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p></p>
+<div id="div"></div>
+<script>
+    //'onclick' 'previousElementSibling' 事件中属于DOM0
+    var oDiv=document.getElementById('div');
+    //alert(oDiv.previousElementSibling)//通过点来操作属性，属性不需要加引号；
+    //alert('previousElementSibling' in oDiv) //用in 或者 hasOwnProperty()来判断时，属性都要加引号，否则，会被做为未定义的变量来使用，导致报错；
+    function hasPubProperty(attr,obj){//判断是否为公有属性的方法封装；
+        return attr in obj && !obj.hasOwnProperty(attr);
+    }
+    /*console.dir(oDiv)
+    console.log(oDiv.hasOwnProperty===Object.prototype.hasOwnProperty)*/
+</script>
+</body>
+</html>

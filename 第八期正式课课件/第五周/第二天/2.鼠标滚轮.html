@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 200%;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/wheel.js"></script>
+<script>
+    //1.火狐：浏览器专门提供的行为：DOMMouseScroll;
+    //DOMMouseScroll这个行为，他只兼容火狐；
+    /*document.body.addEventListener('DOMMouseScroll',function(){
+        alert(1)
+    },false)*/
+    //2.IE和chrome下，用的onmousewheel事件
+    /*document.body.onmousewheel=function(){
+        alert(1)
+    }*/
+    var oDiv=document.getElementById('div');
+    wheel(oDiv,function(bOk){
+        if(bOk){
+            this.style.height=this.offsetHeight+10+'px';
+        }else{
+            this.style.height=this.offsetHeight-10+'px';
+        }
+    })
+    /**
+     * @param ele:决定在哪个元素上触发滚轮事件
+     * @param
+     */
+    /*addWheel(oDiv,function(bOk){
+        if(bOk){//down
+            this.style.height=this.offsetHeight+10+'px';
+        }else{
+            this.style.height=this.offsetHeight-10+'px';
+        }
+    })
+
+    function addWheel(ele,fn){
+        function fnWheel(e){
+            //fnWheel这个函数中，是用来检测鼠标滚轮的方向；--bOk;
+            e=e||window.event;
+            var bOk=false; //想让这个布尔值，true：down； false：up
+            //alert(e.wheelDelta) //chrome/IE   down:-120; up:120; --undefined
+            //alert(e.detail)//firefox: down:3; up:-3;
+            if(e.wheelDelta){//chrome/IE
+                bOk= e.wheelDelta<0?true:false; //down:true; up:false;
+            }else{//firefox
+                bOk= e.detail>0?true:false; //down:true; up:false;
+            }
+            //判断bOk;
+            fn&&fn.call(ele,bOk); //回调函数被调用，传参，改变this指向；
+            /!*if(bOk){//down
+                oDiv.style.height=oDiv.offsetHeight+10+'px';
+            }else{
+                oDiv.style.height=oDiv.offsetHeight-10+'px';
+            }*!/
+            e.preventDefault?e.preventDefault(): e.returnValue=false;
+        }
+        //当鼠标滚轮这个行为被触发的时候，要干fnWheel里面的事情；
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') !==-1){//Firefox
+            ele.addEventListener('DOMMouseScroll',fnWheel,false);
+        }else{
+            ele.onmousewheel=fnWheel;
+        }
+    }*/
+</script>
+</body>
+</html>

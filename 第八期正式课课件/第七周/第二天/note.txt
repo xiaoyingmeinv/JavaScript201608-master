@@ -1,0 +1,79 @@
+服务器端:
+->创建一个服务，给服务监听一个端口号
+->接收客户端的请求
+->把资源文件中的内容或者源代码返回给客户端
+
+客户端:
+->向服务器端发送请求(有时候也需要给服务器端传递些内容)
+->获取服务器端返回的内容,进行解析和渲染
+
+1、http内置模块
+   var server1 = http.createServer([callBack]);
+   ->在NODE环境下创建一个服务,server1就是我新创建出来的服务
+   ->createServer中传递的回调函数并不是服务创建成功就会执行,而是当客户端向服务器端发送请求之后才会执行,并且客户端发送多少次请求,这个回调函数就会被执行多少次
+     [callBack:request response]
+     request:存储了客户端请求的全部信息
+        request.url:通过这个属性可以获取客户端请求资源文件的路径和名称 例如：'/css/index.css' 或者 '/index.html?name=zxt' ...
+
+
+     response:提供了对应的方法可以让服务器端给客户端返回内容
+       response.write([con]):向客户端返回内容
+       response.end():结束向客户端的响应
+       response.writeHead([HTTP STATUES],[RESPONSE HEADERS SETTINGS]) 重写响应头信息
+
+
+   server1.listen([port],[callBack]);
+   ->给新创建的这个服务监听一个端口号[port],值得注意的是,我们监听的端口号不能被其它的服务器占用
+   ->当监听的端口号成功后,执行[callBack]
+
+
+   通过上述操作创建完成一个服务,我们后期可以使用:
+   ->http://localhost:8080/...
+   ->http://服务器的IP地址:8080/...  例如:http://192.168.0.23:8080/
+   向当前创建的服务发送请求
+
+2、url
+   url.parse([urlString],[true/false]);第二个参数默认是false
+   ->解析[urlString]这个地址中各项的内容
+   ->第二个参数为TRUE会把传递进来的问号后面的参数值都解析为 对象键值对的方式存储
+
+3、fs
+  提供了很多很多的方法，让JS在NODE环境下进行I/O操作
+  fs.readFileSync([path],[encoding])
+  ->同步读取[path]文件中的内容,所谓的同步读取指的是只有把文件中的内容都获取完成后才可以继续做其它的事情
+  ->把读取回来的内容按照[encoding]编码格式进行编码,我们一般第二个参数都写'utf-8'
+  ->读取回来的内容都是一个字符串(有时候也是BUFFER格式的数据)
+
+  fs.writeFileSync([path],[content],[encoding])
+  ->同步向指定文件中写入内容(需要注意的是：每一次的写入都是覆盖式写入,会把之前的内容覆盖掉)
+  ->[content]就是需要写入的内容,需要是一个字符串格式的才可以
+  ->[encoding]一般我们都会写'utf-8'
+
+
+4、在渲染页面的时候，谷歌浏览器有时候会默认的向我们创建的服务发送一个favicon.ico这个图片的请求，服务器上没有这张图片，所以在我们的静态资源文件处理的时候，我们需要使用TRY CATCH捕获异常错误信息，即使服务器没有这个资源文件，我们也不让服务崩溃，返回空即可
+
+5、一般情况下服务器只要把资源文件中的源代码获取到，直接的返回给客户端即可，不需要告诉客户端这些代码是什么格式的；但是在IE低版本浏览器中，如果服务器端不告诉客户端代码的格式，浏览器不能进行自动识别，这样的话就需要服务端在返回数据的同时，告诉客户端代码对应的格式(MIME类型)
+
+   MIME:每一个资源文件都有自己对应的MIME类型
+   ->HTML:text/html
+   ->CSS:text/css
+   ->JS:text/javascript
+   ->TXT:text/plain
+   ->JSON:application/json
+   ->PNG:image/png
+   ->GIF:image/gif
+   ->JPG:image/jpeg
+   ...
+   http://www.w3school.com.cn/media/media_mimeref.asp
+
+
+
+
+
+
+
+
+
+
+
+

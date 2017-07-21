@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //myMatch:用exec封装一个match，match结果能拿到新数组；
+    //当你传正则的时候，正则一定要g;如果不写全局g,lastIndex永远=0；那永远都是从0开始查找，而且每次只能找到1项；
+    /*String.prototype.myMatch=function(reg){
+        var res=reg.exec(this);
+        var ary=[];
+        while(res){
+            ary.push(res[0]);
+            res=reg.exec(this);
+        }
+        return ary;
+    }*/
+</script>
+</body>
+</html>
